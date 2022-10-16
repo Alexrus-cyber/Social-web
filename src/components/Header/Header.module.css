@@ -1,0 +1,26 @@
+.header{
+    grid-area: h;
+    background-color: #8a1212;
+    display: flex;
+    align-items: center;
+}
+.Logo{
+    width: 50px;
+    height: 50px;
+    size: 40px;
+
+}
+.head{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 50%;
+    margin-left: 55px;
+}
+.links{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    width: 50%;
+    margin-right: 20px;
+}

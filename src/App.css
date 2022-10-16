@@ -1,0 +1,22 @@
+ul li{
+  list-style-type: armenian;
+}
+.app-wrapper{
+  display: grid;
+  grid-template-areas:
+"h h"
+"n c";
+  grid-template-rows: 60px 1fr;
+  grid-template-columns: 2fr 10fr;
+}
+body{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3d3939;
+}
+p{
+  margin: 0px !important;
+}
+

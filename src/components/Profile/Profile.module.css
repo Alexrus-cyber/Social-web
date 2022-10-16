@@ -1,0 +1,33 @@
+.content{
+    grid-area: c;
+    background-color: cornflowerblue;
+}
+.image{
+    height: 200px;
+    width: 800px;
+}
+
+.main{
+    display: flex;
+    column-gap: 20px;
+    margin-bottom: 20px;
+}
+.text{
+    display: inline-block;
+}
+.imgContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.img{
+    margin-left: 10px;
+    height: 100px;
+    width: 100px;
+}
+.posts{
+
+}
+.item{
+    color: white;
+}

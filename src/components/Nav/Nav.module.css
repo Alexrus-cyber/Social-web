@@ -1,0 +1,42 @@
+.nav{
+    grid-area: n;
+    background-color: #27122f;
+
+}
+
+.item{
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.link {
+    color: white;
+    text-decoration: none;
+    transition: 1s;
+    border-radius: 15px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.link:hover{
+    background-color: #801f1f;
+    border-radius: 15px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.active{
+    color: #369cf6;
+    background-color: #801f1f;
+    border-radius: 15px;
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+}
