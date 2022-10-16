@@ -1,6 +1,10 @@
 .content{
     grid-area: c;
-    background-color: cornflowerblue;
+    background-color: #2f4c7e;
+    color: #ece9e9;
+}
+.super{
+    margin-left: 10px;
 }
 .image{
     height: 200px;

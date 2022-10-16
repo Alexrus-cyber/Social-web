@@ -1,13 +1,16 @@
 import React from "react";
-import p from './Post.module.css';
+import styles from './Post.module.css';
 import Like from "./Like/Like";
 
 const Post = (props) => {
     return (
-        <div className={p.item}>
-            <img alt={'f'} src={'https://n1s2.starhit.ru/6a/46/ae/6a46aeed947a183d67d1bc48211151bf/445x460_0_6a5d57baf3fab914fdfcc2cc563ed893@480x496_0xac120003_4430520541578509619.jpg'}/>
-            {props.messsage}
-            <Like count = {props.count}/>
+        <div className={styles.item}>
+
+            <div className={styles.textBlock}>
+                <div style={{marginRight: 20}}><img alt={'f'} src={"https://i.pinimg.com/originals/6b/08/76/6b087603862a127ea290e0a47ed932bf.jpg"}/></div>
+                <div style={{width: 500 , wordWrap: "inherit"}}> <p className={styles.p}>{props.messsage}</p></div>
+            </div>
+            <Like />
         </div>
 
     );
