@@ -1,0 +1,13 @@
+.Dialogs{
+    grid-area: c;
+    background-color: #2f4c7e;
+    color: #ece9e9;
+    width: 800px;
+}
+.container{
+    margin-left: 10px;
+}
+.textContainer{
+    display: grid;
+    grid-auto-flow: column;
+}

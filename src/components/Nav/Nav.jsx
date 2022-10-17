@@ -6,13 +6,13 @@ const Nav = () => {
     return (
         <nav className={styles.nav}>
         <div className={styles.item}>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Profile'}>Profile</NavLink>
+            <NavLink end className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/'}>Profile</NavLink>
         </div>
         <div className={styles.item}>
-            <NavLink className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Jopa'}>Messages</NavLink>
+            <NavLink className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Dialogs'}>Messages</NavLink>
         </div>
             <div className={styles.item}>
-                <NavLink end className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/'} >News</NavLink>
+                <NavLink  className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Profile'} >News</NavLink>
             </div>
 
         <div className={styles.item}>
