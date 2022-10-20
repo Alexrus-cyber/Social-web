@@ -26,17 +26,11 @@ export const Messages = (props) => {
                 </div>
             </div>
             <div className={styles.text}>
+
+                {message.map((item) =>
                 <div className={styles.textContainer}>
                     <div style={{display: "flex", alignItems: "center"}}>
-                        <img style={{height: 30, width:30}} className={styles.photo} src={props.img} alt={'colorScheme'}/>
-                    </div>
-                    <div>
-                        <p>Hello world!</p>
-                    </div>
-                </div>
-                {message.map((item) => <div className={styles.textContainer}>
-                    <div style={{display: "flex", alignItems: "center"}}>
-                        <img style={{height: 30, width:30}} className={styles.photo} src={props.img} alt={'colorScheme'}/>
+                        <img style={{height: 30, width:30}} className={styles.photo} src={'https://i.pinimg.com/originals/6b/08/76/6b087603862a127ea290e0a47ed932bf.jpg'} alt={'colorScheme'}/>
                     </div>
                     <div>
                         <p>{item}</p>
