@@ -22,7 +22,7 @@ const Profile = () => {
                     <p>Web Site:https//vk.com</p>
                 </div>
             </div>
-            <MyPosts/>
+             <MyPosts />
             </div>
         </div>
     );

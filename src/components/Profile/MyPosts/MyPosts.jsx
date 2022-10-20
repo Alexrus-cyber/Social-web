@@ -4,12 +4,13 @@ import Post from "./Post/Post";
 
 const MyPosts = () => {
 
+
     const [count, setCount] = useState(3);
     const [post, setPosts] = useState([])
     const textInput = React.createRef();
     const clicker = () => {
         let postsValue = textInput.current.value;
-        let posts = [...post, postsValue]
+        let posts = [postsValue,...post]
         if (postsValue !== ''){
             setPosts(posts);
             setCount(count + 1)

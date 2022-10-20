@@ -2,6 +2,7 @@ ul li{
   list-style-type: armenian;
 }
 .app-wrapper{
+
   display: grid;
   grid-template-areas:
 "h h"
@@ -19,4 +20,3 @@ body{
 p{
   margin: 0px !important;
 }
-

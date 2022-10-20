@@ -59,10 +59,27 @@
 .header{
     height: 56px;
     border-bottom: 1px solid #9a9a9a;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.headerLogo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100px;
+}
+.headerName{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    font-weight: 700;
 }
 
 .text{
     height: 290px;
+    overflow:auto;
 }
 .inputContainer{
     display: flex;
@@ -73,10 +90,11 @@
 }
 
 .textContainer{
+    width: 100%;
     display: flex;
-    margin: 10px;
     column-gap: 20px;
     align-items: center;
+    margin-top: 10px;
 }
 
 .input{
@@ -88,4 +106,15 @@
 .input:focus{
     border: 1px solid #ffffff;
 
+}
+.button {
+    width: 50px;
+    height: 20px;
+    background-color: green;
+    color: #ffffff;
+    cursor: pointer;
+    border: none;
+}
+.button:hover{
+    background-color: #024b02;
 }
