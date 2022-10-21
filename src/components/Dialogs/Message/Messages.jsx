@@ -1,18 +1,35 @@
 import styles from "../Dialogs.module.css";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 export const Messages = (props) => {
 
+    let mes1;
+    let mes2;
+
+
     const [message, setMessage] = useState([]);
+    const [user , setUser] = useState(0);
     const textInput = React.createRef();
     const Clicker = () => {
         let messageValue = textInput.current.value;
         let messages = [...message,messageValue]
         if (messageValue !== ''){
             setMessage(messages)
+            if (props.id === '1') {
+                localStorage.setItem('message', JSON.stringify(messages))
+            }
+
         }
         textInput.current.value = ''
+
     }
+
+            useEffect(() => {
+                const message = JSON.parse(localStorage.getItem('message'));
+                if (message) {
+                    setMessage(message);
+                }
+            }, []);
 
 
     return (

@@ -1,6 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
+import post from "./Post/Post";
 
 const MyPosts = () => {
 
@@ -11,13 +12,28 @@ const MyPosts = () => {
     const clicker = () => {
         let postsValue = textInput.current.value;
         let posts = [postsValue,...post]
+        let counts = count + 1;
         if (postsValue !== ''){
             setPosts(posts);
-            setCount(count + 1)
+            setCount(counts)
+            localStorage.setItem('count', JSON.stringify(counts))
+            localStorage.setItem('post', JSON.stringify(posts))
         }
         textInput.current.value='';
     }
 
+
+    useEffect(()=> {
+        const post = JSON.parse(localStorage.getItem('post'));
+        const count = JSON.parse(localStorage.getItem('count'));
+        if (count){
+            setCount(count)
+        }
+        if (post){
+            setPosts(post)
+        }
+
+    })
     return (
             <div>
                 My posts {count}

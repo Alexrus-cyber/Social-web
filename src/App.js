@@ -19,9 +19,9 @@ const App = () => {
                     <Route  path={'/'} element={<Profile/>}></Route>
                     <Route  path={'/Alex'} element={<Profile/>}></Route>
                     <Route  path={'/Kira'} element={<Profile/>}></Route>
-                    <Route  exact path={'/Dialogs/1'} element={<Dialogs />}>
+                    <Route  exact path={'/Dialogs/1'} element={<Dialogs x = {0}/>}>
                     </Route>
-                    <Route  exact path={'/Dialogs/2'} element={<Dialogs />}></Route>
+                    <Route  exact path={'/Dialogs/2'} element={<Dialogs  x = {1} />}></Route>
                     <Route  path={'/Dialogs'} element={<Dialogs/>}></Route>
               </Routes>
 
