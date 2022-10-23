@@ -7,18 +7,18 @@ import Ivan from './Users/img/Ivan.jpg'
 import Andrey from './Users/img/Andrey.jpg'
 
 export const Dialogs = (props) => {
-
     const [count , setCount]= useState(0);
     const Form = () => count === 0
         ? <div><h4 style={{marginLeft: 150}}>Выберите собеседника</h4></div>
         : count === 1 ? <Messages id = {'2'}  name = {'Яван Миллер'} img={Ivan}/> : <Messages id = {'1'}  name = {'Даниил Громыко'} img={image}/>
 
-    let userData = [
+/*    let userData = [
         {id: '1', name: 'Даниил Громыко' , img :image, setActiveStep:setCount},
         {id: '2', name: 'Яван Миллер' ,img :Ivan, setActiveStep:setCount},
         {id: '3', name: 'Андрей Солодышкин', img :Andrey, setActiveStep:setCount},
-    ]
-    let userElements = userData.map(el => <User setActiveStep={el.setActiveStep} img={el.img} name = {el.name} id={el.id}/>)
+    ]*/
+
+    let userElements = props.userData.map(el => <User setActiveStep={setCount} img={el.img} name = {el.name} id={el.id}/>)
 
 
     return (
@@ -29,8 +29,6 @@ export const Dialogs = (props) => {
                         {userElements}
                     </div>
                     <Form/>
-                  {/*<Messages name = {'Даниил Громыко'} img={image}/>
-                    <Messages name = {'Яван Миллер'} img={Ivan}/>*/}
                 </div>
             </div>
         </div>

@@ -8,7 +8,7 @@ import {Dialogs} from "./components/Dialogs/Dialogs";
 import {Messages} from "./components/Dialogs/Message/Messages";
 
 
-const App = () => {
+const App = (props) => {
   return (
       <BrowserRouter>
           <div className={'app-wrapper'}>
@@ -19,12 +19,11 @@ const App = () => {
                     <Route  path={'/'} element={<Profile/>}></Route>
                     <Route  path={'/Alex'} element={<Profile/>}></Route>
                     <Route  path={'/Kira'} element={<Profile/>}></Route>
-                    <Route  exact path={'/Dialogs/1'} element={<Dialogs x = {0}/>}>
+                    <Route  exact path={'/Dialogs/1'} element={<Dialogs userData = {props.appState.dialogsPage.users} x = {0}/>}>
                     </Route>
-                    <Route  exact path={'/Dialogs/2'} element={<Dialogs  x = {1} />}></Route>
-                    <Route  path={'/Dialogs'} element={<Dialogs/>}></Route>
+                    <Route  exact path={'/Dialogs/2'} element={<Dialogs userData = {props.appState.dialogsPage.users} x = {1} />}></Route>
+                    <Route  path={'/Dialogs'} element={<Dialogs userData = {props.appState.dialogsPage.users}/>}></Route>
               </Routes>
-
           </div>
       </BrowserRouter>
 

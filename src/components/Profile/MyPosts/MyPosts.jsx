@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import post from "./Post/Post";
 
 const MyPosts = () => {
 
@@ -35,7 +34,7 @@ const MyPosts = () => {
 
     })
     return (
-            <div>
+            <div className={styles.posts}>
                 My posts {count}
                 <div className={styles.container}>
                     <div className={styles.textAreaCont}>
@@ -50,7 +49,7 @@ const MyPosts = () => {
                         {post.map((item)=> <Post messsage={item} count = {count}/>)}
                     </div>
                 </div>
-                    <div className={styles.posts}>
+                    <div>
 
                        <Post messsage={"Как ты знаешь сейчас проходит The International 11, а для меня, и многих моих подписчик" +
                            "ов, как для людей, которые посвятили жизнь доте это очень важное событие. Dota 2 - это мой источник дохода и это может стать " +
