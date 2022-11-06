@@ -12,7 +12,7 @@ const Nav = () => {
             <NavLink className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Dialogs'}>Messages</NavLink>
         </div>
             <div className={styles.item}>
-                <NavLink  className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/Profile'} >News</NavLink>
+                <NavLink  className={({ isActive }) => (isActive ? styles.active : styles.link)} to={'/News'} >News</NavLink>
             </div>
 
         <div className={styles.item}>

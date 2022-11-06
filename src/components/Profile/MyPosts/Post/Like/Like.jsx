@@ -7,21 +7,21 @@ const Like = (props) => {
     const click = () => {
         let counts = count + 1;
         setCount(counts)
-        localStorage.setItem('like', JSON.stringify(counts))
+/*        localStorage.setItem('like', JSON.stringify(counts))*/
     }
 
 
-    useEffect(() => {
+/*    useEffect(() => {
         const count = JSON.parse(localStorage.getItem('like'))
         if (count){
             setCount(count)
         }
-    })
+    })*/
 
     return (
             <div>
                 <img style={{cursor: "pointer", width: 20, height: 20,}} onClick={click} src={image} alt={'Hello'}/>
-                <span>{count}</span>
+                <span>{props.like}</span>
             </div>
     );
 }
