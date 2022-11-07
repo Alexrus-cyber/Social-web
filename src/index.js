@@ -3,15 +3,14 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import state, {AddPost, subscribe} from "./Redux/State";
-import * as ReactDom from 'react-dom'
+import store from "./Redux/State";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 function tick() {
     root.render(
         <React.StrictMode>
-            <App appState={state} addPost={AddPost}/>
+            <App addLike = {store.addLike.bind(store)} countPost = {store.postsCount.bind(store)} appState={store.getState()} addPost={store.addPost.bind(store)}/>
         </React.StrictMode>
     );
 }

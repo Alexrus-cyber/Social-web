@@ -12,19 +12,19 @@ const MyPosts = (props) => {
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== ''){
+            props.countPost(counts);
             props.addPost(postsValue, counts , likes)
         }
         textInput.current.value='';
 
     }
+    let xray = props.counts;
 
-
-
-    let messageElements = props.state.map(el => <Post  addPost = {props.addPost} likes={el.likesCount} message= {el.message} id={el.id}/>)
+    let messageElements = props.state.map(el => <Post addLike = {props.addLike} addPost = {props.addPost} likes={el.likesCount} message= {el.message} id={el.id}/>)
 
     return (
             <div className={styles.posts}>
-                My posts {count}
+               My posts {xray}
                 <div className={styles.container}>
                     <div className={styles.textAreaCont}>
                         <textarea id={'text'}  className={styles.textArea}
