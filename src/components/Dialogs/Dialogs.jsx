@@ -12,11 +12,7 @@ export const Dialogs = (props) => {
         ? <div><h4 style={{marginLeft: 150}}>Выберите собеседника</h4></div>
         : count === 1 ? <Messages id = {'2'}  name = {'Яван Миллер'} img={Ivan}/> : <Messages id = {'1'}  name = {'Даниил Громыко'} img={image}/>
 
-/*    let userData = [
-        {id: '1', name: 'Даниил Громыко' , img :image, setActiveStep:setCount},
-        {id: '2', name: 'Яван Миллер' ,img :Ivan, setActiveStep:setCount},
-        {id: '3', name: 'Андрей Солодышкин', img :Andrey, setActiveStep:setCount},
-    ]*/
+
 
     let userElements = props.userData.map(el => <User setActiveStep={setCount} img={el.img} name = {el.name} id={el.id}/>)
 

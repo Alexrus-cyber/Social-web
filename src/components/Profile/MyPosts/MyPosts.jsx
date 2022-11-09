@@ -2,25 +2,31 @@ import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {User} from "../../Dialogs/Users/User";
+import {addPostActionCreator, Counter} from "../../../Redux/State";
+
+
 
 const MyPosts = (props) => {
     const [count, setCount] = useState(3);
+
     const textInput = React.createRef();
+
     const clicker = () => {
         let likes = 0;
         let postsValue = textInput.current.value;
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== ''){
-            props.countPost(counts);
-            props.addPost(postsValue, counts , likes)
+            props.dispatch (addPostActionCreator(counts,postsValue,likes))
+            props.dispatch (Counter(counts))
         }
         textInput.current.value='';
 
     }
+
     let xray = props.counts;
 
-    let messageElements = props.state.map(el => <Post addLike = {props.addLike} addPost = {props.addPost} likes={el.likesCount} message= {el.message} id={el.id}/>)
+    let messageElements = props.state.map(el => <Post dispatch = {props.dispatch}  likes={el.likesCount} message= {el.message} id={el.id}/>)
 
     return (
             <div className={styles.posts}>

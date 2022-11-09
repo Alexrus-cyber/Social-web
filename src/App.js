@@ -18,7 +18,7 @@ const App = (props) => {
               <Nav/>
               <Routes>
                     <Route  path={'/News'} element={<News/>}></Route>
-                    <Route  path={'/'} element={<Profile addLike = {props.addLike} countPost = {props.countPost} postData = {props.appState.profilePage.posts} postCountData = {props.appState.profilePage.countPosts} addPost={props.addPost}/>}></Route>
+                    <Route  path={'/'} element={<Profile addLike = {props.addLike} dispatch = {props.dispatch} countPost = {props.countPost} postData = {props.appState.profilePage.posts} postCountData = {props.appState.profilePage.countPosts} addPost={props.addPost}/>}></Route>
                     <Route  path={'/Alex'} element={<Dialogs/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
                     <Route  exact path={'/Dialogs/1'} element={<Dialogs userData = {props.appState.dialogsPage.users} x = {0}/>}>

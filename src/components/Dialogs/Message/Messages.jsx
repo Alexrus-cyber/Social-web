@@ -15,22 +15,10 @@ export const Messages = (props) => {
         let messages = [...message,messageValue]
         if (messageValue !== ''){
             setMessage(messages)
-            if (props.id === '1') {
-                localStorage.setItem('message', JSON.stringify(messages))
-            }
-
         }
         textInput.current.value = ''
 
     }
-
-            useEffect(() => {
-                const message = JSON.parse(localStorage.getItem('message'));
-                if (message) {
-                    setMessage(message);
-                }
-            }, []);
-
 
     return (
         <div className={styles.messages}>
