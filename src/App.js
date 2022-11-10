@@ -18,13 +18,13 @@ const App = (props) => {
               <Nav/>
               <Routes>
                     <Route  path={'/News'} element={<News/>}></Route>
-                    <Route  path={'/'} element={<Profile addLike = {props.addLike} dispatch = {props.dispatch} countPost = {props.countPost} postData = {props.appState.profilePage.posts} postCountData = {props.appState.profilePage.countPosts} addPost={props.addPost}/>}></Route>
+                    <Route  path={'/'} element={<Profile  dispatch = {props.dispatch} updateText = {props.appState.profilePage.newPostText}  postData = {props.appState.profilePage.posts} postCountData = {props.appState.profilePage.countPosts} />}></Route>
                     <Route  path={'/Alex'} element={<Dialogs/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
-                    <Route  exact path={'/Dialogs/1'} element={<Dialogs userData = {props.appState.dialogsPage.users} x = {0}/>}>
-                    </Route>
-                    <Route  exact path={'/Dialogs/2'} element={<Dialogs userData = {props.appState.dialogsPage.users} x = {1} />}></Route>
-                    <Route  path={'/Dialogs'} element={<Dialogs userData = {props.appState.dialogsPage.users}/>}></Route>
+
+                    <Route  path={'/Dialogs'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/1'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/2'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
               </Routes>
           </div>
       </BrowserRouter>

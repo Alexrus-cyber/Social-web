@@ -1,10 +1,8 @@
 import styles from "../Dialogs.module.css";
 import React, {useEffect, useState} from "react";
+import {updateMessageActionCreator} from "../../../Redux/State";
 
 export const Messages = (props) => {
-
-    let mes1;
-    let mes2;
 
 
     const [message, setMessage] = useState([]);
@@ -18,6 +16,11 @@ export const Messages = (props) => {
         }
         textInput.current.value = ''
 
+    }
+
+    let updateMessage = () => {
+        let messageValue = textInput.current.value;
+        props.dispatch(props.updateMessageActionCreator(messageValue));
     }
 
     return (
@@ -46,7 +49,7 @@ export const Messages = (props) => {
             </div>
             <div className={styles.inputContainer}>
                 <div style={{display: "flex"}}>
-                    <textarea className={styles.input} ref={textInput}>
+                    <textarea value = {props.newMessageText} onChange={updateMessage} className={styles.input} ref={textInput}>
                     </textarea>
                     <div style={{display: "flex" , alignItems: "center", marginLeft: 10}}>
                         <button onClick={Clicker} className={styles.button}>Send</button>

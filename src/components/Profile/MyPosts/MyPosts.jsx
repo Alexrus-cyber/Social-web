@@ -2,12 +2,12 @@ import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {User} from "../../Dialogs/Users/User";
-import {addPostActionCreator, Counter} from "../../../Redux/State";
+import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/State";
 
 
 
 const MyPosts = (props) => {
-    const [count, setCount] = useState(3);
+    const [count, setCount] = useState(props.counts);
 
     const textInput = React.createRef();
 
@@ -17,13 +17,17 @@ const MyPosts = (props) => {
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== ''){
-            props.dispatch (addPostActionCreator(counts,postsValue,likes))
+            props.dispatch (addPostActionCreator(counts,likes))
             props.dispatch (Counter(counts))
         }
-        textInput.current.value='';
+
 
     }
 
+    let onPostChange = () => {
+        let postsValue = textInput.current.value;
+        props.dispatch(updateTextActionCreator(postsValue))
+    }
     let xray = props.counts;
 
     let messageElements = props.state.map(el => <Post dispatch = {props.dispatch}  likes={el.likesCount} message= {el.message} id={el.id}/>)
@@ -33,7 +37,7 @@ const MyPosts = (props) => {
                My posts {xray}
                 <div className={styles.container}>
                     <div className={styles.textAreaCont}>
-                        <textarea id={'text'}  className={styles.textArea}
+                        <textarea onChange={onPostChange} value={props.newPostText} className={styles.textArea}
                                 ref={textInput}>
                         </textarea>
                     </div>
