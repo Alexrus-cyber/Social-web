@@ -2,7 +2,8 @@ import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {User} from "../../Dialogs/Users/User";
-import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/State";
+import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/Profile-reducer";
+
 
 
 
@@ -17,7 +18,7 @@ const MyPosts = (props) => {
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== ''){
-            props.dispatch (addPostActionCreator(counts,likes))
+            props.dispatch (addPostActionCreator(counts,props.like))
             props.dispatch (Counter(counts))
         }
 
@@ -30,7 +31,7 @@ const MyPosts = (props) => {
     }
     let xray = props.counts;
 
-    let messageElements = props.state.map(el => <Post dispatch = {props.dispatch}  likes={el.likesCount} message= {el.message} id={el.id}/>)
+    let postElements = props.state.map(el => <Post dispatch = {props.dispatch}  likes={el.likesCount} message= {el.message} id={el.id}/>)
 
     return (
             <div className={styles.posts}>
@@ -45,7 +46,7 @@ const MyPosts = (props) => {
                         <button onClick={clicker} type={"submit"} className={styles.button}>Send</button>
                     </div>
                     <div>
-                        {messageElements}
+                        {postElements}
                     </div>
                 </div>
 

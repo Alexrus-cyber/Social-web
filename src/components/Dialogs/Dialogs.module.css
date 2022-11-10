@@ -3,12 +3,21 @@
     background-color: #2f4c7e;
     color: #ece9e9;
     width: 800px;
+
 }
 .container{
     height: 100%;
 }
 .secondContainer{
     display: flex;
+
+}
+.kingInput {
+    display: flex;
+    width: 100%;
+    height: 55px;
+    border: none;
+    margin-bottom: 5px;
 }
 .users{
     background-color: #063150;

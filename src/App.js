@@ -5,7 +5,7 @@ import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {Messages} from "./components/Dialogs/Message/Messages";
+import {Messages} from "./components/Dialogs/Messages/Messages";
 import News from "./components/News/News";
 
 
@@ -22,9 +22,9 @@ const App = (props) => {
                     <Route  path={'/Alex'} element={<Dialogs/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
 
-                    <Route  path={'/Dialogs'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/1'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/2'} element={<Dialogs messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/1'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/2'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
               </Routes>
           </div>
       </BrowserRouter>

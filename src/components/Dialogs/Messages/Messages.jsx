@@ -1,27 +1,28 @@
 import styles from "../Dialogs.module.css";
 import React, {useEffect, useState} from "react";
-import {updateMessageActionCreator} from "../../../Redux/State";
+
+import {Message} from "./Message/Message";
+import {addMessageActionCreator, updateMessageActionCreator} from "../../../Redux/Dialogs-reducer";
 
 export const Messages = (props) => {
 
 
-    const [message, setMessage] = useState([]);
-    const [user , setUser] = useState(0);
     const textInput = React.createRef();
     const Clicker = () => {
         let messageValue = textInput.current.value;
-        let messages = [...message,messageValue]
         if (messageValue !== ''){
-            setMessage(messages)
+           props.dispatch(addMessageActionCreator(props.id, props.name , props.img))
         }
-        textInput.current.value = ''
 
     }
 
     let updateMessage = () => {
         let messageValue = textInput.current.value;
-        props.dispatch(props.updateMessageActionCreator(messageValue));
+        props.dispatch(updateMessageActionCreator(messageValue));
     }
+
+       let messageEl = props.messageData.map(el => <Message message = {el.message} id = {el.id} name = {el.name} img = {el.img}/>)
+
 
     return (
         <div className={styles.messages}>
@@ -34,18 +35,7 @@ export const Messages = (props) => {
                 </div>
             </div>
             <div className={styles.text}>
-
-                {message.map((item) =>
-                <div className={styles.textContainer}>
-                    <div style={{display: "flex", alignItems: "center"}}>
-                        <img style={{height: 30, width:30}} className={styles.photo} src={'https://i.pinimg.com/originals/6b/08/76/6b087603862a127ea290e0a47ed932bf.jpg'} alt={'colorScheme'}/>
-                    </div>
-                    <div>
-                        <p>{item}</p>
-                    </div>
-                </div>
-                )}
-
+                {messageEl}
             </div>
             <div className={styles.inputContainer}>
                 <div style={{display: "flex"}}>

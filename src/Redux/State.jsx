@@ -1,20 +1,15 @@
 import image from "../components/Dialogs/Users/img/icon.jpg";
 import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
 import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
-import {useState} from "react";
-
-const addPost = 'addPost';
-const postCount = 'postCount';
-const addLike = 'addLike';
-const updateText = 'updateText';
-const updateMessage = 'updateMessage';
+import {profileReducer} from "./Profile-reducer";
+import {dialogsReducer} from "./Dialogs-reducer";
 
 
 let store = {
     _state: {
-
         dialogsPage: {
-            users : [   {id: 1, name: 'Даниил Громыко' , img :image,},
+            users : [
+                {id: 1, name: 'Даниил Громыко' , img :image,},
                 {id: 2, name: 'Яван Миллер' ,img :Ivan, },
                 {id: 3, name: 'Андрей Солодышкин', img :Andrey,},
             ],
@@ -47,64 +42,14 @@ let store = {
             return this._state;
     },
     dispatch (action){
-        if (action.type === addPost){
-            let newPost = {
-                id: action.idCount,
-                message: this._state.profilePage.newPostText,
-                likesCount: action.likes,
-            };
-            this._state.profilePage.posts.unshift(newPost)
-            this._state.profilePage.newPostText = ''
-            this._rerenderTree(newPost);
-            console.log(newPost)
-        }
-        else if (action.type === postCount){
-            this._state.profilePage.countPosts = action.countPost
-            this._rerenderTree(action.countPost);
-        }
-        else if (action.type === addLike){
-            let likes = {
-                likesCount: action.like
-            }
-            console.log(action.id);
-            this._rerenderTree(likes);
-        }
-        else if (action.type === updateText) {
-            this._state.profilePage.newPostText = action.newText;
-            this._rerenderTree(action.newText);
-        }
-        else if (action.type === updateMessage) {
-            this._state.dialogsPage.newMessageText = action.newMessage;
-            this._rerenderTree(action.newMessage);
-        }
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+        this._rerenderTree(this._state);
 
     }
 }
-export let addPostActionCreator = (counts, likes) =>{
-    return {
-        type: addPost,
-        idCount: counts,
-        likes: likes
-    }
-}
-export let Counter = (counts) =>{
-    return {
-        type: postCount,
-        countPost: counts
-    }
-}
-export let updateTextActionCreator = (postsValue) => {
-    return {
-        type: updateText,
-        newText: postsValue
-    }
-}
-export let updateMessageActionCreator = (messageValue) => {
-    return {
-        type: updateText,
-        newMessage: messageValue
-    }
-}
+
+
 
 window.store = store;
 export default store;

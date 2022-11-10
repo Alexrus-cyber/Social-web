@@ -1,16 +1,17 @@
 import React, {useEffect, useState} from "react";
 import p from './Like.module.css';
 import image from './like.png';
+import {addLikeCreator} from "../../../../../Redux/Profile-reducer";
+
 
 const Like = (props) => {
-    const [count, setCount] = useState(0);
+    const [count, setCount] = useState(props.like);
     const click = () => {
         let counts = count + 1;
         setCount(counts)
-        props.dispatch({type: 'addLike',
-                        like: counts ,
-                        id : props.id})
+        props.dispatch(addLikeCreator(counts,props.id))
 /*        localStorage.setItem('like', JSON.stringify(counts))*/
+        console.log(props.like)
     }
 
 
