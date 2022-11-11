@@ -3,7 +3,17 @@ const postCount = 'postCount';
 const addLike = 'addLike';
 const updateText = 'updateText';
 
-export const profileReducer = (state, action) => {
+let initialState = {
+        posts: [
+            {id: 1, message: 'Даниил Громыко' , likesCount : 1,},
+            {id: 2, message: 'Яван Миллер' , likesCount : 2, },
+            {id: 3, message: 'Андрей Солодышкин',  likesCount : 3,},
+        ],
+        countPosts: 3 ,
+        newPostText: '',
+    }
+
+export const profileReducer = (state = initialState, action) => {
     switch (action.type){
 
         case addPost :

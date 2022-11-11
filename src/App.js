@@ -10,21 +10,22 @@ import News from "./components/News/News";
 
 
 const App = (props) => {
-
+    console.log(props)
   return (
       <BrowserRouter>
           <div className={'app-wrapper'}>
               <Header/>
               <Nav/>
               <Routes>
+
                     <Route  path={'/News'} element={<News/>}></Route>
-                    <Route  path={'/'} element={<Profile  dispatch = {props.dispatch} updateText = {props.appState.profilePage.newPostText}  postData = {props.appState.profilePage.posts} postCountData = {props.appState.profilePage.countPosts} />}></Route>
+                    <Route  path={'/'} element={<Profile store = {props.store} />}></Route>
                     <Route  path={'/Alex'} element={<Dialogs/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
 
-                    <Route  path={'/Dialogs'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/1'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/2'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage.message} newMessageText = {props.appState.dialogsPage.newMessageText} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/1'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
+                    <Route  path={'/Dialogs/2'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
               </Routes>
           </div>
       </BrowserRouter>

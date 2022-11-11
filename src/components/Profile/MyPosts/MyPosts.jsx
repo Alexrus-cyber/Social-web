@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {User} from "../../Dialogs/Users/User";
 import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/Profile-reducer";
 
 
@@ -18,24 +17,22 @@ const MyPosts = (props) => {
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== ''){
-            props.dispatch (addPostActionCreator(counts,props.like))
-            props.dispatch (Counter(counts))
+            props.addPost(counts, likes)
+            props.counterPosts(counts)
         }
 
 
     }
-
     let onPostChange = () => {
         let postsValue = textInput.current.value;
-        props.dispatch(updateTextActionCreator(postsValue))
+        props.onPostChange(postsValue)
     }
-    let xray = props.counts;
 
-    let postElements = props.state.map(el => <Post dispatch = {props.dispatch}  likes={el.likesCount} message= {el.message} id={el.id}/>)
+    let postElements = props.postData.map(el => <Post addLike = {props.addLike}  likes={el.likesCount} message= {el.message} id={el.id}/>)
 
     return (
             <div className={styles.posts}>
-               My posts {xray}
+               My posts {props.xray}
                 <div className={styles.container}>
                     <div className={styles.textAreaCont}>
                         <textarea onChange={onPostChange} value={props.newPostText} className={styles.textArea}

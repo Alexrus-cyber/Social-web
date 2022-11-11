@@ -11,7 +11,7 @@ export const Dialogs = (props) => {
 
 
 
-    let messageElements = props.userData.map(el => <Messages userData = {props.userData} messageData = {props.messageData} dispatch = {props.dispatch} newMessageText = {props.newMessageText} id={el.id} message = {el.message} name = {el.name} img={el.img}/>);
+    let messageElements = props.userData.map(el => <Messages userData = {props.userData} messageData = {props.messageData.message} dispatch = {props.dispatch} newMessageText = {props.newMessageText.newMessageText} id={el.id} message = {el.message} name = {el.name} img={el.img}/>);
     let userElements = props.userData.map(el => <User dispatch = {props.dispatch} setActiveStep={setCount} img={el.img} name = {el.name} id={el.id}/>)
 
 

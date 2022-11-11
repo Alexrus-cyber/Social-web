@@ -1,7 +1,26 @@
+import image from "../components/Dialogs/Users/img/icon.jpg";
+import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
+import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
+
 const updateMessage = 'updateMessage';
 const addMessage = 'addMessage';
 
-export const dialogsReducer = (state, action) => {
+let initialState = {
+        users : [
+            {id: 1, name: 'Даниил Громыко' , img :image,},
+            {id: 2, name: 'Яван Миллер' ,img :Ivan, },
+            {id: 3, name: 'Андрей Солодышкин', img :Andrey,},
+        ],
+        message : [
+            {id : 1 , message: 'Привет Бро!' , name: 'Даниил Громыко' , img :image,},
+            {id: 2, name: 'Яван Миллер' ,img :Ivan, message: 'Я Иван привет'},
+            {id: 3, name: 'Андрей Солодышкин', img :Andrey, message: 'Hello world!'},
+        ],
+        newMessageText: '',
+
+    }
+
+export const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case addMessage:
             let newMessage = {

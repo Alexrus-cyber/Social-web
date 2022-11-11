@@ -9,7 +9,7 @@ const Like = (props) => {
     const click = () => {
         let counts = count + 1;
         setCount(counts)
-        props.dispatch(addLikeCreator(counts,props.id))
+        props.addLike(counts)
 /*        localStorage.setItem('like', JSON.stringify(counts))*/
         console.log(props.like)
     }
