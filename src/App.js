@@ -5,8 +5,8 @@ import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {Dialogs} from "./components/Dialogs/Dialogs";
-import {Messages} from "./components/Dialogs/Messages/Messages";
 import News from "./components/News/News";
+import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 
 
 const App = (props) => {
@@ -22,10 +22,10 @@ const App = (props) => {
                     <Route  path={'/'} element={<Profile store = {props.store} />}></Route>
                     <Route  path={'/Alex'} element={<Dialogs/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
+                    <Route  path={'/Dialogs'} element={<DialogsContainer store = {props.store}/>}></Route>
+                    <Route  path={'/Dialogs/1'} element={<DialogsContainer store = {props.store}/>}></Route>
+                    <Route  path={'/Dialogs/2'} element={<DialogsContainer store = {props.store}/>}></Route>
 
-                    <Route  path={'/Dialogs'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/1'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
-                    <Route  path={'/Dialogs/2'} element={<Dialogs dispatch = {props.dispatch} messageData = {props.appState.dialogsPage} newMessageText = {props.appState.dialogsPage} userData = {props.appState.dialogsPage.users}/>}></Route>
               </Routes>
           </div>
       </BrowserRouter>

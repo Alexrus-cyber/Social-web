@@ -10,17 +10,11 @@ const Like = (props) => {
         let counts = count + 1;
         setCount(counts)
         props.addLike(counts)
-/*        localStorage.setItem('like', JSON.stringify(counts))*/
         console.log(props.like)
     }
 
 
-/*    useEffect(() => {
-        const count = JSON.parse(localStorage.getItem('like'))
-        if (count){
-            setCount(count)
-        }
-    })*/
+
 
     return (
             <div>

@@ -11,14 +11,14 @@ export const Messages = (props) => {
     const Clicker = () => {
         let messageValue = textInput.current.value;
         if (messageValue !== ''){
-           props.dispatch(addMessageActionCreator(props.id, props.name , props.img))
+           props.addMessage(props.id, props.name, props.img);
         }
 
     }
 
     let updateMessage = () => {
         let messageValue = textInput.current.value;
-        props.dispatch(updateMessageActionCreator(messageValue));
+        props.updateMessage(messageValue);
     }
 
        let messageEl = props.messageData.map(el => <Message message = {el.message} id = {el.id} name = {el.name} img = {el.img}/>)

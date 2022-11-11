@@ -4,18 +4,12 @@ import {NavLink} from "react-router-dom";
 
 export const User = (props) => {
     const path = '/Dialogs/' + props.id
-    const setter = () => {
-        if(props.id === '1'){
-            props.setActiveStep(2)
-        }else{
-            props.setActiveStep(1)
-        }
-    }
+
     const deleteStorage = () =>{
         localStorage.clear();
     }
   return(
-      <NavLink onClick={setter} className={({isActive}) => (isActive ? styles.active : styles.users)} to={path} >
+      <NavLink className={({isActive}) => (isActive ? styles.active : styles.users)} to={path} >
           <div >
               <img className={styles.photo} src={props.img} alt={'photo'}/>
           </div>

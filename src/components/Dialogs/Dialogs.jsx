@@ -7,12 +7,9 @@ import Ivan from './Users/img/Ivan.jpg'
 import Andrey from './Users/img/Andrey.jpg'
 
 export const Dialogs = (props) => {
-    const [count , setCount]= useState(0);
 
-
-
-    let messageElements = props.userData.map(el => <Messages userData = {props.userData} messageData = {props.messageData.message} dispatch = {props.dispatch} newMessageText = {props.newMessageText.newMessageText} id={el.id} message = {el.message} name = {el.name} img={el.img}/>);
-    let userElements = props.userData.map(el => <User dispatch = {props.dispatch} setActiveStep={setCount} img={el.img} name = {el.name} id={el.id}/>)
+    let messageElements = props.userData.map(el => <Messages updateMessage = {props.updateMessage} addMessage = {props.addMessage}  messageData = {props.messageData} newMessageText = {props.newMessageText} userData = {props.userData} id={el.id} message = {el.message} name = {el.name} img={el.img}/>);
+    let userElements = props.userData.map(el => <User img={el.img} name = {el.name} id={el.id}/>)
 
 
     return (

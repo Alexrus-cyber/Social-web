@@ -1,6 +1,3 @@
-import React, {useEffect, useState} from "react";
-import styles from './MyPosts.module.css';
-import Post from "./Post/Post";
 import {addLikeCreator, addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/Profile-reducer";
 import MyPosts from "./MyPosts";
 
@@ -8,8 +5,14 @@ import MyPosts from "./MyPosts";
 
 
 const MyPostsContainer = (props) => {
-    let state = props.store.getState();
+    /// Переменные (Данные из ProfileReducer)
+    let state = props.store.getState().profilePage;
+    let xray = state.countPosts;
+    let counts = state.countPosts;
+    let newPostText = state.newPostText;
+    let postData = state.posts;
 
+    /// Методы (action.creators из ProfileReducer)
     let addPost = (counts, likes) => {
         let action = addPostActionCreator(counts,likes)
         props.store.dispatch(action)
@@ -26,10 +29,11 @@ const MyPostsContainer = (props) => {
         let action = addLikeCreator(like)
         props.store.dispatch(action)
     }
-    let xray = state.profilePage.countPosts;
+
+
 
    return (
-       <MyPosts addLike = {addLike} counts = {state.profilePage.countPosts} xray = {xray} newPostText = {state.profilePage.newPostText} postData = {state.profilePage.posts} store = {props.store} addPost = {addPost} counterPosts = {counterPosts} onPostChange = {onPostChange}/>
+       <MyPosts addLike = {addLike} counts = {counts} xray = {xray} newPostText = {newPostText} postData = {postData} store = {props.store} addPost = {addPost} counterPosts = {counterPosts} onPostChange = {onPostChange}/>
    )
 }
 
