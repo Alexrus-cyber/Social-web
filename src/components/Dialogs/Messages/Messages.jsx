@@ -5,13 +5,16 @@ import {Message} from "./Message/Message";
 import {addMessageActionCreator, updateMessageActionCreator} from "../../../Redux/Dialogs-reducer";
 
 export const Messages = (props) => {
-
+    const [count, setCount] = useState(props.idCounter)
 
     const textInput = React.createRef();
     const Clicker = () => {
         let messageValue = textInput.current.value;
+        let counts = count + 1;
+        setCount(counts);
         if (messageValue !== ''){
-           props.addMessage(props.id, props.name, props.img);
+           props.updateCount(counts);
+           props.addMessage(counts, props.name, props.img);
         }
 
     }
@@ -21,7 +24,7 @@ export const Messages = (props) => {
         props.updateMessage(messageValue);
     }
 
-       let messageEl = props.messageData.map(el => <Message message = {el.message} id = {el.id} name = {el.name} img = {el.img}/>)
+       let messageEl = props.messageData.map(el => <Message key={el.id} message = {el.message} id = {el.id} name = {el.name} img = {el.img}/>)
 
 
     return (

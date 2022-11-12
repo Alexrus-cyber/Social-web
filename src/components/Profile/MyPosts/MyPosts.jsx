@@ -4,20 +4,17 @@ import Post from "./Post/Post";
 import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/Profile-reducer";
 
 
-
-
 const MyPosts = (props) => {
     const [count, setCount] = useState(props.counts);
 
     const textInput = React.createRef();
 
     const clicker = () => {
-        let likes = 0;
         let postsValue = textInput.current.value;
         let counts = count + 1;
         setCount(counts);
-        if (postsValue !== ''){
-            props.addPost(counts, likes)
+        if (postsValue !== '') {
+            props.addPost(counts, props.likes)
             props.counterPosts(counts)
         }
 
@@ -28,28 +25,29 @@ const MyPosts = (props) => {
         props.onPostChange(postsValue)
     }
 
-    let postElements = props.postData.map(el => <Post addLike = {props.addLike}  likes={el.likesCount} message= {el.message} id={el.id}/>)
+    let postElements = props.postData.map(el => <Post addLike={props.addLike} key={el.id} likes={props.likes}
+                                                      message={el.message} id={el.id}/>)
 
     return (
-            <div className={styles.posts}>
-               My posts {props.xray}
-                <div className={styles.container}>
-                    <div className={styles.textAreaCont}>
+        <div className={styles.posts}>
+            My posts {props.xray}
+            <div className={styles.container}>
+                <div className={styles.textAreaCont}>
                         <textarea onChange={onPostChange} value={props.newPostText} className={styles.textArea}
-                                ref={textInput}>
+                                  ref={textInput}>
                         </textarea>
-                    </div>
-                    <div className={styles.buttonContainer}>
-                        <button onClick={clicker} type={"submit"} className={styles.button}>Send</button>
-                    </div>
-                    <div>
-                        {postElements}
-                    </div>
                 </div>
-
+                <div className={styles.buttonContainer}>
+                    <button onClick={clicker} type={"submit"} className={styles.button}>Send</button>
+                </div>
+                <div>
+                    {postElements}
+                </div>
             </div>
+
+        </div>
 
     );
 }
 
-export default  MyPosts;
+export default MyPosts;

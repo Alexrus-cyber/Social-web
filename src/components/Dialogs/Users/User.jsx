@@ -9,15 +9,22 @@ export const User = (props) => {
         localStorage.clear();
     }
   return(
-      <NavLink className={({isActive}) => (isActive ? styles.active : styles.users)} to={path} >
-          <div >
-              <img className={styles.photo} src={props.img} alt={'photo'}/>
+      <NavLink className={({isActive}) => (isActive ? styles.active : styles.users)} to={path}>
+          <div>
+              <img className={styles.photo} src={props.img} alt={'photoLikes'}/>
           </div>
-          <div style={{display: "flex" , justifyContent:"flex-start", textAlign: "left"}} className={''}>
+          <div style={{display: "flex", justifyContent: "flex-start", textAlign: "left"}} className={''}>
               <p style={{textAlign: "left"}}>{props.name}</p>
           </div>
-          <div style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start', height: 56,marginRight:10}}>
-              <p onClick={deleteStorage} style={{display:'flex', alignItems: 'flex-start', justifyContent: 'flex-start'}}>x</p>
+          <div style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start',
+              height: 56,
+              marginRight: 10
+          }}>
+              <p onClick={deleteStorage}
+                 style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start'}}>x</p>
           </div>
       </NavLink>
   );
