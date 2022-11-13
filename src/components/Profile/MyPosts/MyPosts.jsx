@@ -11,10 +11,11 @@ const MyPosts = (props) => {
 
     const clicker = () => {
         let postsValue = textInput.current.value;
+        let likes = 0;
         let counts = count + 1;
         setCount(counts);
         if (postsValue !== '') {
-            props.addPost(counts, props.likes)
+            props.addPost(counts, likes)
             props.counterPosts(counts)
         }
 
@@ -25,7 +26,7 @@ const MyPosts = (props) => {
         props.onPostChange(postsValue)
     }
 
-    let postElements = props.postData.map(el => <Post addLike={props.addLike} key={el.id} likes={props.likes}
+    let postElements = props.postData.map(el => <Post addLike={props.addLike} key={el.id} likesCount={el.likesCount}
                                                       message={el.message} id={el.id}/>)
 
     return (

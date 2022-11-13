@@ -7,7 +7,7 @@ const updateCount = 'updateCount';
 const addMessage = 'addMessage';
 
 let initialState = {
-    users: [
+    messageUsers: [
         {id: 1, name: 'Даниил Громыко', img: image,},
         {id: 2, name: 'Яван Миллер', img: Ivan,},
         {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
@@ -22,15 +22,11 @@ let initialState = {
 }
 
 export const dialogsReducer = (state = initialState, action) => {
-    let stateCopy = {
-        ...state,
-        message: [...state.message]
-    };
     switch (action.type) {
         case addMessage: {
             let newMessage = {
                 id: action.idCount,
-                message: stateCopy.newMessageText,
+                message: state.newMessageText,
                 name: action.name,
                 img: action.image
             }

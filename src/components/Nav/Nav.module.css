@@ -17,15 +17,16 @@
     text-decoration: none;
     transition: 1s;
     border-radius: 15px;
-    width: 100px;
+    padding: 2px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
+    text-wrap: inherit;
 }
 .link:hover{
     background-color: #801f1f;
     border-radius: 15px;
-    width: 100px;
+    padding: 2px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -34,7 +35,7 @@
     color: #369cf6;
     background-color: #801f1f;
     border-radius: 15px;
-    width: 100px;
+    padding: 2px 10px;
     display: flex;
     justify-content: center;
     align-items: center;

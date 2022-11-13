@@ -2,7 +2,7 @@ import styles from "../Dialogs.module.css";
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-export const User = (props) => {
+export const MessageUser = (props) => {
     const path = '/Dialogs/' + props.id
 
     const deleteStorage = () =>{

@@ -9,18 +9,17 @@ let initialState = {
         {id: 2, message: 'Яван Миллер', likesCount: 2,},
         {id: 3, message: 'Андрей Солодышкин', likesCount: 3,},
     ],
-    likes: 1,
     countPosts: 3,
     newPostText: '',
 }
 
 export const profileReducer = (state = initialState, action) => {
-    let stateCopy = {...state}
+
     switch (action.type) {
         case addPost : {
             let newPost = {
                 id: action.idCount,
-                message: stateCopy.newPostText,
+                message: state.newPostText,
                 likesCount: action.likes,
             };
             console.log(newPost)
@@ -40,11 +39,14 @@ export const profileReducer = (state = initialState, action) => {
 
 
         case addLike : {
-            console.log(action.newId);
-            console.log(action.like)
             return {
                 ...state,
-                likes: action.like
+                posts: state.posts.map(p => {
+                    if (p.id === action.newId){
+                        return {...p, likesCount: action.like}
+                    }
+                    return p;
+                })
             };
         }
 

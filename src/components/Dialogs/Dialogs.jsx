@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import styles from './Dialogs.module.css';
-import {User} from "./Users/User";
+import {MessageUser} from "./Users/MessageUser";
 import {Messages} from "./Messages/Messages";
 import image from './Users/img/icon.jpg'
 import Ivan from './Users/img/Ivan.jpg'
@@ -16,7 +16,7 @@ export const Dialogs = (props) => {
                                                              userData={props.userData} id={el.id} message={el.message}
                                                              name={el.name} img={el.img}/>);
 
-    let userElements = props.userData.map(el => <User img={el.img} key={el.id} name={el.name} id={el.id}/>)
+    let userElements = props.userData.map(el => <MessageUser img={el.img} key={el.id} name={el.name} id={el.id}/>)
 
 
     return (

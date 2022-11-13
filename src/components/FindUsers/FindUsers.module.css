@@ -1,0 +1,138 @@
+
+.flex{
+    display: flex;
+    justify-content: center;
+}
+.width {
+    width: 100%;
+}
+.inlineBlock{
+    display: inline-block;
+}
+.FindUsers{
+    grid-area: c;
+    background-color: #2f4c7e;
+    color: #ece9e9;
+    display: flex;
+    max-width: 800px;
+    width: 800px;
+    justify-content: center;
+}
+
+.content{
+    display: inline-block;
+    width: 100%;
+}
+/*Заголовок*/
+.title{
+    display: flex;
+    margin-left: 10px;
+}
+
+
+
+
+/*Пользователь*/
+.user {
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.card{
+    border: #a1a1a1 1px solid;
+    padding: 10px;
+    width: 500px;
+    justify-content: left;
+    column-gap: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.containerIcon {
+    margin-bottom: 5px;
+    column-gap: 10px;
+}
+
+.icon {
+    width: 50px;
+    height: 50px;
+    border: #801f1f 1px solid;
+    border-radius: 30px;
+}
+.follow{
+    background-color: #029a02;
+    border: none;
+    color: #ffffff;
+    font-size: 12px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    justify-content: left;
+}
+.follow:hover{
+    background-color: #016b01;
+}
+.followContainer{
+    justify-content: left;
+}
+.text{
+    display: flex;
+    align-items: end;
+}
+.p{
+    text-wrap: normal;
+    word-wrap: inherit ;
+    word-break: break-word;
+    width: 100%;
+}
+.takeMessage{
+    background-color: #029a02;
+    border: none;
+    color: #ffffff;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 3px 5px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.takeMessage:hover{
+    background-color: #016b01;
+}
+
+.messageContainer{
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.description{
+    display: inline-block;
+    width: 178px;
+}
+
+
+/*Показать еще*/
+.showMore{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.button{
+    background-color: #029a02;
+    border: none;
+    color: #ffffff;
+    font-size: 18px;
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}
+.button:hover{
+    background-color: #016b01;
+
+}

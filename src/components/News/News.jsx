@@ -3,9 +3,8 @@ import styles from './News.module.css';
 
 
 const News = (props) => {
-    debugger
     return (
-        <div className={styles.content}>
+        <div className={styles.News}>
 
         </div>
     );
