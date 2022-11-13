@@ -1,8 +1,6 @@
-import React, {useEffect, useState} from "react";
+import React, { useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
-import {addPostActionCreator, Counter, updateTextActionCreator} from "../../../Redux/Profile-reducer";
-
 
 const MyPosts = (props) => {
     const [count, setCount] = useState(props.counts);

@@ -8,7 +8,7 @@ import {dialogsReducer} from "./Dialogs-reducer";
 let store = {
     _state: {
         dialogsPage: {
-            users : [
+            mesUser : [
                 {id: 1, name: 'Даниил Громыко' , img :image,},
                 {id: 2, name: 'Яван Миллер' ,img :Ivan, },
                 {id: 3, name: 'Андрей Солодышкин', img :Andrey,},

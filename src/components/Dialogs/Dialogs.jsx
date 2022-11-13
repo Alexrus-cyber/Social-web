@@ -1,10 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import styles from './Dialogs.module.css';
 import {MessageUser} from "./Users/MessageUser";
 import {Messages} from "./Messages/Messages";
-import image from './Users/img/icon.jpg'
-import Ivan from './Users/img/Ivan.jpg'
-import Andrey from './Users/img/Andrey.jpg'
 
 export const Dialogs = (props) => {
 

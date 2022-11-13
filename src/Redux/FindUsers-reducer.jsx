@@ -1,14 +1,15 @@
-import image from "../components/Dialogs/Users/img/icon.jpg";
-import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
-import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
+
 
 let follow = 'follow'
 let unFollow = 'unFollow'
 let setUsers = 'setUsers'
+let setCurrentPage = 'setCurrentPage'
 
 let initialState = {
-    users: []
-
+    users: [],
+    pageSize: 5,
+    totalUsersCounts: 20,
+    currentPage: 1,
 }
 
 const FindUsersReducer = (state = initialState, action) => {
@@ -38,7 +39,13 @@ const FindUsersReducer = (state = initialState, action) => {
         case setUsers: {
             return {
                 ...state,
-                users: [...state.users, ...action.users]
+                users: [...action.users]
+            }
+        }
+        case setCurrentPage: {
+            return {
+                ...state,
+                currentPage: action.page
             }
         }
         default:
@@ -46,7 +53,12 @@ const FindUsersReducer = (state = initialState, action) => {
     }
 }
 
-
+export const setCurrentPageAC = (currentPage) => {
+    return {
+        type: setCurrentPage,
+        page: currentPage,
+    }
+}
 export const followAC = (userId) =>{
     return{
         type: follow,

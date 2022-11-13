@@ -1,8 +1,8 @@
 import styles from "../FindUsers.module.css";
 import React from "react";
+import image from '../img/icon.jpg';
 
 export const User = (props) => {
-
     const unFollow = () => {
         return (
             props.unFollow(props.id)
@@ -21,10 +21,10 @@ export const User = (props) => {
                 <div className={styles.inlineBlock + ' ' + styles.width}> {/*Блок подписки и иконки*/}
                     <div className={styles.containerIcon + " " + styles.flex}
                          style={{display: "flex", justifyContent: "left"}}>
-                        <img className={styles.icon} src={props.img} alt={"helloWorld"}/>
+                        <img className={styles.icon} src={props.photos.small != null ? props.photos.small : image} alt={"helloWorld"}/>
                         <div className={styles.inlineBlock}>
                             <p>{props.name}</p>
-                            <p>{props.country}, {props.town}</p>
+                            <p>{'props.country'}, {'props.town'}</p>
                         </div>
                     </div>
                     <div className={styles.flex + " " + styles.followContainer}>
@@ -40,7 +40,7 @@ export const User = (props) => {
                             <button className={styles.takeMessage}>Написать сообщение</button>
                         </div>
                         <div className={styles.text + ' ' + styles.flex}>
-                            <p className={styles.p}>{props.statusTeg}</p>
+                            <p className={styles.p}>{props.status}</p>
                         </div>
                     </div>
                 </div>
