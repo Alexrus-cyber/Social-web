@@ -1,7 +1,5 @@
-import React, {useEffect, useState} from "react";
-import p from './Like.module.css';
+import React, {useState} from "react";
 import image from './like.png';
-import {addLikeCreator} from "../../../../../Redux/Profile-reducer";
 
 
 const Like = (props) => {

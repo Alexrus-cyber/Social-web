@@ -1,10 +1,10 @@
 
 
-let follow = 'follow'
-let unFollow = 'unFollow'
-let setUsers = 'setUsers'
-let setCurrentPage = 'setCurrentPage'
-let toggleIsFetching = 'toggleIsFetching'
+let Follow = 'follow'
+let UnFollow = 'unFollow'
+let SetUsers = 'setUsers'
+let SetCurrentPage = 'setCurrentPage'
+let ToggleIsFetching = 'toggleIsFetching'
 
 let initialState = {
     users: [],
@@ -16,7 +16,7 @@ let initialState = {
 
 const FindUsersReducer = (state = initialState, action) => {
     switch (action.type) {
-        case follow: {
+        case Follow: {
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -27,7 +27,7 @@ const FindUsersReducer = (state = initialState, action) => {
                 })
             }
         }
-        case unFollow: {
+        case UnFollow: {
             return {
                 ...state,
                 users: state.users.map(u => {
@@ -38,19 +38,19 @@ const FindUsersReducer = (state = initialState, action) => {
                 })
             }
         }
-        case setUsers: {
+        case SetUsers: {
             return {
                 ...state,
                 users: [...action.users]
             }
         }
-        case setCurrentPage: {
+        case SetCurrentPage: {
             return {
                 ...state,
                 currentPage: action.page
             }
         }
-        case toggleIsFetching :{
+        case ToggleIsFetching :{
             return {
                 ...state,
                 isFetching: action.isFetching
@@ -61,34 +61,35 @@ const FindUsersReducer = (state = initialState, action) => {
     }
 }
 
-export const setCurrentPageAC = (currentPage) => {
+export const setCurrentPage = (currentPage) => {
     return {
-        type: setCurrentPage,
+        type: SetCurrentPage,
         page: currentPage,
     }
 }
-export const followAC = (userId) =>{
+export const follow = (userId) =>{
     return{
-        type: follow,
+        type: Follow,
         userId : userId,
     }
 }
-export const unFollowAC = (userId) =>{
+export const unFollow = (userId) =>{
     return{
-        type: unFollow,
+        type: UnFollow,
         userId : userId,
     }
 }
-export const setUsersAC = (users) => {
+export const setUsers = (users) => {
     return{
-        type: setUsers,
+        type: SetUsers,
         users: users,
     }
 }
-export const toggleIsFetchingAC = (fetch) => {
+export const toggleIsFetching = (fetch) => {
     return{
-        type: toggleIsFetching,
+        type: ToggleIsFetching,
         isFetching: fetch,
     }
 }
+
 export default FindUsersReducer;

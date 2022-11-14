@@ -7,6 +7,7 @@ import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/FindUsers/UsersContainer";
+import ProfileContainer from "./components/Profile/ProfileContainer";
 
 
 const App = (props) => {
@@ -17,16 +18,15 @@ const App = (props) => {
               <Header/>
               <Nav/>
               <Routes>
-
-                    <Route  path={'/News'} element={<News/>}></Route>
+                    <Route  path={"/profile"} element={<ProfileContainer/>}>
+                        <Route  path={":id"} element={<ProfileContainer/>}></Route>
+                    </Route>
                     <Route  path={'/'} element={<Profile/>}></Route>
-                    <Route  path={'/Alex'} element={<News/>}></Route>
-                    <Route  path={'/FindUsers'} element={<UsersContainer/>}></Route>
-                    <Route  path={'/Kira'} element={<News/>}></Route>
-                    <Route  path={'/Dialogs'} element={<DialogsContainer />}></Route>
-                    <Route  path={'/Dialogs/1'} element={<DialogsContainer />}></Route>
-                    <Route  path={'/Dialogs/2'} element={<DialogsContainer />}></Route>
-
+                    <Route  path={'/findUsers'} element={<UsersContainer/>}></Route>
+                    <Route  path={'/news'} element={<News/>}></Route>
+                    <Route  path={'/dialogs'} element={<DialogsContainer />}>
+                        <Route path={":id"} element={<DialogsContainer />}></Route>
+                    </Route>
               </Routes>
           </div>
       </BrowserRouter>

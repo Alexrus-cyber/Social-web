@@ -1,22 +1,19 @@
-const addPost = 'addPost';
-const postCount = 'postCount';
-const addLike = 'addLike';
-const updateText = 'updateText';
+const AddPost = 'addPost';
+const PostCount = 'postCount';
+const AddLike = 'addLike';
+const UpdateText = 'updateText';
+const SetUserProfile = 'SetUserProfile '
 
 let initialState = {
-    posts: [
-        {id: 1, message: 'Даниил Громыко', likesCount: 1,},
-        {id: 2, message: 'Яван Миллер', likesCount: 2,},
-        {id: 3, message: 'Андрей Солодышкин', likesCount: 3,},
-    ],
-    countPosts: 3,
+    posts: [],
+    countPosts: 0,
     newPostText: '',
+    profile: null,
 }
 
 export const profileReducer = (state = initialState, action) => {
-
     switch (action.type) {
-        case addPost : {
+        case AddPost : {
             let newPost = {
                 id: action.idCount,
                 message: state.newPostText,
@@ -29,16 +26,13 @@ export const profileReducer = (state = initialState, action) => {
                 newPostText: '',
             };
         }
-
-        case postCount: {
+        case PostCount: {
             return {
                 ...state,
                 countPosts: action.countPost,
             };
         }
-
-
-        case addLike : {
+        case AddLike : {
             return {
                 ...state,
                 posts: state.posts.map(p => {
@@ -49,42 +43,51 @@ export const profileReducer = (state = initialState, action) => {
                 })
             };
         }
-
-        case updateText : {
+        case UpdateText : {
             return {
                 ...state,
                 newPostText: action.newText,
             };
         }
-
+        case SetUserProfile: {
+            return {
+                ...state,
+                profile: action.profile,
+            }
+        }
         default:
             return state;
     }
 
 }
-export let addPostActionCreator = (counts, likes) => {
+
+export let addPost = (counts, likes) => {
     return {
-        type: addPost,
+        type: AddPost,
         idCount: counts,
         likes: likes
     }
 }
 export let Counter = (counts) => {
     return {
-        type: postCount,
+        type: PostCount,
         countPost: counts
     }
 }
-export let updateTextActionCreator = (postsValue) => {
+export let updateText = (postsValue) => {
     return {
-        type: updateText,
+        type: UpdateText,
         newText: postsValue
     }
 }
-export let addLikeCreator = (counts, newId) => {
+export let addLike = (counts, newId) => {
     return {
-        type: addLike,
+        type: AddLike,
         like: counts,
         newId: newId,
     }
 }
+export let setUserProfile = (profile) =>({
+    type: SetUserProfile,
+    profile
+})

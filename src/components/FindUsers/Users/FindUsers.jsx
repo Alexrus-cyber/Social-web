@@ -1,7 +1,6 @@
 import styles from "../FindUsers.module.css";
-import React, {useEffect} from "react";
+import React from "react";
 import {User} from "./User/User";
-import axios from "axios";
 
 export const FindUsers = (props) => {
 

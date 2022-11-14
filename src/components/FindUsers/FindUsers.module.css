@@ -78,7 +78,6 @@
 }
 .text{
     display: flex;
-    align-items: end;
 }
 .p{
     text-wrap: normal;
@@ -107,7 +106,6 @@
 .messageContainer{
     height: 55px;
     display: flex;
-    justify-content: start;
     align-items: center;
 }
 

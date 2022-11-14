@@ -14,14 +14,14 @@ const MyPosts = (props) => {
         setCount(counts);
         if (postsValue !== '') {
             props.addPost(counts, likes)
-            props.counterPosts(counts)
+            props.Counter(counts)
         }
 
 
     }
     let onPostChange = () => {
         let postsValue = textInput.current.value;
-        props.onPostChange(postsValue)
+        props.updateText(postsValue)
     }
 
     let postElements = props.postData.map(el => <Post addLike={props.addLike} key={el.id} likesCount={el.likesCount}

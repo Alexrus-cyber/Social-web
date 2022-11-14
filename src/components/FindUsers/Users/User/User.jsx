@@ -1,6 +1,7 @@
 import styles from "../../FindUsers.module.css";
 import React from "react";
 import image from '../../img/icon.jpg';
+import {NavLink} from "react-router-dom";
 
 export const User = (props) => {
     const unFollow = () => {
@@ -21,7 +22,10 @@ export const User = (props) => {
                 <div className={styles.inlineBlock + ' ' + styles.width}> {/*Блок подписки и иконки*/}
                     <div className={styles.containerIcon + " " + styles.flex}
                          style={{display: "flex", justifyContent: "left"}}>
-                        <img className={styles.icon} src={props.photos.small != null ? props.photos.small : image} alt={"helloWorld"}/>
+                        <NavLink to={'/Profile/' + props.id}>
+                            <img className={styles.icon} src={props.photos.small != null ? props.photos.small : image}
+                                 alt={"helloWorld"}/>
+                        </NavLink>
                         <div className={styles.inlineBlock}>
                             <p>{props.name}</p>
                             <p>{'props.country'}, {'props.town'}</p>
@@ -31,7 +35,6 @@ export const User = (props) => {
                         {props.followed
                             ? <button onClick={unFollow} content={"Hello"} className={styles.follow}>Отписаться</button>
                             : <button onClick={Follow} content={"Hello"} className={styles.follow}>Подписаться</button>}
-
                     </div>
                 </div>
                 <div className={styles.flex + ' ' + styles.width}>

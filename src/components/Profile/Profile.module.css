@@ -26,12 +26,15 @@
 }
 .img{
     margin-left: 10px;
-    height: 100px;
-    width: 100px;
+    height: 200px;
+    width: 200px;
 }
 .posts{
 
 }
 .item{
     color: white;
+}
+.contacts{
+    margin-left: 78px;
 }

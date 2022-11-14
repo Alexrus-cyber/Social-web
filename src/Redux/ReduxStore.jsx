@@ -9,5 +9,5 @@ let reducers = combineReducers({
     findUserPage: findUsersReducer,
 });
 let store = createStore(reducers);
-
+window.store = store;
 export default store;

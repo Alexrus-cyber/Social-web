@@ -7,28 +7,28 @@ const Nav = () => {
         <nav className={styles.nav}>
             <div className={styles.item}>
                 <NavLink end className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/'}>Профиль</NavLink>
+                         to={'/profile'}>Профиль</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/Dialogs'}>Сообщения</NavLink>
+                         to={'/dialogs'}>Сообщения</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/News'}>Новости</NavLink>
+                         to={'/news'}>Новости</NavLink>
             </div>
 
             <div className={styles.item}>
                 <NavLink className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/Kira'}>Музыка</NavLink>
+                         to={'/kira'}>Музыка</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/FindUsers'}>Пользователи</NavLink>
+                         to={'/findUsers'}>Пользователи</NavLink>
             </div>
             <div className={styles.item}>
                 <NavLink className={({isActive}) => (isActive ? styles.active : styles.link)}
-                         to={'/Alex'}>Настройки</NavLink>
+                         to={'/alex'}>Настройки</NavLink>
             </div>
         </nav>
     );

@@ -1,8 +1,6 @@
 import styles from "../Dialogs.module.css";
-import React, {useEffect, useState} from "react";
-
+import React, {useState} from "react";
 import {Message} from "./Message/Message";
-import {addMessageActionCreator, updateMessageActionCreator} from "../../../Redux/Dialogs-reducer";
 
 export const Messages = (props) => {
     const [count, setCount] = useState(props.idCounter)
@@ -34,7 +32,7 @@ export const Messages = (props) => {
                     <p>{props.name}</p>
                 </div>
                 <div className={styles.headerLogo}>
-                    <img className={styles.photo} src={props.img} alt={'photo'}/>
+                    <img className={styles.photo} src={props.img} alt={'photoHello'}/>
                 </div>
             </div>
             <div className={styles.text}>
