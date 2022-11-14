@@ -1,21 +1,11 @@
-import styles from "./FindUsers.module.css";
+import styles from "../FindUsers.module.css";
 import React, {useEffect} from "react";
-import {User} from "./Users/User";
+import {User} from "./User/User";
 import axios from "axios";
 
 export const FindUsers = (props) => {
 
-    useEffect(() => {
-            if (props.users.length === 0) {
-                axios
-                    .get("https://social-network.samuraijs.com/api/1.0/users")
-                    .then(response => {
-                        props.setUsers(response.data.items)
-                    })
-            }
-    })
-
-
+    console.log(props)
 
     let usersElements = props.users.map(el => <User key={el.id} id={el.id} name={el.name} photos={el.photos}
                                                     status={el.status} followed={el.followed}
@@ -30,7 +20,8 @@ export const FindUsers = (props) => {
                     {usersElements}
                 </div>
                 <div className={styles.showMore}>
-                    <button  className={styles.button}>Показать еще</button>
+                    {props.currentPage !== 1 && <button onClick={props.onPageChangedMinus} className={styles.button}>Вернуться</button>}
+                    <button onClick={props.onPageChangedPlus} className={styles.button}>Показать еще</button>
                 </div>
             </div>
         </div>

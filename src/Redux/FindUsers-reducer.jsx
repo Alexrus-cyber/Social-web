@@ -4,12 +4,14 @@ let follow = 'follow'
 let unFollow = 'unFollow'
 let setUsers = 'setUsers'
 let setCurrentPage = 'setCurrentPage'
+let toggleIsFetching = 'toggleIsFetching'
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCounts: 20,
     currentPage: 1,
+    isFetching: false,
 }
 
 const FindUsersReducer = (state = initialState, action) => {
@@ -48,6 +50,12 @@ const FindUsersReducer = (state = initialState, action) => {
                 currentPage: action.page
             }
         }
+        case toggleIsFetching :{
+            return {
+                ...state,
+                isFetching: action.isFetching
+            }
+        }
         default:
             return state;
     }
@@ -77,5 +85,10 @@ export const setUsersAC = (users) => {
         users: users,
     }
 }
-
+export const toggleIsFetchingAC = (fetch) => {
+    return{
+        type: toggleIsFetching,
+        isFetching: fetch,
+    }
+}
 export default FindUsersReducer;

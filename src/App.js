@@ -6,7 +6,7 @@ import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
-import {FindUsersContainer} from "./components/FindUsers/FindUsersContainer";
+import UsersContainer from "./components/FindUsers/UsersContainer";
 
 
 const App = (props) => {
@@ -21,7 +21,7 @@ const App = (props) => {
                     <Route  path={'/News'} element={<News/>}></Route>
                     <Route  path={'/'} element={<Profile/>}></Route>
                     <Route  path={'/Alex'} element={<News/>}></Route>
-                    <Route  path={'/FindUsers'} element={<FindUsersContainer/>}></Route>
+                    <Route  path={'/FindUsers'} element={<UsersContainer/>}></Route>
                     <Route  path={'/Kira'} element={<News/>}></Route>
                     <Route  path={'/Dialogs'} element={<DialogsContainer />}></Route>
                     <Route  path={'/Dialogs/1'} element={<DialogsContainer />}></Route>

@@ -1,6 +1,6 @@
-import styles from "../FindUsers.module.css";
+import styles from "../../FindUsers.module.css";
 import React from "react";
-import image from '../img/icon.jpg';
+import image from '../../img/icon.jpg';
 
 export const User = (props) => {
     const unFollow = () => {
