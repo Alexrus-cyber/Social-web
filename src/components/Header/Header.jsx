@@ -1,15 +1,23 @@
 import React from "react";
-import h from './Header.module.css';
+import styles from './Header.module.css';
 import image from './ket_logo.png'
+import {NavLink} from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
+
     return (
-        <header className={h.header}>
-            <div className={h.head}>
-                <img alt={'f'} className={h.Logo} src={image}/>
+        <header className={styles.header}>
+            <div className={styles.head}>
+                <img alt={'f'} className={styles.Logo} src={image}/>
             </div>
-            <div className={h.links}>
+            <div className={styles.links}>
+                {props.isAuth
+                    ?
+                    <div style={{display: "flex"}}>
+                        <p>{props.login}</p>
+                    </div>
 
+                    : <NavLink onClick={() => props.toggleIsAuth(true)} className={styles.link} to={'/login'}>Войти</NavLink>}
             </div>
 
         </header>

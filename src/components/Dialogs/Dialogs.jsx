@@ -26,7 +26,7 @@ export const Dialogs = (props) => {
                         </div>
                         {userElements}
                     </div>
-                    {messageElements}
+                        {messageElements}
                 </div>
             </div>
         </div>

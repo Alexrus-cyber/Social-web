@@ -2,17 +2,26 @@ import styles from "../../FindUsers.module.css";
 import React from "react";
 import image from '../../img/icon.jpg';
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 export const User = (props) => {
     const unFollow = () => {
-        return (
-            props.unFollow(props.id)
-        )
+        axios
+            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {withCredentials: true})
+            .then(response => {
+                if (response.data.resultCode === 0){
+                    props.unFollow(props.id)
+                }
+            })
     }
     const Follow = () => {
-        return (
-            props.follow(props.id)
-        )
+            axios
+                .post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {},{withCredentials: true})
+                .then(response => {
+                    if (response.data.resultCode === 0){
+                        props.follow(props.id)
+                    }
+                })
     }
 
 
