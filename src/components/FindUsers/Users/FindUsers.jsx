@@ -4,8 +4,6 @@ import {User} from "./User/User";
 
 export const FindUsers = (props) => {
 
-    console.log(props)
-
     let usersElements = props.users.map(el => <User key={el.id} id={el.id} name={el.name} photos={el.photos}
                                                     status={el.status} followed={el.followed}
                                                     follow={props.follow} unFollow={props.unFollow} setUsers = {props.setUsers}/>)

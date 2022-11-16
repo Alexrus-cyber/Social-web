@@ -1,7 +1,6 @@
 import './App.css';
 import  React from 'react';
 import Nav from "./components/Nav/Nav";
-import Profile from "./components/Profile/Profile";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
@@ -21,7 +20,7 @@ const App = (props) => {
                     <Route  path={"/profile"} element={<ProfileContainer/>}>
                         <Route  path={":id"} element={<ProfileContainer/>}></Route>
                     </Route>
-                    <Route  path={'/'} element={<Profile/>}></Route>
+                    <Route  path={'/'} element={<ProfileContainer/>}></Route>
                     <Route  path={'/findUsers'} element={<UsersContainer/>}></Route>
                     <Route  path={'/news'} element={<News/>}></Route>
                     <Route  path={'/dialogs'} element={<DialogsContainer />}>

@@ -14,10 +14,10 @@ const HeaderContainer = (props) => {
             .then(response => {
                 if (response.data.resultCode === 0){
                     let {id,login,email} = response.data.data
-                    props.setUserData(id,email,login)
+                    setUserData(id,email,login)
                 }
             })
-    })
+    }, [props.setUserData])
 
     return (
         <Header {...props} />
