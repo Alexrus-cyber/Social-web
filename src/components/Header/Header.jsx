@@ -16,7 +16,6 @@ const Header = (props) => {
                     <div style={{display: "flex"}}>
                         <p>{props.login}</p>
                     </div>
-
                     : <NavLink onClick={() => props.toggleIsAuth(true)} className={styles.link} to={'/login'}>Войти</NavLink>}
             </div>
 

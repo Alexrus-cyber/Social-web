@@ -2,36 +2,35 @@ import React from "react";
 import {FindUsers} from "./Users/FindUsers";
 import {connect} from "react-redux";
 import {follow, setCurrentPage, setUsers, toggleIsFetching, unFollow} from "../../Redux/FindUsers-reducer";
-import axios from "axios";
 import Preloader from "../Common/Preloader";
-import {getUsers} from "../../API/API";
+import {userAPI} from "../../API/API";
 
 class UsersContainer extends React.Component {
     componentDidMount = () => {
         this.props.toggleIsFetching(true);
 
-        getUsers(this.props.currentPage, this.props.pageSize).then(response => {
+        userAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
             this.props.toggleIsFetching(false);
-            this.props.setUsers(response.data.items);
+            this.props.setUsers(data.items);
         })
     }
     onPageChangedPlus = () => {
-        this.props.setCurrentPage(this.props.currentPage + 1);
+        let pageNumber = this.props.currentPage + 1;
+        this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage + 1}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
+
+        userAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+                this.props.setUsers(data.items);
                 this.props.toggleIsFetching(false);
             })
     }
     onPageChangedMinus = () => {
-        this.props.setCurrentPage(this.props.currentPage - 1);
+        let pageNumber = this.props.currentPage - 1;
+        this.props.setCurrentPage(pageNumber);
         this.props.toggleIsFetching(true);
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage - 1}&count=${this.props.pageSize}`, {withCredentials: true})
-            .then(response => {
-                this.props.setUsers(response.data.items);
+
+        userAPI.getUsers(pageNumber, this.props.pageSize).then(data => {
+                this.props.setUsers(data.items);
                 this.props.toggleIsFetching(false);
             })
     }
@@ -62,5 +61,4 @@ let mapStateToProps = (state) => {
     }
 }
 
-export default connect(mapStateToProps,
-    {follow, unFollow, setUsers, setCurrentPage, toggleIsFetching,})(UsersContainer);
+export default connect(mapStateToProps, {follow, unFollow, setUsers, setCurrentPage, toggleIsFetching,})(UsersContainer);
