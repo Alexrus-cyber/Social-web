@@ -2,28 +2,8 @@ import styles from "../../FindUsers.module.css";
 import React from "react";
 import image from '../../img/icon.jpg';
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 
 export const User = (props) => {
-    const unFollow = () => {
-        axios
-            .delete(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {withCredentials: true})
-            .then(response => {
-                if (response.data.resultCode === 0){
-                    props.unFollow(props.id)
-                }
-            })
-    }
-    const Follow = () => {
-            axios
-                .post(`https://social-network.samuraijs.com/api/1.0/follow/${props.id}`, {},{withCredentials: true})
-                .then(response => {
-                    if (response.data.resultCode === 0){
-                        props.follow(props.id)
-                    }
-                })
-    }
-
 
     return (
         <div className={styles.flex}>
@@ -42,8 +22,8 @@ export const User = (props) => {
                     </div>
                     <div className={styles.flex + " " + styles.followContainer}>
                         {props.followed
-                            ? <button onClick={unFollow} content={"Hello"} className={styles.follow}>Отписаться</button>
-                            : <button onClick={Follow} content={"Hello"} className={styles.follow}>Подписаться</button>}
+                            ? <button onClick={() => props.UnFollow(props.id)} content={"Hello"} className={styles.follow}>Отписаться</button>
+                            : <button onClick={() => props.follow(props.id)} content={"Hello"} className={styles.follow}>Подписаться</button>}
                     </div>
                 </div>
                 <div className={styles.flex + ' ' + styles.width}>

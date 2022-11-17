@@ -6,7 +6,7 @@ export const FindUsers = (props) => {
 
     let usersElements = props.users.map(el => <User key={el.id} id={el.id} name={el.name} photos={el.photos}
                                                     status={el.status} followed={el.followed}
-                                                    follow={props.follow} unFollow={props.unFollow} setUsers = {props.setUsers}/>)
+                                                    follow={props.follow} UnFollow={props.UnFollow} setUsers = {props.setUsers}/>)
     return (
         <div className={styles.FindUsers}>
             <div className={styles.content}>
