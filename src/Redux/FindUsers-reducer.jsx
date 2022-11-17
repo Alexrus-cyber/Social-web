@@ -1,17 +1,17 @@
-
-
 let Follow = 'follow'
 let UnFollow = 'unFollow'
 let SetUsers = 'setUsers'
 let SetCurrentPage = 'setCurrentPage'
 let ToggleIsFetching = 'toggleIsFetching'
+let ToggleFollowingInProgress = 'toggleFollowingInProgress'
 
 let initialState = {
     users: [],
     pageSize: 5,
     totalUsersCounts: 20,
     currentPage: 1,
-    isFetching: false,
+    isFetching: true,
+    isFollowingInProgress: [],
 }
 
 const FindUsersReducer = (state = initialState, action) => {
@@ -56,6 +56,14 @@ const FindUsersReducer = (state = initialState, action) => {
                 isFetching: action.isFetching
             }
         }
+        case ToggleFollowingInProgress: {
+            return {
+                ...state,
+                isFollowingInProgress: action.isFetching
+                    ? [...state.isFollowingInProgress,action.userId]
+                    : state.isFollowingInProgress.filter(id => id !== action.userId),
+            }
+        }
         default:
             return state;
     }
@@ -91,5 +99,11 @@ export const toggleIsFetching = (fetch) => {
         isFetching: fetch,
     }
 }
-
+export const toggleFollowingInProgress = ( isFetching , userId) => {
+    return{
+        type: ToggleFollowingInProgress,
+        isFetching,
+        userId,
+    }
+}
 export default FindUsersReducer;

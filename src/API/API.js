@@ -23,7 +23,14 @@ export const authAPI = {
 }
 
 export const followAPI = {
-
+    postFollow(id){
+        return instance.post(`/follow/${id}`)
+               .then(response => response.data)
+    },
+    deleteUnFollow(id){
+        return instance.delete(`/follow/${id}`)
+            .then(response => response.data)
+    }
 }
 
 export const profileAPI = {
