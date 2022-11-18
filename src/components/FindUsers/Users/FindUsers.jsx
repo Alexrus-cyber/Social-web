@@ -17,8 +17,8 @@ export const FindUsers = (props) => {
                     {usersElements}
                 </div>
                 <div className={styles.showMore}>
-                    {props.currentPage !== 1 && <button onClick={props.onPageChangedMinus} className={styles.button}>Вернуться</button>}
-                    <button onClick={props.onPageChangedPlus} className={styles.button}>Показать еще</button>
+                    {props.currentPage !== 1 && <button onClick={() => props.onPageChanged(props.currentPage - 1)} className={styles.button}>Вернуться</button>}
+                    <button onClick={() => props.onPageChanged(props.currentPage + 1)} className={styles.button}>Показать еще</button>
                 </div>
             </div>
         </div>

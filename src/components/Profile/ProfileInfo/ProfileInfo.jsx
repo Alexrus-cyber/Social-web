@@ -32,7 +32,7 @@ export const ProfileInfo = (props) => {
                                 <p>mainLink: {props.profile.contacts.mainLink}</p>
                             </div>
                         </div>
-                        <p>Поиск работы: {props.profile.lookingForAJob ? 'Активен' : 'Уже работаю'}</p>
+                        <p>Поиск работы: {props.profile.lookingForAJob ? 'Уже работаю' : 'Активен'}</p>
                         <p>Описание: {props.profile.lookingForAJobDescription}</p>
                     </div>
                 </div>

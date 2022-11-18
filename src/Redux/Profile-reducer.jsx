@@ -1,3 +1,5 @@
+import {profileAPI} from "../API/API";
+
 const AddPost = 'addPost';
 const PostCount = 'postCount';
 const AddLike = 'addLike';
@@ -60,34 +62,47 @@ export const profileReducer = (state = initialState, action) => {
     }
 
 }
-
-export let addPost = (counts, likes) => {
+/// actionCreators
+export const addPost = (counts, likes) => {
     return {
         type: AddPost,
         idCount: counts,
         likes: likes
     }
 }
-export let Counter = (counts) => {
+export const Counter = (counts) => {
     return {
         type: PostCount,
         countPost: counts
     }
 }
-export let updateText = (postsValue) => {
+export const updateText = (postsValue) => {
     return {
         type: UpdateText,
         newText: postsValue
     }
 }
-export let addLike = (counts, newId) => {
+export const addLike = (counts, newId) => {
     return {
         type: AddLike,
         like: counts,
         newId: newId,
     }
 }
-export let setUserProfile = (profile) =>({
+export const setUserProfile = (profile) =>({
     type: SetUserProfile,
     profile
 })
+
+///thunks
+export let getProfile = (id) => {
+    return (dispatch) => {
+        let userId = id;
+        if (!userId){
+            userId = 2;
+        }
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfile(data));
+        })
+    }
+}

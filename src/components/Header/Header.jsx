@@ -4,7 +4,6 @@ import image from './ket_logo.png'
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
-
     return (
         <header className={styles.header}>
             <div className={styles.head}>

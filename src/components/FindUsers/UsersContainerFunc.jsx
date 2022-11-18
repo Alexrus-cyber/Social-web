@@ -1,76 +1,29 @@
 import React, {useCallback, useEffect} from "react";
 import {FindUsers} from "./Users/FindUsers";
 import {useDispatch, useSelector} from "react-redux";
-import {
-    follow,
-    setCurrentPage,
-    setUsers,
-    toggleFollowingInProgress,
-    toggleIsFetching,
-    unFollow
-} from "../../Redux/FindUsers-reducer";
+import {getFollow, getUnFollow, getUsers,} from "../../Redux/FindUsers-reducer";
 import Preloader from "../Common/Preloader";
-import {followAPI, userAPI} from "../../API/API";
 
 const UsersContainerFunc = () => {
     const dispatch = useDispatch();
-    const {users, pageSize, currentPage, isFetching ,isFollowingInProgress} = useSelector(state => state.findUserPage)
+    const {users, pageSize, currentPage, isFetching, isFollowingInProgress} = useSelector(state => state.findUserPage)
 
     useEffect(() => {
-        dispatch(toggleIsFetching(true));
-        userAPI.getUsers(currentPage, pageSize)
-            .then(data => {
-                dispatch(toggleIsFetching(false));
-                dispatch(setUsers(data.items))
-            })
-    }, [currentPage, pageSize, dispatch])
+        dispatch(getUsers(currentPage, pageSize)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
+    }, [dispatch, currentPage, pageSize])
 
-    const onPageChangedPlus = () => {
-        let pageNumber = currentPage + 1;
-        dispatch(setCurrentPage(pageNumber));
-        dispatch(toggleIsFetching(true));
+    const onPageChanged = useCallback((pageNumber) => { ///Изменение страцницы
+        dispatch(getUsers(pageNumber, pageSize)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
+    }, [dispatch, pageSize])                 ///ThunkMiddleWare если приходит dispatch.action(являеться синхронной он пропускает его сразу в reducer)
+    ///ThunkMiddleWare если приходит dispatch.thunk(являеться асинхронной он берет из middleWare по 1 action и передает в store.dispatch, а потом уже в reducer)
 
-        userAPI.getUsers(pageNumber, pageSize).then(data => {
-            dispatch(setUsers(data.items));
-            dispatch(toggleIsFetching(false));
-        })
-    }
-    const onPageChangedMinus = () => {
-        let pageNumber = currentPage - 1;
-        dispatch(setCurrentPage(pageNumber));
-        dispatch(toggleIsFetching(true));
-
-        userAPI.getUsers(pageNumber, pageSize).then(data => {
-            dispatch(setUsers(data.items));
-            dispatch(toggleIsFetching(false));
-        })
-    }
-
-    const Follow = useCallback((id) => {
-        dispatch(toggleFollowingInProgress(true, id));
-        followAPI.postFollow(id)
-            .then(data =>{
-                if (data.resultCode === 0){
-                    dispatch(follow(id));
-                }
-                dispatch(toggleFollowingInProgress(false, id))
-            }
-            )
-
+    const Follow = useCallback((id) => { ///Подписаться на человека
+        dispatch(getFollow(id));
     }, [dispatch])
 
-    const UnFollow = useCallback((id) => {
-        dispatch(toggleFollowingInProgress(true, id))
-        followAPI.deleteUnFollow(id)
-            .then(data =>{
-                if (data.resultCode === 0){
-                    dispatch(unFollow(id));
-                }
-                    dispatch(toggleFollowingInProgress(false, id))
-                }
-            )
-    },[dispatch])
-
+    const UnFollow = useCallback((id) => { ///Отписаться от человека
+        dispatch(getUnFollow(id))
+    }, [dispatch])
 
     return (
         <>
@@ -78,9 +31,8 @@ const UsersContainerFunc = () => {
                 <Preloader/> :
                 <FindUsers follow={Follow} UnFollow={UnFollow} users={users}
                            currentPage={currentPage}
-                           onPageChangedMinus={onPageChangedMinus}
-                           onPageChangedPlus={onPageChangedPlus}
-                           isFollowingInProgress = {isFollowingInProgress}
+                           onPageChanged={onPageChanged}
+                           isFollowingInProgress={isFollowingInProgress}
                 />}
         </>
 

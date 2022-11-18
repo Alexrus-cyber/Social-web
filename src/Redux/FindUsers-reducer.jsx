@@ -1,3 +1,6 @@
+import {followAPI, userAPI} from "../API/API";
+
+/// action.type
 let Follow = 'follow'
 let UnFollow = 'unFollow'
 let SetUsers = 'setUsers'
@@ -5,6 +8,7 @@ let SetCurrentPage = 'setCurrentPage'
 let ToggleIsFetching = 'toggleIsFetching'
 let ToggleFollowingInProgress = 'toggleFollowingInProgress'
 
+/// Начальное состояние
 let initialState = {
     users: [],
     pageSize: 5,
@@ -14,6 +18,7 @@ let initialState = {
     isFollowingInProgress: [],
 }
 
+///Reducer
 const FindUsersReducer = (state = initialState, action) => {
     switch (action.type) {
         case Follow: {
@@ -69,6 +74,7 @@ const FindUsersReducer = (state = initialState, action) => {
     }
 }
 
+///actionCreators
 export const setCurrentPage = (currentPage) => {
     return {
         type: SetCurrentPage,
@@ -106,4 +112,44 @@ export const toggleFollowingInProgress = ( isFetching , userId) => {
         userId,
     }
 }
+
+///thunks
+export const getUsers = (currentPage, pageSize) => {
+   return (dispatch) => {
+        dispatch(setCurrentPage(currentPage));
+        dispatch(toggleIsFetching(true));
+        userAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false));
+                dispatch(setUsers(data.items))
+            })
+    }
+}
+export const getFollow = (id) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, id));
+        followAPI.postFollow(id)
+            .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(follow(id));
+                    }
+                    dispatch(toggleFollowingInProgress(false, id))
+                }
+            )
+    }
+}
+export const getUnFollow = (id) => {
+    return (dispatch) => {
+        dispatch(toggleFollowingInProgress(true, id))
+        followAPI.deleteUnFollow(id)
+            .then(data => {
+                    if (data.resultCode === 0) {
+                        dispatch(unFollow(id));
+                    }
+                    dispatch(toggleFollowingInProgress(false, id))
+                }
+            )
+    }
+}
+
 export default FindUsersReducer;

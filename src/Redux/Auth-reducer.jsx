@@ -1,7 +1,9 @@
+import {authAPI} from "../API/API";
+
 const SetUserData = 'SetUserData'
 const ToggleIsAuth = 'ToggleIsAuth'
 let initialState = {
-    id:null,
+    id: null,
     email: null,
     login: null,
     isAuth: false,
@@ -26,16 +28,29 @@ export const authReducer = (state = initialState, action) => {
             return state;
     }
 }
-
+///actionCreators
 export const toggleIsAuth = (isAuth) => {
-    return{
+    return {
         type: ToggleIsAuth,
         isAuth
     }
 }
-export const setUserData = (id, email, login) =>{
+export const setUserData = (id, email, login) => {
     return {
         type: SetUserData,
-        data: {id,email,login}
+        data: {id, email, login}
+    }
+}
+
+///thunk
+export const getMe = () => {
+    return (dispatch) => {
+        authAPI.getMe().then(data => {
+                if (data.resultCode === 0) {
+                    let {id, login, email} = data.data
+                    dispatch(setUserData(id, email, login))
+                }
+            }
+        )
     }
 }

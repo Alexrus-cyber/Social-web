@@ -3,7 +3,7 @@ import React, {useState} from "react";
 import {Message} from "./Message/Message";
 
 export const Messages = (props) => {
-    const [count, setCount] = useState(props.idCounter)
+    const [count, setCount] = useState(3)
 
     const textInput = React.createRef();
     const Clicker = () => {
@@ -11,10 +11,8 @@ export const Messages = (props) => {
         let counts = count + 1;
         setCount(counts);
         if (messageValue !== ''){
-           props.updateCount(counts);
-           props.addMessage(counts, props.name, props.img);
+           props.addMessage(counts, props.name, props.img , props.idUser);
         }
-
     }
 
     let updateMessage = () => {
