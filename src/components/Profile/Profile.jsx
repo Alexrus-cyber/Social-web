@@ -5,6 +5,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 
 const Profile = (props) => {
+
     return (
         <div className={styles.content}>
                <ProfileInfo profile = {props.profile}/>

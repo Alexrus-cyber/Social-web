@@ -3,14 +3,20 @@ import {FindUsers} from "./Users/FindUsers";
 import {useDispatch, useSelector} from "react-redux";
 import {getFollow, getUnFollow, getUsers,} from "../../Redux/FindUsers-reducer";
 import Preloader from "../Common/Preloader";
+import {useNavigate} from "react-router-dom";
 
 const UsersContainerFunc = () => {
     const dispatch = useDispatch();
     const {users, pageSize, currentPage, isFetching, isFollowingInProgress} = useSelector(state => state.findUserPage)
+    const {isAuth} = useSelector(state => state.auth)
+    let navigate = useNavigate();
 
     useEffect(() => {
         dispatch(getUsers(currentPage, pageSize)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
-    }, [dispatch, currentPage, pageSize])
+        if (!isAuth){
+            return navigate("/login");
+        }
+    }, [dispatch, currentPage, pageSize,isAuth,navigate])
 
     const onPageChanged = useCallback((pageNumber) => { ///Изменение страцницы
         dispatch(getUsers(pageNumber, pageSize)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
