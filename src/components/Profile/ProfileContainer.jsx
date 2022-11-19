@@ -8,7 +8,6 @@ import {profileAPI} from "../../API/API";
 
 function withRouter(Component) {
     function ComponentWithRouterProp(props) {
-
         let params = useParams();
         return (
             <ProfileContainer

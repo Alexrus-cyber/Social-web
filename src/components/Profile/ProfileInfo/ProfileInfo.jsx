@@ -1,14 +1,9 @@
 import styles from "../Profile.module.css";
 import React from "react";
-import Preloader from "../../Common/Preloader";
+import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 
 export const ProfileInfo = (props) => {
 
-    if (!props.profile) {
-        return (
-            <Preloader/>
-        )
-    }
 
     return (
         <div>
@@ -20,6 +15,7 @@ export const ProfileInfo = (props) => {
                     </div>
                     <div className={styles.text}>
                         <h1>{props.profile.fullName}</h1>
+                        <ProfileStatus status = {"Hello Friends"}/>
                         <p>Обо мне: {props.profile.aboutMe}</p>
                         <div><p>Контакты: facebook: {props.profile.contacts.facebook}</p>
                             <div className={styles.contacts}>

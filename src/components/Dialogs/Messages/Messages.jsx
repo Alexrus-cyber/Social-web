@@ -4,7 +4,6 @@ import {Message} from "./Message/Message";
 
 export const Messages = (props) => {
     const [count, setCount] = useState(3)
-
     const textInput = React.createRef();
     const Clicker = () => {
         let messageValue = textInput.current.value;
@@ -27,7 +26,7 @@ export const Messages = (props) => {
         <div className={styles.messages}>
             <div className={styles.header}>
                 <div className={styles.headerName}>
-                    <p>{props.name}</p>
+                    <p>{props.userData.name}</p>
                 </div>
                 <div className={styles.headerLogo}>
                     <img className={styles.photo} src={props.img} alt={'photoHello'}/>

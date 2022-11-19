@@ -4,13 +4,15 @@ const AddPost = 'addPost';
 const PostCount = 'postCount';
 const AddLike = 'addLike';
 const UpdateText = 'updateText';
-const SetUserProfile = 'SetUserProfile '
+const SetUserProfile = 'SetUserProfile'
+const GetLoading = 'GetLoading'
 
 let initialState = {
     posts: [],
     countPosts: 0,
     newPostText: '',
     profile: null,
+    isLoading: true,
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -54,7 +56,13 @@ export const profileReducer = (state = initialState, action) => {
         case SetUserProfile: {
             return {
                 ...state,
-                profile: action.profile,
+                profile: action.profile
+            }
+        }
+        case GetLoading: {
+            return {
+                ...state,
+                isLoading: action.isLoading
             }
         }
         default:
@@ -93,6 +101,12 @@ export const setUserProfile = (profile) =>({
     type: SetUserProfile,
     profile
 })
+export const getLoading = (isLoading) =>{
+    return {
+        type: GetLoading,
+        isLoading
+    }
+}
 
 ///thunks
 export let getProfile = (id) => {
@@ -101,8 +115,10 @@ export let getProfile = (id) => {
         if (!userId){
             userId = 2;
         }
+        dispatch(getLoading(true))
         profileAPI.getProfile(userId).then(data => {
             dispatch(setUserProfile(data));
+            dispatch(getLoading(false))
         })
     }
 }

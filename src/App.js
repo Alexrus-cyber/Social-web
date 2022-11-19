@@ -3,7 +3,7 @@ import  React from 'react';
 import Nav from "./components/Nav/Nav";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
-import {DialogsContainer} from "./components/Dialogs/DialogsContainer";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeadearContainer";
 import UsersContainerFunc from "./components/FindUsers/UsersContainerFunc";
 import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
