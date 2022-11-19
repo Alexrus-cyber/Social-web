@@ -6,6 +6,7 @@ const AddLike = 'addLike';
 const UpdateText = 'updateText';
 const SetUserProfile = 'SetUserProfile'
 const GetLoading = 'GetLoading'
+const SetUserStatus = 'SetUserStatus'
 
 let initialState = {
     posts: [],
@@ -13,6 +14,7 @@ let initialState = {
     newPostText: '',
     profile: null,
     isLoading: true,
+    status: "",
 }
 
 export const profileReducer = (state = initialState, action) => {
@@ -65,6 +67,12 @@ export const profileReducer = (state = initialState, action) => {
                 isLoading: action.isLoading
             }
         }
+        case SetUserStatus: {
+            return {
+                ...state,
+                status: action.status
+            }
+        }
         default:
             return state;
     }
@@ -107,18 +115,37 @@ export const getLoading = (isLoading) =>{
         isLoading
     }
 }
+export const setUserStatus = (status) => {
+    return {
+        type: SetUserStatus,
+        status
+    }
+}
 
 ///thunks
 export let getProfile = (id) => {
     return (dispatch) => {
-        let userId = id;
-        if (!userId){
-            userId = 2;
-        }
-        dispatch(getLoading(true))
-        profileAPI.getProfile(userId).then(data => {
+        profileAPI.getProfile(id).then(data => {
             dispatch(setUserProfile(data));
-            dispatch(getLoading(false))
+
+        })
+    }
+}
+
+export let getStatus = (id) => {
+    return (dispatch) => {
+        profileAPI.getStatus(id).then(data => {
+            dispatch(setUserStatus(data))
+        })
+}
+}
+
+export let updateStatus = (status) => {
+    return (dispatch) => {
+        profileAPI.updateStatus(status).then(data => {
+            if (data.resultCode === 0){
+                dispatch(setUserStatus(status));
+            }
         })
     }
 }

@@ -4,12 +4,14 @@ import {dialogsReducer} from "./Dialogs-reducer";
 import findUsersReducer from "./FindUsers-reducer";
 import {authReducer} from "./Auth-reducer";
 import thunkMiddleware from 'redux-thunk';
+import {reducer as formReducer} from "redux-form";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     findUserPage: findUsersReducer,
     auth: authReducer,
+    form: formReducer,
 });
 let store = createStore(reducers,applyMiddleware(thunkMiddleware));
 window.store = store;

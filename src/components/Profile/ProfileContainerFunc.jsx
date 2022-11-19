@@ -1,30 +1,34 @@
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import Profile from "./Profile";
 import {useDispatch, useSelector} from "react-redux";
-import {getProfile} from "../../Redux/Profile-reducer";
+import {getProfile, getStatus, updateStatus} from "../../Redux/Profile-reducer";
 import {useParams} from "react-router-dom";
-import {WithRedirect} from "../Hoc/WithRedirectComponent";
 import {compose} from "redux";
-import Preloader from "../Common/Preloader";
-
+import {WithRedirect} from "../Hoc/WithRedirectComponent";
 
 
 const ProfileContainerFunc = () => {
     let params = useParams();
     let dispatch = useDispatch();
-    let {profile, isLoading} = useSelector(state => state.profilePage)
+    let {profile, status} = useSelector(state => state.profilePage)
     useEffect(() => {
-        dispatch(getProfile(params.id));
+        let userId = params.id;
+        if (!userId){
+            userId = 1079;
+        }
+            dispatch(getProfile(userId));
+            dispatch(getStatus(userId));
     }, [dispatch, params.id])
 
+    const UpdateStatus = useCallback((status)=>{
+        dispatch(updateStatus(status));
+    },[dispatch])
     return (
-        isLoading ? <Preloader/> :
-        <Profile profile={profile} />
+        <Profile profile={profile} updateStatus = {UpdateStatus} status = {status}/>
     )
 }
 let HighOrderComponents = compose(
-    WithRedirect,
-
+    WithRedirect
 )(ProfileContainerFunc)
 
 export default HighOrderComponents;

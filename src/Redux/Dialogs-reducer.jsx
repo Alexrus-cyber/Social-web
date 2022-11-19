@@ -1,10 +1,12 @@
 import image from "../components/Dialogs/Users/img/icon.jpg";
 import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
 import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
+import {dialogsAPI} from "../API/API";
 
 const UpdateMessage = 'updateMessage';
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
+const GetUsers = 'GetUsers';
 
 let initialState = {
     messageUsers: [
@@ -12,6 +14,7 @@ let initialState = {
         {id: 2, name: 'Яван Миллер', img: Ivan,},
         {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
     ],
+    users: [],
     message: [
         {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image, },
         {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет',},
@@ -50,11 +53,23 @@ export const dialogsReducer = (state = initialState, action) => {
                 idCounter: [...state.idCounter,action.idCounts],
             };
         }
+        case GetUsers: {
+            return {
+                ...state,
+                users: [...state.users, action.users]
+            }
+        }
 
         default:
             return state;
     }
 
+}
+export const getUsers = (users) => {
+    return {
+        type: GetUsers,
+        users
+    }
 }
 export let updateCount = (counts) => {
     return {
@@ -75,4 +90,11 @@ export let addMessage = (id, name, img) => {
         name: name,
         image: img,
     }
+}
+
+export const getAllDialogs = () =>{
+    return (dispatch) => {
+        dialogsAPI.getDialogs().then(data =>
+        dispatch(getUsers(data))
+        )}
 }
