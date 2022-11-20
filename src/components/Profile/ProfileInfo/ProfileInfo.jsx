@@ -17,7 +17,7 @@ export const ProfileInfo = (props) => {
                     </div>
                     <div className={styles.text}>
                         <h1>{props.profile.fullName}</h1>
-                        <ProfileStatus status = {props.status} updateStatus = {props.updateStatus}/>
+                        <ProfileStatus myId = {props.myId} id = {props.id} status = {props.status} updateStatus = {props.updateStatus}/>
                         <p>Обо мне: {props.profile.aboutMe}</p>
                         <div><p>Контакты: facebook: {props.profile.contacts.facebook}</p>
                             <div className={styles.contacts}>

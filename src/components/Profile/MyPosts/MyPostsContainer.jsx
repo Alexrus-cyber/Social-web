@@ -4,7 +4,7 @@ import {addLike, addPostThunk} from "../../../Redux/Profile-reducer";
 import {useCallback} from "react";
 
 
-const MyPostsContainerFunc = () => {
+const MyPostsContainerFunc = (props) => {
     let dispatch = useDispatch()
     let {countPosts, posts ,profile} = useSelector(state => state.profilePage)
 
@@ -17,7 +17,7 @@ const MyPostsContainerFunc = () => {
     }, [dispatch])
 
     return (
-        <MyPosts counts={countPosts} profile = {profile} postData = {posts} addPost = {AddPost} addLike = {AddLike} />
+        <MyPosts myId = {props.myId} id = {props.id} counts={countPosts} profile = {profile} postData = {posts} addPost = {AddPost} addLike = {AddLike} />
     )
 }
 

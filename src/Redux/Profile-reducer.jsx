@@ -117,11 +117,11 @@ export let addPostThunk = (counts,likes,newPostText) => {
     }
 }
 
-export let getProfile = (id) => {
+export let getProfile = (id, isLoading) => {
     return (dispatch) => {
         profileAPI.getProfile(id).then(data => {
             dispatch(setUserProfile(data));
-
+            dispatch(getLoading(isLoading))
         })
     }
 }

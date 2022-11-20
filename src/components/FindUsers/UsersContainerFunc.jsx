@@ -3,8 +3,6 @@ import {FindUsers} from "./Users/FindUsers";
 import {useDispatch, useSelector} from "react-redux";
 import {getFollow, getUnFollow, getUsers,} from "../../Redux/FindUsers-reducer";
 import Preloader from "../Common/Preloader";
-import {WithRedirect} from "../Hoc/WithRedirectComponent";
-import {compose} from "redux";
 
 const UsersContainerFunc = () => {
     const dispatch = useDispatch();
@@ -41,9 +39,4 @@ const UsersContainerFunc = () => {
 
     )
 }
-let HighOrderComponents = compose(
-    WithRedirect,
-
-)(UsersContainerFunc)
-
-export default HighOrderComponents;
+export default UsersContainerFunc;

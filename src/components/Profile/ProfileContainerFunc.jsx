@@ -1,34 +1,48 @@
 import React, {useCallback, useEffect} from "react";
 import Profile from "./Profile";
 import {useDispatch, useSelector} from "react-redux";
-import {getProfile, getStatus, updateStatus} from "../../Redux/Profile-reducer";
-import {useParams} from "react-router-dom";
-import {compose} from "redux";
-import {WithRedirect} from "../Hoc/WithRedirectComponent";
+import {getLoading, getProfile, getStatus, updateStatus} from "../../Redux/Profile-reducer";
+import {useNavigate, useParams} from "react-router-dom";
+import Preloader from "../Common/Preloader";
 
 
 const ProfileContainerFunc = () => {
     let params = useParams();
     let dispatch = useDispatch();
-    let {profile, status} = useSelector(state => state.profilePage)
+    let {profile, status, isLoading} = useSelector(state => state.profilePage)
+    let {id, isAuth} = useSelector(state => state.auth)
+    let navigate = useNavigate();
+
     useEffect(() => {
         let userId = params.id;
-        if (!userId){
-            userId = 1079;
-        }
-            dispatch(getProfile(userId));
+        if (!userId) {
+            if (isAuth) {
+                userId = id;
+                dispatch(getProfile(userId, false));
+                dispatch(getStatus(userId));
+            } else {
+                navigate('/login')
+            }
+        } else {
+            dispatch(getLoading(true))
+            dispatch(getProfile(userId, false));
             dispatch(getStatus(userId));
-    }, [dispatch, params.id])
+        }
 
-    const UpdateStatus = useCallback((status)=>{
+    }, [dispatch, params.id, id, navigate, isAuth])
+    const UpdateStatus = useCallback((status) => {
         dispatch(updateStatus(status));
-    },[dispatch])
+    }, [dispatch])
+    let userId = params.id;
+    if (userId === undefined) {
+        userId = id;
+    }
+
     return (
-        <Profile profile={profile} updateStatus = {UpdateStatus} status = {status}/>
+        isLoading ? <Preloader/> :
+            <Profile id={userId} myId={id} profile={profile} updateStatus={UpdateStatus} status={status}/>
     )
 }
-let HighOrderComponents = compose(
-    WithRedirect
-)(ProfileContainerFunc)
 
-export default HighOrderComponents;
+
+export default ProfileContainerFunc;

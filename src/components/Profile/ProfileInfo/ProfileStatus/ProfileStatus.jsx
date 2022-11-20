@@ -3,12 +3,10 @@ import React, {useState} from "react";
 export const ProfileStatus = (props) => {
     const [editMode, setEditMode] = useState(false);
     const [status, setStatus] = useState(props.status)
-
-
-    const activeMode = () =>{
+    const activeMode = () => {
         setEditMode(true);
     }
-    const disableMode = () =>{
+    const disableMode = () => {
         setEditMode(false)
         props.updateStatus(status)
     }
@@ -18,19 +16,19 @@ export const ProfileStatus = (props) => {
     }
     return (
         <div>
-            {editMode
 
-                ? <div><input  onChange={onStatusChange} value={status}></input>
-                    <button onClick={disableMode}>Сохранить</button>
-                </div>
-
-
-                : <div>
-                    <span>{props.status}</span>
-                    <button onClick={activeMode}>Изменить</button>
-                  </div>
+            {props.id === props.myId
+                ? editMode
+                    ? <div><input onChange={onStatusChange} value={status}></input>
+                        <button onClick={disableMode}>Сохранить</button>
+                      </div>
+                    :
+                      <div>
+                          <span>{props.status}</span>
+                          <button onClick={activeMode}>Изменить</button>
+                      </div>
+                : <div>{props.status}</div>
             }
         </div>
-
     )
 }

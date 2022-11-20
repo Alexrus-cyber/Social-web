@@ -2,8 +2,6 @@ import {Dialogs} from "./Dialogs";
 import {addMessage, updateCount} from "../../Redux/Dialogs-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback} from "react";
-import {WithRedirect} from "../Hoc/WithRedirectComponent";
-import {compose} from "redux";
 
 
 
@@ -22,9 +20,6 @@ const DialogsContainer = () => {
         <Dialogs  addMessage = {AddMessage} messageData = {messages} userData = {messageUsers} newMessageText = {newMessageText} idCounter = {idCounter}/>
     )
 }
-let HighOrderComponents = compose(
-    WithRedirect,
 
-)(DialogsContainer)
 
-export default HighOrderComponents;
+export default DialogsContainer;

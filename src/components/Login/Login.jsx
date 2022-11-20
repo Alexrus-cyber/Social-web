@@ -19,6 +19,11 @@ const LoginForm = (props) => {
             <div className={styles.title}>
                 <Field name={'rememberMe'} component={"input"} type={"checkbox"}/> remember me
             </div>
+            {props.error && <div style={{display:"flex", justifyContent: "center", marginTop: 10}}>
+                <div className={styles.errorForm}>
+                    <p>{props.error}</p>
+                </div>
+            </div>}
             <div className={styles.title}>
                 <button >Login</button>
             </div>

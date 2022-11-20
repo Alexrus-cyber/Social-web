@@ -17,3 +17,9 @@
     justify-content: center;
     margin-top: 20px;
 }
+.errorForm {
+    display: flex;
+    justify-content: center;
+    padding: 5px;
+    color: red;
+}

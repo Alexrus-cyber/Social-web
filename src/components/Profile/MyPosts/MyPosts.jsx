@@ -20,20 +20,21 @@ const MyPosts = (props) => {
                                                       message={el.message} id={el.id}/>)
 
     return (
+
         <div className={styles.posts}>
-            My posts {props.counts}
-            <div className={styles.container}>
-                <ReduxPostForm onSubmit = {onSubmit}/>
-                <div>
+            {props.id === props.myId ? <div>My posts {props.counts}
+                <div className={styles.container}><ReduxPostForm onSubmit = {onSubmit}/>
+                    <div>
                     {postElements}
-                </div>
-            </div>
+                    </div>
+                </div> </div>: <div>{postElements} </div>}
+
 
         </div>
 
     );
 }
-const maxLength20 = maxLength(100);
+const maxLength20 = maxLength(1000);
 
 const NewPostForm = (props) => {
     return(
