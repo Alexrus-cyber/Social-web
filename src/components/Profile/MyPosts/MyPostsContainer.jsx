@@ -1,22 +1,25 @@
 import MyPosts from "./MyPosts";
-import {connect} from "react-redux";
-import {addLike, addPost, Counter, updateText} from "../../../Redux/Profile-reducer";
+import {useDispatch, useSelector} from "react-redux";
+import {addLike, addPostThunk} from "../../../Redux/Profile-reducer";
+import {useCallback} from "react";
 
 
-let mapStateToProps = (state) => {
-    return {
-        xray: state.profilePage.countPosts,
-        counts: state.profilePage.countPosts,
-        newPostText: state.profilePage.newPostText,
-        postData: state.profilePage.posts,
-    }
+const MyPostsContainerFunc = () => {
+    let dispatch = useDispatch()
+    let {countPosts, posts ,profile} = useSelector(state => state.profilePage)
+
+    const AddPost = useCallback((counts, likes, newPostText) => { ///Изменение страцницы
+        dispatch(addPostThunk(counts, likes, newPostText)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
+    }, [dispatch])
+
+    const AddLike = useCallback((counts, newId) => { ///Изменение страцницы
+        dispatch(addLike(counts,newId)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
+    }, [dispatch])
+
+    return (
+        <MyPosts counts={countPosts} profile = {profile} postData = {posts} addPost = {AddPost} addLike = {AddLike} />
+    )
 }
 
-const MyPostsContainer = connect(mapStateToProps, {
-    addPost,
-    Counter,
-    updateText,
-    addLike,
-})(MyPosts)
 
-export default MyPostsContainer;
+export default MyPostsContainerFunc;

@@ -3,7 +3,6 @@ import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
 import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
 import {dialogsAPI} from "../API/API";
 
-const UpdateMessage = 'updateMessage';
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
 const GetUsers = 'GetUsers';
@@ -15,10 +14,10 @@ let initialState = {
         {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
     ],
     users: [],
-    message: [
-        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image, },
-        {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет',},
-        {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!',},
+    messages: [
+        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image, idUser: 1 },
+        {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет', idUser: 1},
+        {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!', idUser: 1},
     ],
     newMessageText: '',
     idCounter: [],
@@ -29,24 +28,23 @@ export const dialogsReducer = (state = initialState, action) => {
         case AddMessage: {
             let newMessage = {
                 id: action.idCount,
-                message: state.newMessageText,
                 name: action.name,
-                img: action.image
+                img: action.image,
+                message: action.newMessageText,
+                idUser: action.idUser
             }
             console.log(newMessage)
             return {
                 ...state,
-                message: [...state.message, newMessage],
-                newMessageText: '',
+                messages: state.messages.map(m => {
+                    if (m.idUser === action.idUser){
+                       return [...m, newMessage]
+                    }
+                    return m;
+                }),
             };
         }
 
-        case UpdateMessage: {
-            return {
-                ...state,
-                newMessageText: action.newMessage,
-            };
-        }
         case UpdateCount: {
             return {
                 ...state,
@@ -77,18 +75,14 @@ export let updateCount = (counts) => {
         idCounts: counts,
     }
 }
-export let updateMessage = (messageValue) => {
-    return {
-        type: UpdateMessage,
-        newMessage: messageValue
-    }
-}
-export let addMessage = (id, name, img) => {
+export let addMessage = (id, name, img, newMessageText, idUser) => {
     return {
         type: AddMessage,
         idCount: id,
         name: name,
         image: img,
+        newMessageText,
+        idUser,
     }
 }
 

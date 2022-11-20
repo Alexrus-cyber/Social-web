@@ -1,7 +1,6 @@
 import {authAPI} from "../API/API";
 
 const SetUserData = 'SetUserData'
-const ToggleIsAuth = 'ToggleIsAuth'
 let initialState = {
     id: null,
     email: null,
@@ -11,17 +10,10 @@ let initialState = {
 
 export const authReducer = (state = initialState, action) => {
     switch (action.type) {
-        case ToggleIsAuth : {
-            return {
-                ...state,
-                isAuth: action.isAuth
-            }
-        }
         case SetUserData: {
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.payload
             }
         }
         default:
@@ -29,16 +21,10 @@ export const authReducer = (state = initialState, action) => {
     }
 }
 ///actionCreators
-export const toggleIsAuth = (isAuth) => {
-    return {
-        type: ToggleIsAuth,
-        isAuth
-    }
-}
-export const setUserData = (id, email, login) => {
+export const setUserData = (id, email, login, isAuth) => {
     return {
         type: SetUserData,
-        data: {id, email, login}
+        payload: {id, email, login, isAuth}
     }
 }
 
@@ -48,7 +34,27 @@ export const getMe = () => {
         authAPI.getMe().then(data => {
                 if (data.resultCode === 0) {
                     let {id, login, email} = data.data
-                    dispatch(setUserData(id, email, login))
+                    dispatch(setUserData(id, email, login,true))
+                }
+            }
+        )
+    }
+}
+export const loginMe = (email,password,rememberMe) => {
+    return (dispatch) => {
+        authAPI.loginMe(email,password,rememberMe).then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setUserData())
+                }
+            }
+        )
+    }
+}
+export const logout = () => {
+    return (dispatch) => {
+        authAPI.logout().then(data => {
+                if (data.resultCode === 0) {
+                    dispatch(setUserData(null,null,null,null))
                 }
             }
         )

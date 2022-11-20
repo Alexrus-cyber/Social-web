@@ -1,0 +1,19 @@
+.login{
+    grid-area: c;
+    background-color: #2f4c7e;
+    color: #ece9e9;
+    width: 800px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    width: 600px;
+    display: block;
+}
+.title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}

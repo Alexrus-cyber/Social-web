@@ -4,6 +4,7 @@ import image from './ket_logo.png'
 import {NavLink} from "react-router-dom";
 
 const Header = (props) => {
+
     return (
         <header className={styles.header}>
             <div className={styles.head}>
@@ -14,6 +15,7 @@ const Header = (props) => {
                     ?
                     <div style={{display: "flex"}}>
                         <p>{props.login}</p>
+                        <button onClick={() => props.logout()}>Выйти</button>
                     </div>
                     : <NavLink onClick={() => props.toggleIsAuth(true)} className={styles.link} to={'/login'}>Войти</NavLink>}
             </div>

@@ -3,7 +3,6 @@ import {profileAPI} from "../API/API";
 const AddPost = 'addPost';
 const PostCount = 'postCount';
 const AddLike = 'addLike';
-const UpdateText = 'updateText';
 const SetUserProfile = 'SetUserProfile'
 const GetLoading = 'GetLoading'
 const SetUserStatus = 'SetUserStatus'
@@ -11,7 +10,6 @@ const SetUserStatus = 'SetUserStatus'
 let initialState = {
     posts: [],
     countPosts: 0,
-    newPostText: '',
     profile: null,
     isLoading: true,
     status: "",
@@ -22,7 +20,7 @@ export const profileReducer = (state = initialState, action) => {
         case AddPost : {
             let newPost = {
                 id: action.idCount,
-                message: state.newPostText,
+                message: action.newPostText,
                 likesCount: action.likes,
             };
             console.log(newPost)
@@ -49,12 +47,6 @@ export const profileReducer = (state = initialState, action) => {
                 })
             };
         }
-        case UpdateText : {
-            return {
-                ...state,
-                newPostText: action.newText,
-            };
-        }
         case SetUserProfile: {
             return {
                 ...state,
@@ -79,23 +71,18 @@ export const profileReducer = (state = initialState, action) => {
 
 }
 /// actionCreators
-export const addPost = (counts, likes) => {
+export const addPost = (counts, likes,newPostText) => {
     return {
         type: AddPost,
         idCount: counts,
-        likes: likes
+        likes: likes,
+        newPostText
     }
 }
 export const Counter = (counts) => {
     return {
         type: PostCount,
         countPost: counts
-    }
-}
-export const updateText = (postsValue) => {
-    return {
-        type: UpdateText,
-        newText: postsValue
     }
 }
 export const addLike = (counts, newId) => {
@@ -123,6 +110,13 @@ export const setUserStatus = (status) => {
 }
 
 ///thunks
+export let addPostThunk = (counts,likes,newPostText) => {
+    return (dispatch) => {
+        dispatch(addPost(counts,likes,newPostText))
+        dispatch(Counter(counts))
+    }
+}
+
 export let getProfile = (id) => {
     return (dispatch) => {
         profileAPI.getProfile(id).then(data => {
