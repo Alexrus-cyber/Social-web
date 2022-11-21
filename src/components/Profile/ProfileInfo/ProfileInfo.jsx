@@ -2,18 +2,20 @@ import styles from "../Profile.module.css";
 import React from "react";
 import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import Preloader from "../../Common/Preloader";
+import image from "../../FindUsers/img/icon.jpg"
 
 export const ProfileInfo = (props) => {
     if (!props.profile){
         return <Preloader/>
     }
+    let link = "https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300";
     return (
         <div>
-            <img alt={'f'} className={styles.image} src={"https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300"}/>
+            <img alt={'f'} className={styles.image} src={link}/>
             <div className={styles.super}>
                 <div className={styles.main}>
                     <div className={styles.imgContainer}>
-                        <img alt={'f'} className={styles.img} src={props.profile.photos.large}/>
+                        <img alt={'f'} className={styles.img} src={props.profile.photos.large ? props.profile.photos.large : image}/>
                     </div>
                     <div className={styles.text}>
                         <h1>{props.profile.fullName}</h1>

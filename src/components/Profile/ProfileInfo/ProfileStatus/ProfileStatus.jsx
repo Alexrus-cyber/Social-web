@@ -15,19 +15,19 @@ export const ProfileStatus = (props) => {
         setStatus(el.currentTarget.value);
     }
     return (
-        <div>
-
+        <div style={{display: "flex"}}>
+            status:
             {props.id === props.myId
                 ? editMode
-                    ? <div><input onChange={onStatusChange} value={status}></input>
+                    ? <div style={{marginLeft: 10}}><input onChange={onStatusChange} value={status}></input>
                         <button onClick={disableMode}>Сохранить</button>
                       </div>
                     :
-                      <div>
+                      <div style={{marginLeft: 10}}>
                           <span>{props.status}</span>
                           <button onClick={activeMode}>Изменить</button>
                       </div>
-                : <div>{props.status}</div>
+                : <div style={{marginLeft: 10}}>{props.status}</div>
             }
         </div>
     )

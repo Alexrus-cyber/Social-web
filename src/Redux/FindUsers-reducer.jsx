@@ -7,6 +7,8 @@ let SetUsers = 'setUsers'
 let SetCurrentPage = 'setCurrentPage'
 let ToggleIsFetching = 'toggleIsFetching'
 let ToggleFollowingInProgress = 'toggleFollowingInProgress'
+let SetInitialized = 'SetInitialized'
+
 
 /// Начальное состояние
 let initialState = {
@@ -16,6 +18,7 @@ let initialState = {
     currentPage: 1,
     isFetching: true,
     isFollowingInProgress: [],
+    init: false,
 }
 
 ///Reducer
@@ -69,12 +72,23 @@ const FindUsersReducer = (state = initialState, action) => {
                     : state.isFollowingInProgress.filter(id => id !== action.userId),
             }
         }
+        case SetInitialized: {
+            return {
+                ...state,
+                initialized: true
+            }
+        }
         default:
             return state;
     }
 }
 
 ///actionCreators
+export const setInit = () => {
+    return {
+        type: SetInitialized,
+    }
+}
 export const setCurrentPage = (currentPage) => {
     return {
         type: SetCurrentPage,
@@ -116,8 +130,8 @@ export const toggleFollowingInProgress = ( isFetching , userId) => {
 ///thunks
 export const getUsers = (currentPage, pageSize) => {
    return (dispatch) => {
-        dispatch(setCurrentPage(currentPage));
-        dispatch(toggleIsFetching(true));
+       dispatch(toggleIsFetching(true));
+       dispatch(setCurrentPage(currentPage));
         userAPI.getUsers(currentPage, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false));
@@ -150,6 +164,11 @@ export const getUnFollow = (id) => {
                 }
             )
     }
+}
+
+export const initializeUser = (currentPage, pageSize) => (dispatch) =>{
+    let promise = getUsers(currentPage, pageSize);
+    Promise.all([promise]).then(() =>dispatch(setInit()))
 }
 
 export default FindUsersReducer;

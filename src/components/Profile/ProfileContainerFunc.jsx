@@ -18,6 +18,7 @@ const ProfileContainerFunc = () => {
         if (!userId) {
             if (isAuth) {
                 userId = id;
+                dispatch(getLoading(true))
                 dispatch(getProfile(userId, false));
                 dispatch(getStatus(userId));
             } else {
