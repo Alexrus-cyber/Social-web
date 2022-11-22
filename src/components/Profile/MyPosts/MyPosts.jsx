@@ -1,19 +1,18 @@
-import React, { useState} from "react";
+import React, {useCallback, useState} from "react";
 import styles from './MyPosts.module.css';
 import Post from "./Post/Post";
 import {Field, reduxForm} from "redux-form";
 import {maxLength, Required} from "../../../Utils/Validators/Validators";
 import {TextArea} from "../../Common/TextArea";
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
     const [count, setCount] = useState(props.counts);
-
-    const onSubmit = (values) => {
-        let likes = 0;
+    const onSubmit = useCallback((values) => {
+            let likes = 0;
             let counts = count + 1;
             setCount(counts);
             props.addPost(counts, likes, values.newPostText);
-    }
+    },[count,props])
 
 
     let postElements = props.postData.map(el => <Post profile = {props.profile} addLike={props.addLike} key={el.id} likesCount={el.likesCount}
@@ -33,7 +32,7 @@ const MyPosts = (props) => {
         </div>
 
     );
-}
+})
 const maxLength20 = maxLength(1000);
 
 const NewPostForm = (props) => {

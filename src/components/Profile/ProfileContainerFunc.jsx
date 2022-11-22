@@ -7,12 +7,12 @@ import Preloader from "../Common/Preloader";
 
 
 const ProfileContainerFunc = () => {
+
     let params = useParams();
     let dispatch = useDispatch();
     let {profile, status, isLoading} = useSelector(state => state.profilePage)
     let {id, isAuth} = useSelector(state => state.auth)
     let navigate = useNavigate();
-
     useEffect(() => {
         let userId = params.id;
         if (!userId) {

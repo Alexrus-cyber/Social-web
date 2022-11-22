@@ -10,8 +10,8 @@ const UsersContainerFunc = () => {
 
 
     useEffect(() => {
-        dispatch(getUsers(currentPage, pageSize)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
-    }, [dispatch, currentPage, pageSize])
+        dispatch(getUsers(1, 5)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
+    }, [dispatch])
 
     const onPageChanged = useCallback((pageNumber) => { ///Изменение страцницы
         dispatch(getUsers(pageNumber, pageSize)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.

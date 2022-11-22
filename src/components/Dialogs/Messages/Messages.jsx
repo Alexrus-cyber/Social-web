@@ -1,19 +1,19 @@
 import styles from "../Dialogs.module.css";
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {Message} from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
 import {TextArea} from "../../Common/TextArea";
 import {Required} from "../../../Utils/Validators/Validators";
 
-export const Messages = (props) => {
+export const Messages = React.memo((props) => {
     const [count, setCount] = useState(3)
-    const AddNewMessageText = (values) => {
+    const AddNewMessageText = useCallback((values) => {
         if (values.newMessageText !== undefined) {
             let counts = count + 1;
             setCount(counts);
             props.addMessage(counts, props.userData.name, props.img, values.newMessageText, props.userData.id);
         }
-    }
+    })
 
 
     let messageEl = props.messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
@@ -36,7 +36,7 @@ export const Messages = (props) => {
             <ReduxAddMessage onSubmit={AddNewMessageText}/>
         </div>
     )
-}
+})
 
 const addMessageForm = (props) => {
 

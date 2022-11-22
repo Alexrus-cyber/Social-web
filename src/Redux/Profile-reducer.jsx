@@ -6,6 +6,7 @@ const AddLike = 'addLike';
 const SetUserProfile = 'SetUserProfile'
 const GetLoading = 'GetLoading'
 const SetUserStatus = 'SetUserStatus'
+const DeletePost = 'DeletePost'
 
 let initialState = {
     posts: [],
@@ -65,6 +66,12 @@ export const profileReducer = (state = initialState, action) => {
                 status: action.status
             }
         }
+        case DeletePost: {
+            return {
+                ...state,
+                posts: state.posts.filter(p => p.id !== action.postId)
+            }
+        }
         default:
             return state;
     }
@@ -108,6 +115,13 @@ export const setUserStatus = (status) => {
         status
     }
 }
+export const deletePost = (postId) => {
+    return {
+        type: DeletePost,
+        postId
+    }
+}
+
 
 ///thunks
 export let addPostThunk = (counts,likes,newPostText) => {

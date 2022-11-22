@@ -2,12 +2,10 @@ import styles from "../Dialogs.module.css";
 import React from "react";
 import {NavLink} from "react-router-dom";
 
-export const MessageUser = (props) => {
+export const MessageUser = React.memo((props) => {
     const path = '/Dialogs/' + props.id
 
-    const deleteStorage = () =>{
-        localStorage.clear();
-    }
+
   return(
       <NavLink className={({isActive}) => (isActive ? styles.active : styles.users)} to={path}>
           <div>
@@ -23,9 +21,9 @@ export const MessageUser = (props) => {
               height: 56,
               marginRight: 10
           }}>
-              <p onClick={deleteStorage}
+              <p
                  style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start'}}>x</p>
           </div>
       </NavLink>
   );
-}
+})

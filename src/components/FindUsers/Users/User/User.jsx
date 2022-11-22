@@ -3,7 +3,7 @@ import React from "react";
 import image from '../../img/icon.jpg';
 import {NavLink} from "react-router-dom";
 
-export const User = (props) => {
+export const User = React.memo((props) => {
 
     return (
         <div className={styles.flex}>
@@ -39,4 +39,4 @@ export const User = (props) => {
             </div>
         </div>
     )
-}
+})
