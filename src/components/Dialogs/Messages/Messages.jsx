@@ -13,7 +13,7 @@ export const Messages = React.memo((props) => {
             setCount(counts);
             props.addMessage(counts, props.userData.name, props.img, values.newMessageText, props.userData.id);
         }
-    })
+    },[count,props])
 
 
     let messageEl = props.messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
