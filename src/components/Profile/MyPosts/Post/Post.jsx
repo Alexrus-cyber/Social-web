@@ -24,7 +24,7 @@ const Post = (props) => {
                 <div className={styles.postHeader}>
                     <img className={styles.img} alt={'f'} src={props.profile.photos.large ? props.profile.photos.large : image}/>
                     <div className={styles.nameTime}>
-                        <p>Name</p>
+                        <p>{props.profile.fullName}</p>
                         <p>{date.toLocaleString("ru", options)}</p>
                     </div>
                 </div>
