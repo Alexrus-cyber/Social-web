@@ -20,7 +20,7 @@ export const InputLogin = ({input,meta: {error, warning, touched}, ...props}) =>
     return(
         <div>
             <div className={styles.flex}>
-                <input className={showError ? styles.inputError : styles.input} {...input} {...props}/>
+                <input className={showError ? styles.inputError : styles.input} {...input} {...props}></input>
             </div>
             <div>{touched &&
                 ((error && <span className={styles.error}>{error}</span>) ||
@@ -29,10 +29,11 @@ export const InputLogin = ({input,meta: {error, warning, touched}, ...props}) =>
     )
 }
 
-export const FieldCreator = (name, placeholder, validators, component, className) => {
+export const FieldCreator = (name, placeholder, validators, component, className, type) => {
+    console.log("hello");
     return (
         <div className={className}>
-            <Field name={name} placeholder={placeholder} validate={validators} component={component}/>
+            <Field name={name} placeholder={placeholder} validate={validators} component={component} type={type}/>
         </div>
     )
 }

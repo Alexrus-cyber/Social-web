@@ -31,18 +31,25 @@
 
 
 .input{
+    background-size: 20px;
+    border-radius: 15px;
+    border: 1px solid gray;
     width: 200px;
     height: 30px;
     outline: none;
+    padding: 0 0 0 10px;
 }
 .inputError {
-
+    border-radius: 15px;
+    border: 1px solid gray;
     width: 200px;
     height: 30px;
     outline: none;
+    padding: 0 0 0 10px;
 }
 .flex {
     display: flex;
     justify-content:center;
     align-items: center;
+
 }

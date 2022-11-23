@@ -10,7 +10,7 @@ const LoginForm = ({handleSubmit,error }) => {
     return(
         <form onSubmit={handleSubmit}>
             {FieldCreator('email', 'Email', [Required, maxLength16],InputLogin, styles.title)}
-            {FieldCreator('password', 'Password', [Required, maxLength12],InputLogin, styles.title)}
+            {FieldCreator('password', 'Password', [Required, maxLength12],InputLogin, styles.title, "password")}
             <div className={styles.title}>
                 <Field name={'rememberMe'} component={"input"} type={"checkbox"}/> remember me
             </div>
@@ -25,7 +25,7 @@ const LoginForm = ({handleSubmit,error }) => {
         </form>
     )
 }
-const Login = (props) => {
+const Login = React.memo((props) => {
 
     const onSubmit = (formData) => {
         console.log(formData);
@@ -35,7 +35,7 @@ const Login = (props) => {
       <div className={styles.login}>
           <div className={styles.container}>
               <div  className={styles.title}>
-                  <h1>LOGIN</h1>
+                  <h1>Авторизация</h1>
               </div>
               <div>
                   <LoginReduxForm onSubmit = {onSubmit}/>
@@ -45,7 +45,7 @@ const Login = (props) => {
 
       </div>
   )
-}
+})
 
 const LoginReduxForm = reduxForm({form: 'login'})(LoginForm);
 
