@@ -1,21 +1,21 @@
 import React, {useCallback, useEffect} from "react";
 import {FindUsers} from "./Users/FindUsers";
 import {useDispatch, useSelector} from "react-redux";
-import {getFollow, getUnFollow, getUsers,} from "../../Redux/FindUsers-reducer";
+import {getFollow, getUnFollow, getUsers, setCurrentPage,} from "../../Redux/FindUsers-reducer";
 import Preloader from "../Common/Preloader";
 
 const UsersContainerFunc = () => {
     const dispatch = useDispatch();
-    const {users, pageSize, currentPage, isFetching, isFollowingInProgress} = useSelector(state => state.findUserPage)
+    const {users, currentPage, isFetching, isFollowingInProgress} = useSelector(state => state.findUserPage)
 
 
     useEffect(() => {
-        dispatch(getUsers(1, 5)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
-    }, [dispatch])
+        dispatch(getUsers(currentPage, 5)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
+    }, [dispatch,currentPage])
 
     const onPageChanged = useCallback((pageNumber) => { ///Изменение страцницы
-        dispatch(getUsers(pageNumber, pageSize)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
-    }, [dispatch, pageSize])                 ///ThunkMiddleWare если приходит dispatch.action(являеться синхронной он пропускает его сразу в reducer)
+        dispatch(setCurrentPage(pageNumber)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
+    }, [dispatch])                 ///ThunkMiddleWare если приходит dispatch.action(являеться синхронной он пропускает его сразу в reducer)
     ///ThunkMiddleWare если приходит dispatch.thunk(являеться асинхронной он берет из middleWare по 1 action и передает в store.dispatch, а потом уже в reducer)
 
     const Follow = useCallback((id) => { ///Подписаться на человека
