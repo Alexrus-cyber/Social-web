@@ -1,5 +1,6 @@
 import React, {useCallback, useState} from "react";
 import image from './like.png';
+import styles from "../Post.module.css";
 
 
 const Like = (props) => {
@@ -11,9 +12,9 @@ const Like = (props) => {
         props.addLike(counts, props.id)
     },[count,props])
     return (
-        <div>
-            <img style={{cursor: "pointer", width: 20, height: 20,}} onClick={click} src={image} alt={'Hello'}/>
-            <span>{props.likes}</span>
+        <div className={styles.like} onClick={click}>
+            <img style={{cursor: "pointer", width: 20, height: 20,marginRight: 5}} src={image} alt={'Hello'}/>
+            <span style={{fontWeight: "bold"}}>{props.likes}</span>
         </div>
     );
 }

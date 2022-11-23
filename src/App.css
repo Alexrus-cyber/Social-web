@@ -15,10 +15,10 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #3d3939;
+  background-color: white;
 }
 p{
-  margin: 0px !important;
+  margin: 0 !important;
 }
 
 h1,h2,h3,h4,h5,h6{

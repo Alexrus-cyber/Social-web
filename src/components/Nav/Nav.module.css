@@ -1,7 +1,10 @@
 .nav{
     grid-area: n;
-    background-color: #27122f;
+    background-color: white;
     height: 400px;
+    border: 1px solid #c9c9c9;
+    border-bottom-left-radius: 20px;
+    border-right-style: none;
 }
 
 .item{
@@ -13,18 +16,18 @@
 }
 
 .link {
-    color: white;
+    color: black;
     text-decoration: none;
     transition: 1s;
-    border-radius: 15px;
     padding: 2px 10px;
+    border-bottom: 1px solid #b2b2b2;
     display: flex;
     justify-content: center;
     align-items: center;
     text-wrap: inherit;
 }
 .link:hover{
-    background-color: #801f1f;
+    background-color: #2f4c7e;
     border-radius: 15px;
     padding: 2px 10px;
     display: flex;
@@ -33,7 +36,7 @@
 }
 .active{
     color: #369cf6;
-    background-color: #801f1f;
+    background-color: #2f4c7e;
     border-radius: 15px;
     padding: 2px 10px;
     display: flex;

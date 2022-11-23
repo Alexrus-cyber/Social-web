@@ -1,6 +1,7 @@
 .header{
     grid-area: h;
-    background-color: #8a1212;
+    background-color: #2f4c7e;
+    width: 1300px;
     display: flex;
     align-items: center;
 }
@@ -14,7 +15,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 50%;
-    margin-left: 55px;
+    margin-left: 80px;
 }
 .links{
     display: flex;

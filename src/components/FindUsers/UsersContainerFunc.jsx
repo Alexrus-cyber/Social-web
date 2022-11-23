@@ -19,11 +19,11 @@ const UsersContainerFunc = () => {
     ///ThunkMiddleWare если приходит dispatch.thunk(являеться асинхронной он берет из middleWare по 1 action и передает в store.dispatch, а потом уже в reducer)
 
     const Follow = useCallback((id) => { ///Подписаться на человека
-        dispatch(getFollow(id));
+        dispatch(getFollow(id,true));
     }, [dispatch])
 
     const UnFollow = useCallback((id) => { ///Отписаться от человека
-        dispatch(getUnFollow(id))
+        dispatch(getUnFollow(id,false))
     }, [dispatch])
 
     return (

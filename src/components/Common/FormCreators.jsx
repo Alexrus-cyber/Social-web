@@ -1,6 +1,9 @@
-import styles from './TextArea.module.css'
+import styles from './FormCreators.module.css'
+import {Field} from "redux-form";
+import React from "react";
 
-export const TextArea = ({input,meta: {error, warning, touched}, ...props}) => {
+
+export const TextAreaForm = ({input,meta: {error, warning, touched}, ...props}) => {
     const showError = touched && error;
     return(
         <div className={styles.text}>
@@ -22,6 +25,14 @@ export const InputLogin = ({input,meta: {error, warning, touched}, ...props}) =>
             <div>{touched &&
                 ((error && <span className={styles.error}>{error}</span>) ||
                     (warning && <span className={styles.warning}>{warning}</span>))} </div>
+        </div>
+    )
+}
+
+export const FieldCreator = (name, placeholder, validators, component, className) => {
+    return (
+        <div className={className}>
+            <Field name={name} placeholder={placeholder} validate={validators} component={component}/>
         </div>
     )
 }

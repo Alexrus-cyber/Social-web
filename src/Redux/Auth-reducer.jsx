@@ -31,36 +31,30 @@ export const setUserData = (id, email, login, isAuth) => {
 
 ///thunk
 export const getMe = () => {
-    return (dispatch) => {
-      return authAPI.getMe().then(data => {
-                if (data.resultCode === 0) {
-                    let {id, login, email} = data.data
-                    dispatch(setUserData(id, email, login, true))
-                }
-            }
-        )
+    return async (dispatch) => {
+        let data = await authAPI.getMe();
+        if (data.resultCode === 0) {
+            let {id, login, email} = data.data
+            dispatch(setUserData(id, email, login, true))
+        }
     }
 }
 export const loginMe = (email, password, rememberMe) => {
-    return (dispatch) => {
-        authAPI.loginMe(email, password, rememberMe).then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setUserData())
-                } else {
-                    let message = data.messages.lenght > 0 ? data.messages[0] : "Введите коректный Email или Пароль"
-                    dispatch(stopSubmit("login", {_error: message}))
-                }
-            }
-        )
+    return async (dispatch) => {
+        let data = await authAPI.loginMe(email, password, rememberMe);
+        if (data.resultCode === 0) {
+            dispatch(setUserData())
+        } else {
+            let message = data.messages.lenght > 0 ? data.messages[0] : "Введите коректный Email или Пароль"
+            dispatch(stopSubmit("login", {_error: message}))
+        }
     }
 }
 export const logout = () => {
-    return (dispatch) => {
-        authAPI.logout().then(data => {
-                if (data.resultCode === 0) {
-                    dispatch(setUserData(null, null, null, null))
-                }
-            }
-        )
+    return async (dispatch) => {
+        let data = await authAPI.logout();
+        if (data.resultCode === 0) {
+            dispatch(setUserData(null, null, null, null))
+        }
     }
 }

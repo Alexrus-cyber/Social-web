@@ -1,11 +1,14 @@
 .login{
     grid-area: c;
-    background-color: #2f4c7e;
-    color: #ece9e9;
-    width: 800px;
+    background-color: white;
+    color: black;
+    width: 1080px;
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #c9c9c9;
+    border-bottom-right-radius: 20px;
+    border-top: none;
 }
 .container{
     width: 600px;
@@ -22,4 +25,14 @@
     justify-content: center;
     padding: 5px;
     color: red;
+}
+.button{
+    padding: 10px;
+    background-color: #369cf6;
+    border-radius: 30px;
+    color: white;
+    border: none;
+}
+.button:hover{
+    background-color: #2f4c7e;
 }

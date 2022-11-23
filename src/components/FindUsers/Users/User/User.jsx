@@ -22,8 +22,12 @@ export const User = React.memo((props) => {
                     </div>
                     <div className={styles.flex + " " + styles.followContainer}>
                         {props.followed
-                            ? <button disabled={props.isFollowingInProgress.some(id => id === props.id)} onClick={() => props.UnFollow(props.id)} content={"Hello"} className={styles.follow}>Отписаться</button>
-                            : <button disabled={props.isFollowingInProgress.some(id => id === props.id)}  onClick={() => props.follow(props.id)} content={"Hello"} className={styles.follow}>Подписаться</button>}
+                            ? <button disabled={props.isFollowingInProgress.some(id => id === props.id)}
+                                      onClick={() => props.UnFollow(props.id)}
+                                      className={styles.follow}>Отписаться</button>
+                            : <button disabled={props.isFollowingInProgress.some(id => id === props.id)}
+                                      onClick={() => props.follow(props.id)}
+                                      className={styles.follow}>Подписаться</button>}
                     </div>
                 </div>
                 <div className={styles.flex + ' ' + styles.width}>

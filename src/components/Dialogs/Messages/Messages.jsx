@@ -2,7 +2,7 @@ import styles from "../Dialogs.module.css";
 import React, {useCallback, useState} from "react";
 import {Message} from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
-import {TextArea} from "../../Common/TextArea";
+import {TextAreaForm} from "../../Common/FormCreators";
 import {Required} from "../../../Utils/Validators/Validators";
 
 export const Messages = React.memo((props) => {
@@ -45,7 +45,7 @@ const addMessageForm = (props) => {
             <div className={styles.inputContainer}>
                 <div style={{display: "flex"}}>
                     <Field name={'newMessageText'} placeholder={'Введите ваше сообщение...'}
-                           style={{width: 300, height: 30, borderRadius: 10, resize: "none"}} validate={[Required]} component={TextArea}>
+                           style={{width: 300, height: 30, borderRadius: 10, resize: "none"}} validate={[Required]} component={TextAreaForm}>
                     </Field>
                     <div style={{display: "flex", alignItems: "center", marginLeft: 10}}>
                         <button className={styles.button} onSubmit={props.onSubmit}>Send</button>

@@ -1,5 +1,6 @@
 .posts{
     margin-left: 10px;
+    display: block;
 }
 .textArea{
     width: 730px;
@@ -19,16 +20,17 @@
     margin-top: 10px;
 }
 .button{
-    background: green;
+    background: #369cf6;
     color: white;
-    border: 1px solid green;
     cursor: pointer;
-    margin-right: 55px;
+    border: none;
+    margin-right: 0;
     width: 80px;
     height: 25px;
+    border-radius: 20px;
 }
 .button:hover{
-    background-color: #036403;
+    background-color: #2f4c7e;
 }
 .container{
     margin-top: 20px;

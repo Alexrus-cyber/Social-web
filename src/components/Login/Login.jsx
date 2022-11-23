@@ -1,31 +1,26 @@
 import React from "react";
 import {Field, reduxForm} from "redux-form";
-import {InputLogin} from "../Common/TextArea";
+import {FieldCreator, InputLogin} from "../Common/FormCreators";
 import {maxLength,Required} from "../../Utils/Validators/Validators";
 import styles from './Login.module.css'
 
-
 const maxLength16 = maxLength(50)
 const maxLength12 = maxLength(20)
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit,error }) => {
     return(
-        <form onSubmit={props.handleSubmit}>
-            <div className={styles.title}>
-                <Field name={'email'} placeholder={'Email'} validate={[Required, maxLength16]} component={InputLogin}/>
-            </div>
-            <div className={styles.title}>
-                <Field name={'password'} placeholder={'Password'} validate={[Required, maxLength12]} component={InputLogin}/>
-            </div>
+        <form onSubmit={handleSubmit}>
+            {FieldCreator('email', 'Email', [Required, maxLength16],InputLogin, styles.title)}
+            {FieldCreator('password', 'Password', [Required, maxLength12],InputLogin, styles.title)}
             <div className={styles.title}>
                 <Field name={'rememberMe'} component={"input"} type={"checkbox"}/> remember me
             </div>
-            {props.error && <div style={{display:"flex", justifyContent: "center", marginTop: 10}}>
+            {error && <div style={{display:"flex", justifyContent: "center", marginTop: 10}}>
                 <div className={styles.errorForm}>
-                    <p>{props.error}</p>
+                    <p>{error}</p>
                 </div>
             </div>}
             <div className={styles.title}>
-                <button >Login</button>
+                <button className={styles.button}>Авторизоваться</button>
             </div>
         </form>
     )
