@@ -2,7 +2,7 @@ import styles from "../FindUsers.module.css";
 import React from "react";
 import {User} from "./User/User";
 
-export const FindUsers = (props) => {
+export const FindUsers = React.memo((props) => {
 
     let usersElements = props.users.map(el => <User key={el.id} id={el.id} name={el.name} photos={el.photos}
                                                     status={el.status} followed={el.followed}
@@ -23,4 +23,4 @@ export const FindUsers = (props) => {
             </div>
         </div>
     )
-}
+})
