@@ -20,7 +20,7 @@ export const ProfileInfo = (props) => {
                     <div style={{
                         display: "flex",
                         justifyContent: "center",
-                        border: "1px solid gray",
+
                         columnGap: 20,
                         borderRadius: 20,
                         padding: 10
@@ -34,15 +34,18 @@ export const ProfileInfo = (props) => {
                             <ProfileStatus myId={props.myId} id={props.id} status={props.status}
                                            updateStatus={props.updateStatus}/>
                             <p>Обо мне: {props.profile.aboutMe}</p>
-                            <div><p>Контакты: facebook: {props.profile.contacts.facebook}</p>
+                            <div>
+                                {props.profile.contacts.facebook ? <p> Контакты: facebook: {props.profile.contacts.facebook}</p> : <p>Контакты: https://vk.com/arassadin2014</p>}
                                 <div className={styles.contacts}>
-                                    <p>website: {props.profile.contacts.website ? props.profile.contacts.website : 'http://localhost:3000/'}</p>
-                                    <p>vk: {props.profile.contacts.vk}</p>
-                                    <p>twitter: {props.profile.contacts.twitter}</p>
-                                    <p>instagram: {props.profile.contacts.instagram}</p>
-                                    <p>youtube: {props.profile.contacts.youtube}</p>
-                                    <p>github: {props.profile.contacts.github}</p>
-                                    <p>mainLink: {props.profile.contacts.mainLink}</p>
+                                    {props.profile.contacts.website ?<p>website:{props.profile.contacts.website }</p>:  'website: http://localhost:3000/'}
+                                    {props.profile.contacts.vk ? <p>vk: {props.profile.contacts.vk}</p> : <p></p>}
+                                    {props.profile.contacts.twitter ? <p>twitter: {props.profile.contacts.twitter}</p> : <p></p>}
+                                    {props.profile.contacts.instagram ? <p>instagram: {props.profile.contacts.instagram}</p>: <p></p>}
+                                    {props.profile.contacts.youtube ? <p>youtube: {props.profile.contacts.youtube}</p>: <p></p>}
+                                    { props.profile.contacts.github ? <p>github: {props.profile.contacts.github}</p>: <p></p>}
+                                    { props.profile.contacts.mainLink ? <p>mainLink: {props.profile.contacts.mainLink}</p>: <p></p>}
+
+
                                 </div>
                             </div>
                             <p>Поиск работы: {props.profile.lookingForAJob ? 'Уже работаю' : 'Активен'}</p>
