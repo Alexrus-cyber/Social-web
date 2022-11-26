@@ -1,4 +1,4 @@
-.login{
+.login {
     grid-area: c;
     background-color: white;
     color: black;
@@ -10,29 +10,35 @@
     border-bottom-right-radius: 20px;
     border-top: none;
 }
-.container{
+
+.container {
     width: 600px;
     display: block;
 }
-.title{
+
+.title {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 20px;
 }
+
 .errorForm {
     display: flex;
     justify-content: center;
     padding: 5px;
     color: red;
 }
-.button{
+
+.button {
     padding: 10px;
     background-color: #369cf6;
     border-radius: 30px;
     color: white;
     border: none;
+    cursor: pointer;
 }
-.button:hover{
+
+.button:hover {
     background-color: #2f4c7e;
 }

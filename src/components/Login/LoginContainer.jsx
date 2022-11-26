@@ -6,18 +6,18 @@ import {getMe, loginMe} from "../../Redux/Auth-reducer";
 
 const LoginContainer = () => {
     let dispatch = useDispatch();
-    let {isAuth} = useSelector(state => state.auth)
-    useEffect(()=>{
+    let {isAuth, captchaUrl} = useSelector(state => state.auth)
+    useEffect(() => {
         dispatch(getMe())
     }, [dispatch, isAuth])
 
-    const LoginMe = useCallback((email,password,rememberMe) => {
-        dispatch(loginMe(email,password,rememberMe))
-    },[dispatch])
+    const LoginMe = useCallback((email, password, rememberMe, captcha) => {
+        dispatch(loginMe(email, password, rememberMe, captcha))
+    }, [dispatch])
 
 
     return (
-        <Login loginMe = {LoginMe}/>
+        <Login captchaUrl={captchaUrl} loginMe={LoginMe}/>
     )
 
 }
