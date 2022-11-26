@@ -45,7 +45,7 @@
     column-gap: 30px;
 }
 .button{
-    background-color: #029a02;
+    background-color: #2f4c7e;
     border: none;
     color: #ffffff;
     font-size: 18px;
@@ -55,6 +55,6 @@
     transition-duration: 0.5s;
 }
 .button:hover{
-    background-color: #016b01;
+    background-color: #369cf6;
 
 }

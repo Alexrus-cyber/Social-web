@@ -6,9 +6,12 @@ import {Contact} from "../ProfileInfo";
 const ProfileDataText = (props) => {
     return (
         <div className={styles.text}>
-            <h1>{props.profile.fullName}</h1>
-            <ProfileStatus updateProfile = {props.updateProfile} myId={props.myId} id={props.id} status={props.status}
-                           updateStatus={props.updateStatus}/>
+            <div style={{display: "flex", alignItems: "center"}}>
+                <h1>{props.profile.fullName}</h1>
+                <ProfileStatus updateProfile = {props.updateProfile} myId={props.myId} id={props.id} status={props.status}
+                               updateStatus={props.updateStatus}/>
+            </div>
+            <p>status: {props.status}</p>
             <p>Обо мне: {props.profile.aboutMe}</p>
             <div>
                 <b>Контакты</b>:
@@ -18,7 +21,7 @@ const ProfileDataText = (props) => {
                     })}
                 </div>
             </div>
-            <p>Поиск работы: {props.profile.lookingForAJob ? 'Уже работаю' : 'Активен'}</p>
+            <p>Поиск работы: {props.profile.lookingForAJob ? 'Активен' : 'Уже работаю'}</p>
             <p>Описание: {props.profile.lookingForAJobDescription}</p>
         </div>
         )

@@ -10,7 +10,7 @@ const UsersContainerFunc = () => {
 
 
     useEffect(() => {
-        dispatch(getUsers(currentPage, 4)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
+        dispatch(getUsers(currentPage, 12)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.
     }, [dispatch,currentPage])
 
     const onPageChanged = useCallback((pageNumber) => { ///Изменение страцницы

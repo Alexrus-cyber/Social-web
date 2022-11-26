@@ -6,6 +6,7 @@
 }
 .icon{
     width: 100px;
+    border-radius: 50px;
 }
 .card{
     border: 1px solid #cbcbcb;
@@ -14,7 +15,7 @@
     display: block;
     margin-left: 25px;
     margin-top: 25px;
-    width: 300px;
+    width: 290px;
 }
 .followContainer{
     display: flex;
@@ -33,10 +34,12 @@
 }
 .follow:hover{
     background-color: #2f4c7e;
+    cursor: pointer;
 }
 
 .MessageContainer{
     display: flex;
     justify-content: center;
     align-items: center;
+
 }

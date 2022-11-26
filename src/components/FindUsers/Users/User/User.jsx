@@ -10,18 +10,18 @@ export const User = React.memo((props) => {
             <div className={styles.card}>
                 <div className={styles.flex}> {/*Блок подписки и иконки*/}
                     <div className={styles.containerIcon + " " + styles.flex}
-                         style={{display: "flex", justifyContent: "left"}}>
+                         style={{display: "flex", justifyContent: "left", width: 300, wordWrap: "break-word"}}>
                         <NavLink to={'/Profile/' + props.id}>
                             <img className={styles.icon} src={props.photos.large != null ? props.photos.large : image}
                                  alt={"helloWorld"}/>
                         </NavLink>
-                        <div className={styles.inlineBlock}>
-                            <p>{props.name}</p>
+                        <div style={{width: 100}} className={styles.inlineBlock}>
+                            <b>{props.name}</b>
                             <p className={styles.p}>{props.status}</p>
                         </div>
                     </div>
                     <div className={styles.MessageContainer}>
-                        <button>Написать сообщение</button>
+                        <button className={styles.follow}>Написать сообщение</button>
                     </div>
                 </div>
                 <div className={styles.flex}>

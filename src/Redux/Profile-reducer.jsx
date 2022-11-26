@@ -187,7 +187,7 @@ export let savePhoto = (file) => {
 
 export let setProfile = (profile) => {
     return async (dispatch, getState) => {
-        const userId = getState().auth.userId;
+        const userId = getState().auth.id;
         let data = await profileAPI.updateProfile(profile)
 
         if (data.resultCode === 0) {

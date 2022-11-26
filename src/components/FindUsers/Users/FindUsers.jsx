@@ -13,13 +13,13 @@ export const FindUsers = React.memo((props) => {
                 <div className={styles.title}>
                     <h2>Пользователи</h2>
                 </div>
-                <div style={{width: "100%", display: "flex", alignItems: "center", flexWrap: "wrap"}}>
+                <div style={{width: "100%", display: "flex", alignItems: "center", flexWrap: "wrap", margin: "20px 0px 20px 0px"}}>
                         {usersElements}
                 </div>
 
                 <div className={styles.showMore}>
-                    {props.currentPage !== 1 && <button onClick={() => props.onPageChanged(props.currentPage - 1)} className={styles.button}>Вернуться</button>}
-                    <button onClick={() => props.onPageChanged(props.currentPage + 1)} className={styles.button}>Показать еще</button>
+                    {props.currentPage !== 1 && <button onClick={() => props.onPageChanged(props.currentPage - 1)} className={styles.button}>⬅</button>}
+                    <button onClick={() => props.onPageChanged(props.currentPage + 1)} className={styles.button}>➡</button>
                 </div>
             </div>
         </div>
