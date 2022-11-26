@@ -29,8 +29,7 @@ export const InputLogin = ({input,meta: {error, warning, touched}, ...props}) =>
     )
 }
 
-export const FieldCreator = (name, placeholder, validators, component, className, type) => {
-    console.log("hello");
+export const FieldCreator = (name, placeholder, validators, component,className, type) => {
     return (
         <div className={className}>
             <Field name={name} placeholder={placeholder} validate={validators} component={component} type={type}/>

@@ -28,6 +28,7 @@
 }
 .text{
     display: inline-block;
+    margin-left: 50px;
 }
 .imgContainer{
     display: flex;
@@ -39,10 +40,47 @@
     height: 200px;
     width: 200px;
     border-radius: 100px;
+    object-fit: cover;
 }
-.posts{
+.imageEdit{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    margin-top: 190px;
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
+    background: #369cf6;
+    color: white;
+    padding: 0 5px;
+}
+.imageEdit:hover{
+    background-color: #2f4c7e;
+    cursor: pointer;
+}
+.position{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
 
+.input[type=file]{
+    position: absolute;
+    opacity: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    margin-top: 190px;
+    margin-left: 10px;
 }
+
+.label{
+    position: relative;
+    display: inline-block;
+}
+
 .item{
     color: white;
 }
@@ -59,4 +97,16 @@
 .button:hover{
     background-color: #2f4c7e;
     cursor: pointer;
+}
+
+.textArea {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    column-gap: 20px;
+}
+
+.p {
+    width: 75px;
 }

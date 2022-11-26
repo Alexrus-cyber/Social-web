@@ -20,7 +20,7 @@ const MyPosts = React.memo((props) => {
 
     return (
         <div>
-            {props.id === props.myId ?
+            {Number(props.id) ===  props.myId ?
                 <div style={{display: "flex", justifyContent: "center"}}>
                     <div className={styles.posts}>
                             <div>
@@ -45,27 +45,6 @@ const MyPosts = React.memo((props) => {
 
             }
         </div>
-
-  /*  <div style={{display: "flex", justifyContent: "center"}}>
-        <div className={styles.posts}>
-            {props.id === props.myId ?
-                <div>
-                    My posts {props.counts}
-                    <div className={styles.container}><ReduxPostForm onSubmit = {onSubmit}/>
-                        <div>
-                            {postElements}
-                        </div>
-                    </div>
-                </div>
-                :
-                    <div className={styles.posts}>
-                        <div>
-                                {postElements}
-                        </div>
-                </div>}
-
-        </div>
-    </div>*/
 
 
     );

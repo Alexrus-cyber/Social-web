@@ -3,6 +3,9 @@
     display: flex;
     justify-content: center;
 }
+.flexWrap {
+    flex-wrap: wrap;
+}
 .width {
     width: 100%;
 }
@@ -11,11 +14,14 @@
 }
 .FindUsers{
     grid-area: c;
-    background-color: #2f4c7e;
-    color: #ece9e9;
-    display: flex;
-    width: 1083px;
-    justify-content: center;
+    background-color: white;
+    color: black;
+    width: 1082px;
+    border: 1px solid #c9c9c9;
+    border-bottom-right-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top: none;
+    margin-bottom: 50px;
 }
 
 .content{
@@ -29,89 +35,6 @@
     margin-right: 20px;
 }
 
-
-
-
-/*Пользователь*/
-.user {
-    margin-bottom: 50px;
-    margin-top: 50px;
-}
-.card{
-    border: #a1a1a1 1px solid;
-    padding: 10px;
-    width: 500px;
-    justify-content: left;
-    column-gap: 20px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-}
-
-.containerIcon {
-    margin-bottom: 5px;
-    column-gap: 10px;
-}
-
-.icon {
-    width: 50px;
-    height: 50px;
-    border: #801f1f 1px solid;
-    border-radius: 30px;
-}
-.follow{
-    background-color: #029a02;
-    border: none;
-    color: #ffffff;
-    font-size: 12px;
-    border-radius: 5px;
-    padding: 3px 5px;
-    cursor: pointer;
-    transition-duration: 0.5s;
-    justify-content: left;
-}
-.follow:hover{
-    background-color: #016b01;
-}
-.followContainer{
-    justify-content: left;
-}
-.text{
-    display: flex;
-}
-.p{
-    text-wrap: normal;
-    word-wrap: inherit ;
-    word-break: break-word;
-    width: 100%;
-}
-.takeMessage{
-    background-color: #029a02;
-    border: none;
-    color: #ffffff;
-    font-size: 14px;
-    border-radius: 5px;
-    padding: 3px 5px;
-    cursor: pointer;
-    transition-duration: 0.5s;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    display: flex;
-}
-.takeMessage:hover{
-    background-color: #016b01;
-}
-
-.messageContainer{
-    height: 55px;
-    display: flex;
-    align-items: center;
-}
-
-.description{
-    display: inline-block;
-    width: 178px;
-}
 
 
 /*Показать еще*/

@@ -1,14 +1,22 @@
 import styles from "../Profile.module.css";
 import React from "react";
-import {ProfileStatus} from "./ProfileStatus/ProfileStatus";
 import Preloader from "../../Common/Preloader";
 import image from "../../FindUsers/img/icon.jpg"
+import ProfileDataText from "./ProfileDataText/ProfileDataText";
 
-export const ProfileInfo = (props) => {
+export const ProfileInfo = React.memo((props) => {
+
     if (!props.profile) {
         return <Preloader/>
     }
     let link = "https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300";
+
+    const PhotoSelected = (e) => {
+        if (e.target.files.length){
+            props.savePhoto(e.target.files[0])
+        }
+    }
+
     return (
         <div>
             <div style={{display: "flex", justifyContent: "center", marginBottom: 10}}>
@@ -20,7 +28,6 @@ export const ProfileInfo = (props) => {
                     <div style={{
                         display: "flex",
                         justifyContent: "center",
-
                         columnGap: 20,
                         borderRadius: 20,
                         padding: 10
@@ -28,34 +35,30 @@ export const ProfileInfo = (props) => {
                         <div className={styles.imgContainer}>
                             <img alt={'f'} className={styles.img}
                                  src={props.profile.photos.large ? props.profile.photos.large : image}/>
+                            {Number(props.id) === props.myId ?
+                                <form className={styles.position}>
+                                    <label className={styles.label}>
+                                        <input type={"file"} className={styles.input} onChange={PhotoSelected}></input>
+                                        <span className={styles.imageEdit}>Изменить</span>
+                                    </label>
+                                </form>
+                                : <div/>}
                         </div>
-                        <div className={styles.text}>
-                            <h1>{props.profile.fullName}</h1>
-                            <ProfileStatus myId={props.myId} id={props.id} status={props.status}
-                                           updateStatus={props.updateStatus}/>
-                            <p>Обо мне: {props.profile.aboutMe}</p>
-                            <div>
-                                {props.profile.contacts.facebook ? <p> Контакты: facebook: {props.profile.contacts.facebook}</p> : <p>Контакты: https://vk.com/arassadin2014</p>}
-                                <div className={styles.contacts}>
-                                    {props.profile.contacts.website ?<p>website:{props.profile.contacts.website }</p>:  'website: http://localhost:3000/'}
-                                    {props.profile.contacts.vk ? <p>vk: {props.profile.contacts.vk}</p> : <p></p>}
-                                    {props.profile.contacts.twitter ? <p>twitter: {props.profile.contacts.twitter}</p> : <p></p>}
-                                    {props.profile.contacts.instagram ? <p>instagram: {props.profile.contacts.instagram}</p>: <p></p>}
-                                    {props.profile.contacts.youtube ? <p>youtube: {props.profile.contacts.youtube}</p>: <p></p>}
-                                    { props.profile.contacts.github ? <p>github: {props.profile.contacts.github}</p>: <p></p>}
-                                    { props.profile.contacts.mainLink ? <p>mainLink: {props.profile.contacts.mainLink}</p>: <p></p>}
-
-
-                                </div>
-                            </div>
-                            <p>Поиск работы: {props.profile.lookingForAJob ? 'Уже работаю' : 'Активен'}</p>
-                            <p>Описание: {props.profile.lookingForAJobDescription}</p>
-                        </div>
+                        <ProfileDataText updateProfile = {props.updateProfile} myId={props.myId} id={props.id} status={props.status}
+                                         updateStatus={props.updateStatus} profile = {props.profile}/>
                     </div>
 
                 </div>
 
             </div>
+        </div>
+    )
+})
+
+export const Contact = ({contactTitle, contactValue}) => {
+    return (
+        <div>
+            {contactValue ?  <b>{contactTitle}:{contactValue}</b> : <div/>}
         </div>
     )
 }

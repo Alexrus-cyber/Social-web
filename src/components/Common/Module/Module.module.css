@@ -1,0 +1,45 @@
+.module{
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.5s;
+}
+.active{
+    opacity: 1;
+    height: 100vh;
+    width: 100%;
+    background-color: rgba(0,0,0,0.4);
+    position: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    left: 0;
+    pointer-events: all;
+    transition: 0.5s;
+}
+
+.moduleContent {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+    transform: scale(0.5);
+    transition: 0.4s all;
+
+}
+
+.moduleContentActive{
+    transition: 0.4s all;
+    transform: scale(1);
+    padding: 20px;
+    border-radius: 12px;
+    background-color: white;
+}

@@ -13,9 +13,10 @@ export const FindUsers = React.memo((props) => {
                 <div className={styles.title}>
                     <h2>Пользователи</h2>
                 </div>
-                <div className={styles.inlineBlock + ' ' + styles.width + ' ' + styles.user}>
-                    {usersElements}
+                <div style={{width: "100%", display: "flex", alignItems: "center", flexWrap: "wrap"}}>
+                        {usersElements}
                 </div>
+
                 <div className={styles.showMore}>
                     {props.currentPage !== 1 && <button onClick={() => props.onPageChanged(props.currentPage - 1)} className={styles.button}>Вернуться</button>}
                     <button onClick={() => props.onPageChanged(props.currentPage + 1)} className={styles.button}>Показать еще</button>

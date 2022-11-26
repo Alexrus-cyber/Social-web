@@ -8,6 +8,8 @@ const SetUserProfile = 'SetUserProfile'
 const GetLoading = 'GetLoading'
 const SetUserStatus = 'SetUserStatus'
 const DeletePost = 'DeletePost'
+const SetImage = 'SetImage'
+const SetProfile = 'SetProfile'
 
 let initialState = {
     posts: [],
@@ -68,6 +70,18 @@ export const profileReducer = (state = initialState, action) => {
                 posts: state.posts.filter(p => p.id !== action.postId)
             }
         }
+        case SetImage: {
+            return {
+                ...state,
+                profile: {...state.profile, photos: action.file},
+            }
+        }
+        case SetProfile: {
+            return {
+                ...state,
+                profile: action.profile,
+            }
+        }
         default:
             return state;
     }
@@ -117,6 +131,18 @@ export const deletePost = (postId) => {
         postId
     }
 }
+export const savePhotoSuccess = (file) => {
+    return {
+        type: SetImage,
+        file,
+    }
+}
+export const saveProfile = (profile) =>{
+    return {
+        type: SetProfile,
+        profile
+    }
+}
 
 
 ///thunks
@@ -147,6 +173,25 @@ export let updateStatus = (status) => {
         let data = await profileAPI.updateStatus(status)
         if (data.resultCode === 0) {
             dispatch(setUserStatus(status));
+        }
+    }
+}
+export let savePhoto = (file) => {
+    return async (dispatch) => {
+        let data = await profileAPI.savePhoto(file)
+        if (data.resultCode === 0) {
+            dispatch(savePhotoSuccess(data.data.photos));
+        }
+    }
+}
+
+export let setProfile = (profile) => {
+    return async (dispatch, getState) => {
+        const userId = getState().auth.userId;
+        let data = await profileAPI.updateProfile(profile)
+
+        if (data.resultCode === 0) {
+            dispatch(getProfile(userId, false));
         }
     }
 }
