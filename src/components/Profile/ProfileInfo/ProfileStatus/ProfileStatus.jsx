@@ -21,7 +21,7 @@ export const ProfileStatus = React.memo((props) => {
                     <div style={{marginLeft: 10}}>
                         <button className={styles.button} onClick={() => setModuleActive(true)}>Изменить</button>
                     </div>
-                : <div style={{marginLeft: 10}}>{props.status}</div>
+                : <div style={{marginLeft: 10}}></div>
             }
             <Module active={moduleActive} setActive={setModuleActive}>
                 <InfoReduxForm myId = {props.myId} initialValues = {props.profile} profile={props.profile}
