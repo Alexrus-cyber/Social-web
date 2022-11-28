@@ -12,8 +12,7 @@ export const ProfileStatus = React.memo((props) => {
         props.updateProfile(formData)
     }, [props])
 
-    return (
-        <div style={{display: "flex"}}>
+    return (<div style={{display: "flex"}}>
             {Number(props.id) === props.myId
                 ? moduleActive
                     ? <div></div>
