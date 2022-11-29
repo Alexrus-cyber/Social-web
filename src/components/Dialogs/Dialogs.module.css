@@ -1,17 +1,22 @@
-.Dialogs{
+.Dialogs {
     grid-area: c;
-    background-color: #2f4c7e;
-    color: #ece9e9;
-    width: 1083px;
+    background-color: white;
+    color: black;
+    width: 1082px;
+    border-top: none;
+    margin-bottom: 50px;
 
 }
-.container{
+
+.container {
     height: 100%;
 }
-.secondContainer{
+
+.secondContainer {
     display: flex;
 
 }
+
 .kingInput {
     display: flex;
     width: 100%;
@@ -19,7 +24,8 @@
     border: none;
     margin-bottom: 5px;
 }
-.users{
+
+.users {
     background-color: #063150;
     display: flex;
     align-items: center;
@@ -32,12 +38,13 @@
     color: white;
     text-decoration: none;
 }
-.users:hover{
+
+.users:hover {
     background-color: #104773;
 
 }
 
-.active{
+.active {
     display: flex;
     background-color: #104773;
     align-items: center;
@@ -51,34 +58,38 @@
     text-decoration: none;
 }
 
-.messages{
-    background-color:  #063150;
+.messages {
+    background-color: #ffffff;
     display: block;
-    width: 500px;
+    width: 70%;
     border: 1px solid #9a9a9a;
+    border-radius: 0 0 20px 0;
     height: 100%;
 }
-.photo{
+
+.photo {
     width: 40px;
     height: 40px;
     border-radius: 30px;
     margin-left: 20px;
 }
 
-.header{
+.header {
     height: 56px;
     border-bottom: 1px solid #9a9a9a;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
-.headerLogo{
+
+.headerLogo {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100px;
 }
-.headerName{
+
+.headerName {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -86,11 +97,12 @@
     font-weight: 700;
 }
 
-.text{
+.text {
     height: 290px;
-    overflow:auto;
+    overflow: auto;
 }
-.inputContainer{
+
+.inputContainer {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +110,7 @@
     border-top: 1px solid #9a9a9a;
 }
 
-.textContainer{
+.textContainer {
     width: 100%;
     display: flex;
     column-gap: 20px;
@@ -106,24 +118,27 @@
     margin-top: 10px;
 }
 
-.input{
+.input {
     height: 30px;
     width: 300px;
     resize: none;
     border-radius: 10px;
 }
-.input:focus{
+
+.input:focus {
     border: 1px solid #ffffff;
 
 }
+
 .button {
-    width: 50px;
-    height: 20px;
-    background-color: green;
+    padding: 5px;
+    background-color: #369cf6;
     color: #ffffff;
     cursor: pointer;
     border: none;
+    border-radius: 10px;
 }
-.button:hover{
-    background-color: #024b02;
+
+.button:hover {
+    background-color: #2f4c7e;
 }

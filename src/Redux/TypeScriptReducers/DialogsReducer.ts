@@ -1,7 +1,4 @@
-import image from "../components/Dialogs/Users/img/icon.jpg";
-import Ivan from "../components/Dialogs/Users/img/Ivan.jpg";
-import Andrey from "../components/Dialogs/Users/img/Andrey.jpg";
-import {dialogsAPI} from "../API/API";
+import {dialogsAPI} from "../../API/API";
 
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
@@ -9,15 +6,15 @@ const GetUsers = 'GetUsers';
 
 let initialState = {
     messageUsers: [
-        {id: 1, name: 'Даниил Громыко', img: image,},
-        {id: 2, name: 'Яван Миллер', img: Ivan,},
-        {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
+        {id: 1, name: 'Даниил Громыко', img: "",},
+        {id: 2, name: 'Яван Миллер', img:  "",},
+        {id: 3, name: 'Андрей Солодышкин', img:  "",},
     ],
     users: [],
     messages: [
-        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image},
-        {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет'},
-        {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!'},
+        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img:  ""},
+        {id: 2, name: 'Яван Миллер', img:  "", message: 'Я Иван привет'},
+        {id: 3, name: 'Андрей Солодышкин', img:  "", message: 'Hello world!'},
     ],
     newMessageText: '',
     idCounter: [],

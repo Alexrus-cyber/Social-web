@@ -4,15 +4,14 @@ import {Message} from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
 import {TextAreaForm} from "../../Common/FormCreators";
 import {Required} from "../../../Utils/Validators/Validators";
+import image from "../../FindUsers/img/icon.jpg"
 
 export const Messages = React.memo((props) => {
     const [count, setCount] = useState(3)
     const AddNewMessageText = useCallback((values) => {
-        if (values.newMessageText !== undefined) {
             let counts = count + 1;
             setCount(counts);
-            props.addMessage(counts, props.userData.name, props.img, values.newMessageText, props.userData.id);
-        }
+            props.addMessage(counts,props.profile.fullName, props.profile.photos.large, values.newMessageText, props.userId);
     },[count,props])
 
 
@@ -24,10 +23,10 @@ export const Messages = React.memo((props) => {
         <div className={styles.messages}>
             <div className={styles.header}>
                 <div className={styles.headerName}>
-                    <p>{props.userData.name}</p>
+                    <p>Алексей</p>
                 </div>
                 <div className={styles.headerLogo}>
-                    <img className={styles.photo} src={props.img} alt={'photoHello'}/>
+                    <img className={styles.photo} src={image} alt={'photoHello'}/>
                 </div>
             </div>
             <div className={styles.text}>
@@ -48,7 +47,7 @@ const addMessageForm = (props) => {
                            style={{width: 300, height: 30, borderRadius: 10, resize: "none"}} validate={[Required]} component={TextAreaForm}>
                     </Field>
                     <div style={{display: "flex", alignItems: "center", marginLeft: 10}}>
-                        <button className={styles.button} onSubmit={props.onSubmit}>Send</button>
+                        <button className={styles.button} onSubmit={props.onSubmit}>Отправить</button>
                     </div>
                 </div>
             </div>

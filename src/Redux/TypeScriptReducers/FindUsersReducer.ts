@@ -1,5 +1,5 @@
-import {followAPI, userAPI} from "../API/API";
-import {updateObjectInArray} from "../Utils/ObjectHelper";
+import {followAPI, userAPI} from "../../API/API";
+import {updateObjectInArray} from "../../Utils/ObjectHelper";
 
 /// action.type
 let FOLLOW_UN_FOLLOW = 'FollowUnFollow'
@@ -9,26 +9,26 @@ let TOGGLE_IS_FETCHING = 'toggleIsFetching'
 let TOGGLE_FOLLOWING_IN_PROGRESS = 'toggleFollowingInProgress'
 let SET_INITIALIZED = 'SetInitialized'
 ///Types
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
-type SetCurrentPage = (currentPage: number) => {
+type SetCurrentPageType = {
     type: typeof SET_CURRENT_PAGE
     page: number
 }
-type FollowUnFollow = (userId: number, followed: boolean) => {
+type FollowUnFollowType =  {
     type: typeof FOLLOW_UN_FOLLOW,
     userId: number
     followed: boolean
 }
-type SetUsers = (users: Object) =>{
+type SetUsersType ={
     type: typeof SET_USERS
     users: Object
 }
-type ToggleIsFetching = (fetch: boolean) => {
+type ToggleIsFetchingType = {
     type: typeof TOGGLE_IS_FETCHING
     isFetching: boolean
 }
-type ToggleFollowingInProgress = (isFetching: boolean, userId: number) => {
+type ToggleFollowingInProgressType = {
     type: typeof TOGGLE_FOLLOWING_IN_PROGRESS
     isFetching: boolean
     userId: number
@@ -95,32 +95,32 @@ const FindUsersReducer = (state = initialState, action) => {
 ///actionCreators
 
 
-export const setCurrentPage: SetCurrentPage = (currentPage) => {
+export const setCurrentPage = (currentPage: number): SetCurrentPageType => {
     return {
         type: SET_CURRENT_PAGE,
         page: currentPage,
     }
 }
-export const followUnFollow: FollowUnFollow = (userId, followed) => {
+export const followUnFollow = (userId: number, followed: boolean): FollowUnFollowType => {
     return {
         type: FOLLOW_UN_FOLLOW,
         userId: userId,
         followed
     }
 }
-export const setUsers: SetUsers = (users) => {
+export const setUsers = (users: object): SetUsersType => {
     return {
         type: SET_USERS,
         users: users,
     }
 }
-export const toggleIsFetching: ToggleIsFetching = (fetch) => {
+export const toggleIsFetching = (fetch: boolean): ToggleIsFetchingType => {
     return {
         type: TOGGLE_IS_FETCHING,
         isFetching: fetch,
     }
 }
-export const toggleFollowingInProgress: ToggleFollowingInProgress = (isFetching, userId) => {
+export const toggleFollowingInProgress = (isFetching: boolean, userId: number): ToggleFollowingInProgressType => {
     return {
         type: TOGGLE_FOLLOWING_IN_PROGRESS,
         isFetching,
@@ -130,7 +130,7 @@ export const toggleFollowingInProgress: ToggleFollowingInProgress = (isFetching,
 
 ///thunks
 export const getUsers = (currentPage, pageSize) => {
-    return async (dispatch) => {
+    return async (dispatch: any) => {
         dispatch(toggleIsFetching(true));
         let data = await userAPI.getUsers(currentPage, pageSize)
         dispatch(toggleIsFetching(false));
@@ -138,7 +138,7 @@ export const getUsers = (currentPage, pageSize) => {
     }
 }
 
-const followUnFollowFlow = async (dispatch, id, apiMethod, followed) => {
+const followUnFollowFlow = async (dispatch: any, id: number, apiMethod: any, followed: boolean) => {
     dispatch(toggleFollowingInProgress(true, id))
     let data = await apiMethod(id)
     if (data.resultCode === 0) {
@@ -148,13 +148,13 @@ const followUnFollowFlow = async (dispatch, id, apiMethod, followed) => {
 
 }
 
-export const getFollow = (id, followed) => {
-    return async (dispatch) => {
+export const getFollow = (id: number, followed: boolean) => {
+    return async (dispatch: any) => {
         await followUnFollowFlow(dispatch, id, followAPI.postFollow.bind(followAPI), followed)
     }
 }
-export const getUnFollow = (id, followed) => {
-    return async (dispatch) => {
+export const getUnFollow = (id: number, followed: boolean) => {
+    return async (dispatch: any) => {
         await followUnFollowFlow(dispatch, id, followAPI.deleteUnFollow.bind(followAPI), followed)
     }
 }
