@@ -7,6 +7,7 @@ const takeDispatch = (dispatch: any, userId: number, haveStatus: boolean) => {
         dispatch(getProfile(userId, false));
         dispatch(getStatus(userId));
     } else {
+        dispatch(getLoading(true));
         dispatch(getProfile(userId, false));
     }
 }
@@ -14,6 +15,7 @@ const takeDispatch = (dispatch: any, userId: number, haveStatus: boolean) => {
 
 export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: any, navigate: any, haveStatus: boolean) => {
     return useEffect(() => {
+        console.log("Hello")
         let userId = params.id;
         if (!userId) {
             if (isAuth) {
@@ -23,8 +25,10 @@ export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: a
                 navigate('/login')
             }
         } else {
-            takeDispatch(dispatch, userId, haveStatus);
+            if (haveStatus){
+                takeDispatch(dispatch, userId, haveStatus);
+            }
         }
 
-    }, [dispatch, params.id, id, navigate, isAuth])
+    }, [dispatch, params.id, id, navigate, isAuth, haveStatus])
 }

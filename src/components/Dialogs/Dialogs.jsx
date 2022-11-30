@@ -2,8 +2,12 @@ import React from "react";
 import styles from './Dialogs.module.css';
 import {MessageUser} from "./Users/MessageUser";
 import {Messages} from "./Messages/Messages";
+import Preloader from "../Common/Preloader";
 
 export const Dialogs = (props) => {
+    if (props.profile.userId !== props.userId){
+        return <Preloader/>
+    }
 
     let userElements = props.userData.map(el => <MessageUser img={el.img} key={el.id} name={el.name} id={el.id}/>)
 

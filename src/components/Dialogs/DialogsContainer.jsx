@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {useCallback} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useProfile} from "../../Hooks/TakeProfile.ts";
+import Preloader from "../Common/Preloader";
 
 
 const DialogsContainer = () => {
@@ -28,8 +29,9 @@ const DialogsContainer = () => {
     }
 
     return (
-        <Dialogs userId={userId} profile={profile} addMessage={AddMessage} messageData={messages}
-                 userData={messageUsers} idCounter={idCounter}/>
+        profile ? <Dialogs userId={userId} profile={profile} addMessage={AddMessage} messageData={messages}
+                           userData={messageUsers} idCounter={idCounter}/> : <Preloader/>
+
     )
 }
 

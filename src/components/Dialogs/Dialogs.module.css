@@ -20,42 +20,51 @@
 .kingInput {
     display: flex;
     width: 100%;
-    height: 55px;
-    border: none;
+    height: 54px;
+    border-bottom: 1px solid #a4a4a4;
+    border-left: none;
+    border-right:none ;
+    border-top: none;
     margin-bottom: 5px;
+    outline: none;
 }
 
 .users {
-    background-color: #063150;
+    background-color: #ffffff;
+    border-radius: 5px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    width: 300px;
+    width: 100%;
     border-bottom: 1px solid #9a9a9a;
     border-right: none;
     border-left: none;
     border-top: none;
-    color: white;
+    color: #494646;
+    cursor: pointer;
     text-decoration: none;
 }
 
 .users:hover {
     background-color: #104773;
-
+    color: white;
+    cursor: pointer;
+    border-radius: 0 0 5px 5px;
 }
 
 .active {
     display: flex;
-    background-color: #104773;
+    background-color: #16609a;
     align-items: center;
     justify-content: space-between;
-    width: 300px;
+    width: 100%;
     border-bottom: 1px solid #9a9a9a;
     border-right: none;
     border-left: none;
     border-top: none;
     color: white;
     text-decoration: none;
+    cursor: pointer;
 }
 
 .messages {

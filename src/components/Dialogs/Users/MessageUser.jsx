@@ -1,13 +1,14 @@
 import styles from "../Dialogs.module.css";
-import React from "react";
-import {NavLink} from "react-router-dom";
+import React, {useState} from "react";
 
 export const MessageUser = React.memo((props) => {
-    const path = '/Dialogs/' + props.id
+    const [isActive, setIsActive] = useState(false);
 
-
+    const ButtonActive = () => {
+        setIsActive(!isActive)
+    }
     return (
-        <NavLink className={({isActive}) => (isActive ? styles.active : styles.users)} to={path}>
+        <div onClick={ButtonActive} className={isActive ? styles.active : styles.users}>
             <div>
                 <img className={styles.photo} src={props.img} alt={'photoLikes'}/>
             </div>
@@ -24,6 +25,6 @@ export const MessageUser = React.memo((props) => {
                 <p
                     style={{display: 'flex', alignItems: 'flex-start', justifyContent: 'flex-start'}}>x</p>
             </div>
-        </NavLink>
+        </div>
     );
 })

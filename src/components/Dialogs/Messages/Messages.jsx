@@ -7,6 +7,7 @@ import {Required} from "../../../Utils/Validators/Validators";
 import image from "../../FindUsers/img/icon.jpg"
 
 export const Messages = React.memo((props) => {
+
     const [count, setCount] = useState(3)
     const AddNewMessageText = useCallback((values) => {
             let counts = count + 1;
@@ -23,10 +24,10 @@ export const Messages = React.memo((props) => {
         <div className={styles.messages}>
             <div className={styles.header}>
                 <div className={styles.headerName}>
-                    <p>Алексей</p>
+                    <p>{props.profile.fullName}</p>
                 </div>
                 <div className={styles.headerLogo}>
-                    <img className={styles.photo} src={image} alt={'photoHello'}/>
+                    <img className={styles.photo} src={props.profile.photos.small ? props.profile.photos.small : image} alt={'photoHello'}/>
                 </div>
             </div>
             <div className={styles.text}>
@@ -38,7 +39,6 @@ export const Messages = React.memo((props) => {
 })
 
 const addMessageForm = (props) => {
-
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={styles.inputContainer}>

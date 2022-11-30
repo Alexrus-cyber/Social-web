@@ -1,26 +1,48 @@
-import {dialogsAPI} from "../../API/API";
 
+const image = require( "../../components/Dialogs/Users/img/icon.jpg");
+const Ivan = require( "../../components/Dialogs/Users/img/Ivan.jpg");
+const Andrey = require('../../components/Dialogs/Users/img/Andrey.jpg')
+//action.types
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
 const GetUsers = 'GetUsers';
+//type
+type InitialStateType = typeof initialState;
+type getUsersType = {
+    type: typeof GetUsers;
+    users: object;
+}
+type updateCountType = {
+    type: typeof UpdateCount;
+    idCounts: number
+}
+type addMessageType = {
+    type: typeof AddMessage,
+    idCount: number,
+    name: string,
+    image: string | null,
+    newMessageText: string,
+    idUser: number,
+}
+
 
 let initialState = {
     messageUsers: [
-        {id: 1, name: 'Даниил Громыко', img: "",},
-        {id: 2, name: 'Яван Миллер', img:  "",},
-        {id: 3, name: 'Андрей Солодышкин', img:  "",},
+        {id: 1, name: 'Даниил Громыко', img: image,},
+        {id: 2, name: 'Яван Миллер', img: Ivan,},
+        {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
     ],
     users: [],
     messages: [
-        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img:  ""},
-        {id: 2, name: 'Яван Миллер', img:  "", message: 'Я Иван привет'},
-        {id: 3, name: 'Андрей Солодышкин', img:  "", message: 'Hello world!'},
+        {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image},
+        {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет'},
+        {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!'},
     ],
     newMessageText: '',
     idCounter: [],
 }
 
-export const dialogsReducer = (state = initialState, action) => {
+export const dialogsReducer = (state = initialState, action):InitialStateType => {
     switch (action.type) {
         case AddMessage: {
             let newMessage = {
@@ -55,19 +77,22 @@ export const dialogsReducer = (state = initialState, action) => {
     }
 
 }
-export const getUsers = (users) => {
+
+export const getUsers = (users: object):getUsersType => {
     return {
         type: GetUsers,
         users
     }
 }
-export let updateCount = (counts) => {
+export let updateCount = (counts: number): updateCountType => {
     return {
         type: UpdateCount,
         idCounts: counts,
     }
 }
-export let addMessage = (id, name, img, newMessageText, idUser) => {
+
+
+export let addMessage = (id: number, name: string, img: string | null, newMessageText: string, idUser: number): addMessageType => {
     return {
         type: AddMessage,
         idCount: id,
@@ -76,11 +101,4 @@ export let addMessage = (id, name, img, newMessageText, idUser) => {
         newMessageText,
         idUser,
     }
-}
-
-export const getAllDialogs = () =>{
-    return (dispatch) => {
-        dialogsAPI.getDialogs().then(data =>
-        dispatch(getUsers(data))
-        )}
 }
