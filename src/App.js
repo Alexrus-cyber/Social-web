@@ -9,8 +9,8 @@ import UsersContainerFunc from "./components/FindUsers/UsersContainerFunc";
 import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
 import LoginContainer from "./components/Login/LoginContainer";
 import {useDispatch, useSelector} from "react-redux";
-import {initializeApp} from "./Redux/App-Reducer";
 import Preloader from "./components/Common/Preloader";
+import {initializeApp} from "./Redux/Reducers/AppReducer.ts";
 
 
 const App = () => {
@@ -20,7 +20,6 @@ const App = () => {
     useEffect(() => {
         dispatch(initializeApp())
     }, [dispatch])
-
     return (
         <BrowserRouter>
             {initialized

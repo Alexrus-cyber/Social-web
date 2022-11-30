@@ -1,5 +1,5 @@
 import {Dialogs} from "./Dialogs";
-import {addMessage, updateCount} from "../../Redux/Dialogs-reducer";
+import {addMessage, updateCount} from "../../Redux/Reducers/DialogsReducer.ts";
 import {useDispatch, useSelector} from "react-redux";
 import {useCallback} from "react";
 import {useNavigate, useParams} from "react-router-dom";

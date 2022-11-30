@@ -1,22 +1,17 @@
-
-const image = require( "../../components/Dialogs/Users/img/icon.jpg");
-const Ivan = require( "../../components/Dialogs/Users/img/Ivan.jpg");
+const image = require("../../components/Dialogs/Users/img/icon.jpg");
+const Ivan = require("../../components/Dialogs/Users/img/Ivan.jpg");
 const Andrey = require('../../components/Dialogs/Users/img/Andrey.jpg')
 //action.types
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
-const GetUsers = 'GetUsers';
 //type
-type InitialStateType = typeof initialState;
-type getUsersType = {
-    type: typeof GetUsers;
-    users: object;
-}
-type updateCountType = {
+export type InitialStateType = typeof initialState;
+
+type UpdateCountType = {
     type: typeof UpdateCount;
     idCounts: number
 }
-type addMessageType = {
+type AddMessageType = {
     type: typeof AddMessage,
     idCount: number,
     name: string,
@@ -24,25 +19,38 @@ type addMessageType = {
     newMessageText: string,
     idUser: number,
 }
+type MessageUsersType = {
+    id: number,
+    name: string,
+    img: string,
+}
 
+type MessagesType = {
+    id: number,
+    message: string,
+    name: string,
+    img: string
+}
+type IdCounter = {
+    idCounts: number;
+}
 
 let initialState = {
     messageUsers: [
         {id: 1, name: 'Даниил Громыко', img: image,},
         {id: 2, name: 'Яван Миллер', img: Ivan,},
         {id: 3, name: 'Андрей Солодышкин', img: Andrey,},
-    ],
-    users: [],
+    ] as Array<MessageUsersType>,
+
     messages: [
         {id: 1, message: 'Привет Бро!', name: 'Даниил Громыко', img: image},
         {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет'},
         {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!'},
-    ],
-    newMessageText: '',
-    idCounter: [],
+    ] as Array<MessagesType>,
+    idCounter: [] as Array<IdCounter>,
 }
 
-export const dialogsReducer = (state = initialState, action):InitialStateType => {
+export const dialogsReducer = (state = initialState, action): InitialStateType => {
     switch (action.type) {
         case AddMessage: {
             let newMessage = {
@@ -62,29 +70,17 @@ export const dialogsReducer = (state = initialState, action):InitialStateType =>
         case UpdateCount: {
             return {
                 ...state,
-                idCounter: [...state.idCounter,action.idCounts],
+                idCounter: [...state.idCounter, action.idCounts],
             };
         }
-        case GetUsers: {
-            return {
-                ...state,
-                users: [...state.users, action.users]
-            }
-        }
-
         default:
             return state;
     }
 
 }
 
-export const getUsers = (users: object):getUsersType => {
-    return {
-        type: GetUsers,
-        users
-    }
-}
-export let updateCount = (counts: number): updateCountType => {
+
+export let updateCount = (counts: number): UpdateCountType => {
     return {
         type: UpdateCount,
         idCounts: counts,
@@ -92,7 +88,7 @@ export let updateCount = (counts: number): updateCountType => {
 }
 
 
-export let addMessage = (id: number, name: string, img: string | null, newMessageText: string, idUser: number): addMessageType => {
+export let addMessage = (id: number, name: string, img: string | null, newMessageText: string, idUser: number): AddMessageType => {
     return {
         type: AddMessage,
         idCount: id,

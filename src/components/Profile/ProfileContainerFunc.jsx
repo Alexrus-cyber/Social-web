@@ -1,7 +1,7 @@
 import React, {memo, useCallback} from "react";
 import Profile from "./Profile";
 import {useDispatch, useSelector} from "react-redux";
-import {savePhoto, setProfile, updateStatus} from "../../Redux/Profile-reducer";
+import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer.ts";
 import {useNavigate, useParams} from "react-router-dom";
 import Preloader from "../Common/Preloader";
 import {useProfile} from "../../Hooks/TakeProfile.ts";

@@ -2,7 +2,7 @@ import styles from "../../Profile.module.css";
 import {FieldCreator, InputLogin} from "../../../Common/FormCreators";
 import {reduxForm} from "redux-form";
 import React from "react";
-import {getProfile} from "../../../../Redux/Profile-reducer";
+import {getProfile} from "../../../../Redux/Reducers/ProfileReducer.ts";
 import {connect} from "react-redux";
 
 let InitializeFromStateForm  = React.memo(({handleSubmit, onSubmit, profile}) => {

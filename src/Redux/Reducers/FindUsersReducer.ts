@@ -1,5 +1,6 @@
 import {followAPI, userAPI} from "../../API/API";
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
+import {UsersType} from "../../Types/Types";
 
 /// action.type
 let FOLLOW_UN_FOLLOW = 'FollowUnFollow'
@@ -7,7 +8,6 @@ let SET_USERS = 'setUsers'
 let SET_CURRENT_PAGE = 'setCurrentPage'
 let TOGGLE_IS_FETCHING = 'toggleIsFetching'
 let TOGGLE_FOLLOWING_IN_PROGRESS = 'toggleFollowingInProgress'
-let SET_INITIALIZED = 'SetInitialized'
 ///Types
 export type InitialStateType = typeof initialState;
 
@@ -22,7 +22,7 @@ type FollowUnFollowType =  {
 }
 type SetUsersType ={
     type: typeof SET_USERS
-    users: Object
+    users: Array<UsersType>
 }
 type ToggleIsFetchingType = {
     type: typeof TOGGLE_IS_FETCHING
@@ -36,18 +36,18 @@ type ToggleFollowingInProgressType = {
 
 /// Начальное состояние
 let initialState = {
-    users: [],
+    users: [] as Array<UsersType>,
     pageSize: null as number | null,
     totalUsersCounts: null as number | null,
     currentPage: 1,
     isFetching: true,
-    isFollowingInProgress: [],
+    isFollowingInProgress: [] as Array<number>, // array of users id
     init: false,
 }
 
 
 ///Reducer
-const FindUsersReducer = (state = initialState, action) => {
+const FindUsersReducer = (state = initialState, action): InitialStateType => {
     switch (action.type) {
         case FOLLOW_UN_FOLLOW: {
             return {
@@ -81,12 +81,6 @@ const FindUsersReducer = (state = initialState, action) => {
                     : state.isFollowingInProgress.filter(id => id !== action.userId),
             }
         }
-        case SET_INITIALIZED: {
-            return {
-                ...state,
-                initialized: true
-            }
-        }
         default:
             return state;
     }
@@ -108,10 +102,10 @@ export const followUnFollow = (userId: number, followed: boolean): FollowUnFollo
         followed
     }
 }
-export const setUsers = (users: object): SetUsersType => {
+export const setUsers = (users: Array<UsersType>): SetUsersType => {
     return {
         type: SET_USERS,
-        users: users,
+        users,
     }
 }
 export const toggleIsFetching = (fetch: boolean): ToggleIsFetchingType => {

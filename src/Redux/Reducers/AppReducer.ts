@@ -1,4 +1,5 @@
-import {getMe} from "../Auth-reducer";
+// @ts-ignore
+import {getMe} from "./AuthReducer.ts";
 
 const SET_INITIALIZED = 'SetInitialized'
 

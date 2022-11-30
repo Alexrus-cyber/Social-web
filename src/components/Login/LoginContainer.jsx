@@ -1,7 +1,7 @@
 import {useDispatch, useSelector} from "react-redux";
 import Login from "./Login";
 import {useCallback, useEffect} from "react";
-import {getMe, loginMe} from "../../Redux/Auth-reducer";
+import {getMe, loginMe} from "../../Redux/Reducers/AuthReducer.ts";
 
 
 const LoginContainer = () => {

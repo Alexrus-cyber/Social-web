@@ -1,5 +1,9 @@
-import {addPost, profileReducer, deletePost} from "../Profile-reducer";
-let state = {
+// @ts-ignore
+import {addPost, profileReducer, deletePost} from "../Reducers/ProfileReducer.ts";
+type stateType ={
+    posts: object
+}
+let state: stateType = {
     posts: [
         {id: 1, message: "Hello world!", likesCount: 5}
     ]

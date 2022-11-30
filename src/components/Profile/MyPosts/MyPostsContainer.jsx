@@ -1,6 +1,6 @@
 import MyPosts from "./MyPosts";
 import {useDispatch, useSelector} from "react-redux";
-import {addLike, addPostThunk} from "../../../Redux/Profile-reducer";
+import {addLike, addPostThunk} from "../../../Redux/Reducers/ProfileReducer.ts";
 import {useCallback} from "react";
 
 

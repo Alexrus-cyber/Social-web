@@ -1,14 +1,14 @@
 import React, {useCallback} from "react";
 import Header from "./Header";
 import { useDispatch, useSelector} from "react-redux";
-import { logout} from "../../Redux/Auth-reducer";
+import { logout} from "../../Redux/Reducers/AuthReducer.ts";
 
 const HeaderContainer = () => {
     let dispatch = useDispatch();
     let {login, isAuth} = useSelector(state => state.auth)
 
     const Logout = useCallback(() => {
-        dispatch(logout())
+        dispatch(logout());
     },[dispatch])
 
 

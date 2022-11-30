@@ -1,5 +1,6 @@
 import {useEffect} from "react";
-import {getLoading, getProfile, getStatus} from "../Redux/Profile-reducer";
+// @ts-ignore
+import {getLoading, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer.ts";
 
 const takeDispatch = (dispatch: any, userId: number, haveStatus: boolean) => {
     if (haveStatus) {

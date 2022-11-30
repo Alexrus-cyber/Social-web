@@ -1,7 +1,7 @@
 import React, {useCallback, useEffect} from "react";
 import {FindUsers} from "./Users/FindUsers";
 import {useDispatch, useSelector} from "react-redux";
-import {getFollow, getUnFollow, getUsers, setCurrentPage,} from "../../Redux/FindUsers-reducer";
+import {getFollow, getUnFollow, getUsers, setCurrentPage,} from "../../Redux/Reducers/FindUsersReducer.ts";
 import Preloader from "../Common/Preloader";
 
 const UsersContainerFunc = () => {
