@@ -1,9 +1,26 @@
+// @ts-ignore
 import styles from "./User.module.css";
-import React from "react";
-import image from '../../img/icon.jpg';
+// @ts-ignore
+import React, {FC} from "react";
+// @ts-ignore
 import {NavLink} from "react-router-dom";
+import {PhotosType} from "../../../../Types/Types";
+const image = require( '../../img/icon.jpg');
 
-export const User = React.memo((props) => {
+
+type PropsType = {
+    id: number
+    name: string
+    photos: PhotosType
+    status: string
+    isFollowingInProgress: Array<number>
+    follow: (id) => void
+    UnFollow: (id) => void
+    followed: boolean
+}
+
+
+export const User: FC<PropsType> = ({id, name, photos, status, isFollowingInProgress, follow, UnFollow, followed}) => {
 
     return (
         <div className={styles.flex + " " + styles.flexWrap}>
@@ -11,13 +28,13 @@ export const User = React.memo((props) => {
                 <div className={styles.flex}> {/*Блок подписки и иконки*/}
                     <div className={styles.containerIcon + " " + styles.flex}
                          style={{display: "flex", justifyContent: "left", width: 300, wordWrap: "break-word"}}>
-                        <NavLink to={'/Profile/' + props.id}>
-                            <img className={styles.icon} src={props.photos.large != null ? props.photos.large : image}
+                        <NavLink to={'/Profile/' + id}>
+                            <img className={styles.icon} src={photos.large != null ? photos.large : image}
                                  alt={"helloWorld"}/>
                         </NavLink>
                         <div style={{width: 100}} className={styles.inlineBlock}>
-                            <b>{props.name}</b>
-                            <p className={styles.p}>{props.status}</p>
+                            <b>{name}</b>
+                            <p className={styles.p}>{status}</p>
                         </div>
                     </div>
                     <div className={styles.MessageContainer}>
@@ -27,12 +44,12 @@ export const User = React.memo((props) => {
                 <div className={styles.flex}>
                     <div className={styles.description}>
                         <div className={styles.followContainer}>
-                            {props.followed
-                                ? <button disabled={props.isFollowingInProgress.some(id => id === props.id)}
-                                          onClick={() => props.UnFollow(props.id)}
+                            {followed
+                                ? <button disabled={isFollowingInProgress.some((idUser: number) => idUser === id)}
+                                          onClick={() => UnFollow(id)}
                                           className={styles.follow}>Отписаться</button>
-                                : <button disabled={props.isFollowingInProgress.some(id => id === props.id)}
-                                          onClick={() => props.follow(props.id)}
+                                : <button disabled={isFollowingInProgress.some((idUser: number) => idUser === id)}
+                                          onClick={() => follow(id)}
                                           className={styles.follow}>Подписаться</button>}
                         </div>
                         <div className={styles.text + ' ' + styles.flex}>
@@ -43,5 +60,5 @@ export const User = React.memo((props) => {
             </div>
         </div>
     )
-})
+}
 

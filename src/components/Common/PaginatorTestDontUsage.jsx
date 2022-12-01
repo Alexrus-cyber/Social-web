@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 
-export const Paginator = ({totalUsersCounts, pageSize, currentPage, onPageChanged, portionSize}) =>{
+export const PaginatorTestDontUsage = ({totalUsersCounts, pageSize, currentPage, onPageChanged, portionSize}) =>{
     let pagesCount = Math.ceil(totalUsersCounts / pageSize);
 
     let pages = [];

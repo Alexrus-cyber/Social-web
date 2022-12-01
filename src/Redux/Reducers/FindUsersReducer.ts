@@ -1,6 +1,7 @@
 import {followAPI, userAPI} from "../../API/API";
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {UsersType} from "../../Types/Types";
+import {AppDispatch} from "../ReduxStore";
 
 /// action.type
 let FOLLOW_UN_FOLLOW = 'FollowUnFollow'
@@ -124,7 +125,7 @@ export const toggleFollowingInProgress = (isFetching: boolean, userId: number): 
 
 ///thunks
 export const getUsers = (currentPage, pageSize) => {
-    return async (dispatch: any) => {
+    return async (dispatch: AppDispatch) => {
         dispatch(toggleIsFetching(true));
         let data = await userAPI.getUsers(currentPage, pageSize)
         dispatch(toggleIsFetching(false));
