@@ -1,3 +1,5 @@
+import {AppDispatch} from "../Redux/ReduxStore";
+
 export type PostType = {
     id: number
     likesCount: number
@@ -30,4 +32,15 @@ export type UsersType = {
     name: string
     status: string
     photos: PhotosType
+}
+export type QuizParams = {
+    id: string;
+};
+export type UseProfileType = {
+    params: QuizParams
+    id: number
+    isAuth: boolean
+    dispatch: AppDispatch
+    navigate: any
+    haveStatus: boolean
 }

@@ -1,8 +1,11 @@
 import {useEffect} from "react";
 // @ts-ignore
 import {getLoading, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer.ts";
+import {AppDispatch} from "../Redux/ReduxStore";
+import {QuizParams} from "../Types/Types";
 
-const takeDispatch = (dispatch: any, userId: number, haveStatus: boolean) => {
+
+const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean): void => {
     if (haveStatus) {
         dispatch(getLoading(true))
         dispatch(getProfile(userId, false));
@@ -11,13 +14,14 @@ const takeDispatch = (dispatch: any, userId: number, haveStatus: boolean) => {
         dispatch(getLoading(true));
         dispatch(getProfile(userId, false));
     }
+
 }
 
 
-export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: any, navigate: any, haveStatus: boolean) => {
-    return useEffect(() => {
+export const useProfile = (params: QuizParams, id: number, isAuth: boolean, dispatch: AppDispatch, navigate: any, haveStatus: boolean) => {
+    useEffect(() => {
         console.log("Hello")
-        let userId = params.id;
+        let userId = Number(params.id);
         if (!userId) {
             if (isAuth) {
                 userId = id;
@@ -26,7 +30,7 @@ export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: a
                 navigate('/login')
             }
         } else {
-            if (haveStatus){
+            if (haveStatus) {
                 takeDispatch(dispatch, userId, haveStatus);
             }
         }
