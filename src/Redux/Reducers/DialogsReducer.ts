@@ -7,10 +7,12 @@ const AddMessage = 'addMessage';
 //type
 export type InitialStateType = typeof initialState;
 
+
 type UpdateCountType = {
     type: typeof UpdateCount;
     idCounts: number
 }
+
 type AddMessageType = {
     type: typeof AddMessage,
     idCount: number,
@@ -50,7 +52,7 @@ let initialState = {
     idCounter: [] as Array<IdCounter>,
 }
 
-export const dialogsReducer = (state = initialState, action): InitialStateType => {
+export const dialogsReducer = (state = initialState, action: any): InitialStateType => {
     switch (action.type) {
         case AddMessage: {
             let newMessage = {

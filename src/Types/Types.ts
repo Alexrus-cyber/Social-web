@@ -1,3 +1,4 @@
+// @ts-ignore
 import {AppDispatch} from "../Redux/ReduxStore";
 
 export type PostType = {
@@ -16,8 +17,8 @@ export type ContactsType = {
     mainLink: string
 }
 export type PhotosType = {
-    small: string | null
-    large: string | null
+    small: string | null | undefined
+    large: string | null | undefined
 }
 export type ProfileType = {
     userId: number
@@ -32,6 +33,7 @@ export type UsersType = {
     name: string
     status: string
     photos: PhotosType
+    followed: boolean
 }
 export type QuizParams = {
     id: string;

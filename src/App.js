@@ -5,7 +5,7 @@ import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import HeaderContainer from "./components/Header/HeadearContainer";
-import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
+import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc.tsx";
 import LoginContainer from "./components/Login/LoginContainer";
 import {useDispatch, useSelector} from "react-redux";
 import Preloader from "./components/Common/Preloader";
