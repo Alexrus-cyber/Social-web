@@ -14,8 +14,8 @@ type PropsType = {
     photos: PhotosType
     status: string
     isFollowingInProgress: Array<number>
-    follow: (id) => void
-    UnFollow: (id) => void
+    follow: (id:number) => void
+    UnFollow: (id:number) => void
     followed: boolean
 }
 

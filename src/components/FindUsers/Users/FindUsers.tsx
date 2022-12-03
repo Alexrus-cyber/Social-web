@@ -1,7 +1,7 @@
 // @ts-ignore
 import styles from "../FindUsers.module.css";
 // @ts-ignore
-import React from "react";
+import React, {memo} from "react";
 // @ts-ignore
 import {User} from "./User/User.tsx";
 import {UsersType} from "../../../Types/Types";
@@ -10,12 +10,12 @@ type PropsType = {
     users: Array<UsersType>,
     currentPage: number
     isFollowingInProgress: Array<number>
-    follow: Function
-    UnFollow: Function
+    follow: (id:number) => void
+    UnFollow: (id:number) => void
     onPageChanged: (currentPage: number) => void
 }
 
-export const FindUsers = React.memo<PropsType>(({follow, UnFollow, isFollowingInProgress, users, onPageChanged,currentPage}) => {
+export const FindUsers = memo<PropsType>(({follow, UnFollow, isFollowingInProgress, users, onPageChanged,currentPage}) => {
 
     let usersElements = users.map(el => <User key={el.id} id={el.id} name={el.name} photos={el.photos}
                                                     status={el.status} followed={el.followed}

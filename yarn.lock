@@ -2047,7 +2047,7 @@
 
 "@types/redux-form@^8.3.5":
   version "8.3.5"
-  resolved "https://registry.yarnpkg.com/@types/redux-form/-/redux-form-8.3.5.tgz#7c55f4182952a41eca67e9d26e2a41ad425859a5"
+  resolved "https://registry.npmjs.org/@types/redux-form/-/redux-form-8.3.5.tgz"
   integrity sha512-SchB4i7nxgWNbJS4cXEZducztkvHzVrb5xlAXwfLpbrLPo6tMY06+kx1GqMv42+YnGy9TpCAkF51a21HatqWBA==
   dependencies:
     "@types/react" "*"

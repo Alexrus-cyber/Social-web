@@ -1,13 +1,16 @@
-import {Dialogs} from "./Dialogs";
+// @ts-ignore
+import {Dialogs} from "./Dialogs.jsx";
 // @ts-ignore
 import {addMessage, updateCount} from "../../Redux/Reducers/DialogsReducer.ts";
 import {useCallback} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 // @ts-ignore
 import {useProfile} from "../../Hooks/TakeProfile.ts";
+// @ts-ignore
 import Preloader from "../Common/Preloader";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import {QuizParams} from "../../Types/Types";
+import React from "react";
 
 
 const DialogsContainer = () => {
