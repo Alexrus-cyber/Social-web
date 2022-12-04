@@ -1,6 +1,6 @@
 import React, {memo, useCallback} from "react";
 // @ts-ignore
-import Profile from "./Profile.jsx";
+import Profile from "./Profile.tsx";
 // @ts-ignore
 import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer.ts";
 import {useNavigate, useParams} from "react-router-dom";

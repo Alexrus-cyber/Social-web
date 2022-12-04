@@ -1,10 +1,23 @@
 import React from "react";
+// @ts-ignore
 import styles from './Profile.module.css';
+// @ts-ignore
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+// @ts-ignore
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {PhotosType, ProfileType} from "../../Types/Types";
 
+export type PropsType = {
+    id: string | undefined
+    myId : number
+    updateProfile: (profile: ProfileType) => void
+    savePhoto:(file: PhotosType) => void
+    profile: ProfileType
+    updateStatus: (status: string) => void
+    status: string
+}
 
-const Profile = (props) => {
+const Profile = (props: PropsType) => {
 
     return (
         <div className={styles.content}>

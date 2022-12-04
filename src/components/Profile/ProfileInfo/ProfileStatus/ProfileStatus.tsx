@@ -1,12 +1,18 @@
-import React, {useCallback, useState} from "react";
+import React, {memo, useCallback, useState} from "react";
+// @ts-ignore
 import styles from '../../Profile.module.css'
+// @ts-ignore
 import {Module} from "../../../Common/Module/Module";
+// @ts-ignore
 import InfoReduxForm from "../ProfileDataText/InfoReduxForm";
+import {PropsDataType} from "../ProfileDataText/ProfileDataText";
 
-export const ProfileStatus = React.memo((props) => {
+
+
+export const ProfileStatus = memo<PropsDataType>((props) => {
     const [moduleActive, setModuleActive] = useState(false);
 
-    const onSubmit = useCallback((formData) => {
+    const onSubmit = useCallback((formData: any) => {
         console.log(formData);
         setModuleActive(false);
         props.updateProfile(formData)
@@ -23,8 +29,8 @@ export const ProfileStatus = React.memo((props) => {
                 : <div style={{marginLeft: 10}}></div>
             }
             <Module active={moduleActive} setActive={setModuleActive}>
-                <InfoReduxForm myId = {props.myId} initialValues = {props.profile} profile={props.profile}
-                                onSubmit={onSubmit}/>
+                <InfoReduxForm initialValues={props.profile} profile={props.profile}
+                               onSubmit={onSubmit} handleSubmit={undefined}/>
             </Module>
 
         </div>

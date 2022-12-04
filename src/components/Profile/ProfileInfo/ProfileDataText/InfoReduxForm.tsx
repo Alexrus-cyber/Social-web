@@ -1,11 +1,20 @@
+// @ts-ignore
 import styles from "../../Profile.module.css";
+// @ts-ignore
 import {FieldCreator, InputLogin} from "../../../Common/FormCreators";
 import {reduxForm} from "redux-form";
 import React from "react";
+// @ts-ignore
 import {getProfile} from "../../../../Redux/Reducers/ProfileReducer.ts";
-import {connect} from "react-redux";
+import {ProfileType} from "../../../../Types/Types";
 
-let InitializeFromStateForm  = React.memo(({handleSubmit, onSubmit, profile}) => {
+type FormType  = {
+    handleSubmit: any,
+    onSubmit: (formData: any) => void,
+    profile:ProfileType
+    initialValues: ProfileType
+}
+let InitializeFromStateForm  = React.memo<FormType>(({handleSubmit, onSubmit, profile}) => {
 
     let click = () => {
         getProfile(profile,false);
@@ -72,16 +81,11 @@ let InitializeFromStateForm  = React.memo(({handleSubmit, onSubmit, profile}) =>
     )
 })
 
+// @ts-ignore
+
 InitializeFromStateForm = reduxForm({
     form: 'info', // a unique identifier for this form
+    // @ts-ignore
 })(InitializeFromStateForm);
-
-// You have to connect() to any reducers that you wish to connect to yourself
-InitializeFromStateForm = connect(
-    state => ({
-        initialValues: state.profilePage.profile, // pull initial values from account reducer
-    }),
-    { getProfile }, // bind account loading action creator
-)(InitializeFromStateForm);
 
 export default InitializeFromStateForm;

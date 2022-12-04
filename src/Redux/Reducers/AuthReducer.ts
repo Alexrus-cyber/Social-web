@@ -1,5 +1,5 @@
 // @ts-ignore
-import {authAPI, securityAPI} from "../../API/API";
+import {authAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../../API/API";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {RootState} from "../ReduxStore";
@@ -72,7 +72,7 @@ export const getCaptchaUrlData = (captchaUrl: string | null):GetCaptchaUrlDataTy
 export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
     return async (dispatch) => {
         let data = await authAPI.getMe();
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             let {id, login, email} = data.data
             // @ts-ignore
             dispatch(setUserData(id, email, login, true))
@@ -82,14 +82,14 @@ export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsT
 export const loginMe = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
     return async (dispatch) => {
         let data = await authAPI.loginMe(email, password, rememberMe, captcha);
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             // @ts-ignore
             dispatch(setUserData())
         } else {
-            if (data.resultCode === 10) {
+            if (data.resultCode === ResultCodeForCaptcha.CaptchaIsRequired) {
                 await dispatch(getCaptchaUrl());
             }
-            let message = data.messages.lenght > 0 ? data.messages[0] : "Введите коректный Email или Пароль"
+            let message = data.messages.length > 0 ? data.messages[0] : "Введите коректный Email или Пароль"
             // @ts-ignore
             dispatch(stopSubmit("login", {_error: message}))
         }

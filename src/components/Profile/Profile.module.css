@@ -92,7 +92,7 @@
     color: white;
     border: none;
     margin-left: 5px;
-    border-radius: 20px;
+    border-radius: 10px;
 }
 .button:hover{
     background-color: #2f4c7e;

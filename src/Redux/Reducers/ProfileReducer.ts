@@ -234,7 +234,7 @@ export let savePhoto = (file: PhotosType): ThunkAction<Promise<void>, RootState,
 }
 
 export let setProfile = (profile: ProfileType): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
-    return async (dispatch, getState: any) => {
+    return async (dispatch, getState) => {
         const userId = getState().auth.id;
         let data = await profileAPI.updateProfile(profile)
 
