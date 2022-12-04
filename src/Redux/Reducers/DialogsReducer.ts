@@ -1,3 +1,5 @@
+import {IdCounterType, MessagesType, MessageUsersType} from "../../Types/Types";
+
 const image = require("../../components/Dialogs/Users/img/icon.jpg");
 const Ivan = require("../../components/Dialogs/Users/img/Ivan.jpg");
 const Andrey = require('../../components/Dialogs/Users/img/Andrey.jpg')
@@ -21,21 +23,7 @@ type AddMessageType = {
     newMessageText: string,
     idUser: number,
 }
-type MessageUsersType = {
-    id: number,
-    name: string,
-    img: string,
-}
 
-type MessagesType = {
-    id: number,
-    message: string,
-    name: string,
-    img: string
-}
-type IdCounter = {
-    idCounts: number;
-}
 
 let initialState = {
     messageUsers: [
@@ -49,7 +37,7 @@ let initialState = {
         {id: 2, name: 'Яван Миллер', img: Ivan, message: 'Я Иван привет'},
         {id: 3, name: 'Андрей Солодышкин', img: Andrey, message: 'Hello world!'},
     ] as Array<MessagesType>,
-    idCounter: [] as Array<IdCounter>,
+    idCounter: [] as Array<IdCounterType>,
 }
 
 export const dialogsReducer = (state = initialState, action: any): InitialStateType => {

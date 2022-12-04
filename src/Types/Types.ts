@@ -47,3 +47,18 @@ export type UseProfileType = {
     navigate: any
     haveStatus: boolean
 }
+export type MessageUsersType = {
+    id: number,
+    name: string,
+    img: string,
+}
+
+export type MessagesType = {
+    id: number,
+    message: string,
+    name: string,
+    img: string
+}
+export type IdCounterType = {
+    idCounts: number;
+}

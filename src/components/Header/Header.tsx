@@ -1,9 +1,17 @@
-import React from "react";
+import React, {memo} from "react";
+// @ts-ignore
 import styles from './Header.module.css';
+// @ts-ignore
 import image from './ket_logo.png'
 import {NavLink} from "react-router-dom";
 
-const Header = (props) => {
+type PropsHeaderType = {
+    logout: () => void,
+    login: string,
+    isAuth: boolean
+}
+
+const Header = memo<PropsHeaderType>(({logout,isAuth, login}) => {
 
     return (
         <header className={styles.header}>
@@ -11,17 +19,17 @@ const Header = (props) => {
                 <img alt={'f'} className={styles.Logo} src={image}/>
             </div>
             <div className={styles.links}>
-                {props.isAuth
+                {isAuth
                     ?
                     <div style={{display: "flex"}}>
-                        <p>{props.login}</p>
-                        <button onClick={() => props.logout()}>Выйти</button>
+                        <p>{login}</p>
+                        <button onClick={() => logout()}>Выйти</button>
                     </div>
-                    : <NavLink onClick={() => props.toggleIsAuth(true)} className={styles.link} to={'/login'}>Войти</NavLink>}
+                    : <NavLink className={styles.link} to={'/login'}>Войти</NavLink>}
             </div>
 
         </header>
     );
-}
+})
 
 export default Header;

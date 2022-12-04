@@ -8,18 +8,13 @@ import {getFollow, getUnFollow, getUsers, setCurrentPage} from "../../Redux/Redu
 import Preloader from "../Common/Preloader";
 // @ts-ignore
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks.ts";
-import {UsersType} from "../../Types/Types";
 import {RootState} from "../../Redux/ReduxStore";
+import {FindUsersPageType} from "../../Types/SelectorTypes";
 
-type SelectorsType = {
-    users: Array<UsersType>,
-    currentPage: number,
-    isFetching: boolean,
-    isFollowingInProgress: Array<number>
-}
+
 const UsersContainerFunc = () => {
     const dispatch = useAppDispatch();
-    const {users, currentPage, isFetching, isFollowingInProgress}:SelectorsType = useAppSelector((state: RootState) => state.findUserPage)
+    const {users, currentPage, isFetching, isFollowingInProgress}:FindUsersPageType = useAppSelector((state: RootState) => state.findUserPage)
 
     useEffect(() => {
         dispatch(getUsers(currentPage, 12)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.

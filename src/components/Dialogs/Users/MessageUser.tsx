@@ -1,7 +1,15 @@
+// @ts-ignore
 import styles from "../Dialogs.module.css";
-import React, {useState} from "react";
+import React, {memo, useState} from "react";
 
-export const MessageUser = React.memo((props) => {
+type PropsMessageUserType = {
+    img: string,
+    name: string,
+    id: number,
+    key: number
+}
+
+export const MessageUser = memo<PropsMessageUserType>((props) => {
     const [isActive, setIsActive] = useState(false);
 
     const ButtonActive = () => {

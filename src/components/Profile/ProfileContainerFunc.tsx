@@ -10,20 +10,17 @@ import Preloader from "../Common/Preloader";
 import {useProfile} from "../../Hooks/TakeProfile.ts";
 // @ts-ignore
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks.ts";
-import {PhotosType, ProfileType} from "../../Types/Types";
+import {PhotosType, ProfileType, QuizParams} from "../../Types/Types";
 // @ts-ignore
 import {RootState} from "../../Redux/ReduxStore";
+import {AuthPageType, ProfilePageType} from "../../Types/SelectorTypes";
 
-type ProfilePageType = {
-    profile: ProfileType,
-    status: string,
-    isLoading: boolean
-}
+
 const ProfileContainerFunc = memo(() => {
-    let params = useParams();
+    let params = useParams<QuizParams>();
     let dispatch = useAppDispatch();
     let {profile, status, isLoading}: ProfilePageType = useAppSelector((state:RootState) => state.profilePage)
-    let {id, isAuth} = useAppSelector((state: RootState)  => state.auth)
+    let {id, isAuth}: AuthPageType = useAppSelector((state: RootState)  => state.auth)
     let navigate = useNavigate();
 
     useProfile(params, id, isAuth, dispatch, navigate, true)
@@ -40,9 +37,9 @@ const ProfileContainerFunc = memo(() => {
         dispatch(savePhoto(file));
     }, [dispatch])
 
-    let userId  = params.id;
+    let userId  = params.id
     if (userId === undefined) {
-        userId = id;
+        userId = String(id);
     }
 
     return (

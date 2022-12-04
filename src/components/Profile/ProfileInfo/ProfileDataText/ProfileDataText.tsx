@@ -2,7 +2,7 @@
 import styles from "../../Profile.module.css";
 // @ts-ignore
 import {ProfileStatus} from "../ProfileStatus/ProfileStatus";
-import React, {useCallback, useRef, useState} from "react";
+import React, {useCallback, useState} from "react";
 import {Contact} from "../ProfileInfo";
 import {ProfileType} from "../../../../Types/Types";
 
@@ -18,12 +18,10 @@ export type PropsDataType = {
 const ProfileDataText = (props: PropsDataType) => {
     const [status, setStatus] = useState(props.status);
     const [active, setActive] = useState(false);
-    const ref = useRef<any>();
     const statusUpdate = useCallback(() => {
-        const text = ref.current
-        props.updateStatus(text.value);
+        props.updateStatus(status);
         setActive(false)
-    }, [props])
+    }, [props, status])
 
     const onChanged = (e: any) => {
         setStatus(e.currentTarget.value);
@@ -35,15 +33,18 @@ const ProfileDataText = (props: PropsDataType) => {
                 <ProfileStatus updateProfile={props.updateProfile} myId={props.myId} id={props.id} status={props.status}
                                updateStatus={props.updateStatus} profile={props.profile}/>
             </div>
-            {active
-                ? <div style={{display: "flex"}}>status: <textarea
-                    style={{outline: "none", resize: "none", height: 20, fontSize: 15, borderRadius: 5, marginLeft: 10}}
-                    value={status} ref={ref}
-                    onChange={onChanged}></textarea>
-                    <button className={styles.button} onClick={statusUpdate}>Сохранить</button>
-                </div>
-                : <div style={{display: "flex"}}>status: <p onDoubleClick={() => setActive(true)}>{status}</p></div>}
-
+            {Number(props.id) === props.myId
+                ? active
+                    ? <div style={{display: "flex"}}>status: <textarea
+                        style={{outline: "none", resize: "none", height: 20, fontSize: 15, borderRadius: 5, marginLeft: 10}}
+                        value={status}
+                        onChange={onChanged}></textarea>
+                        <button className={styles.button} onClick={statusUpdate}>Сохранить</button>
+                    </div>
+                    :
+                    <div style={{display: "flex"}}>status: <p className={styles.status} onDoubleClick={() => setActive(true)}>{props.status ? props.status : "Статус не установлен"}</p></div>
+                : <div style={{display: "flex"}}>status: {props.status ? props.status : "Статус не установлен"}</div>
+            }
             <p>Обо мне: {props.profile.aboutMe}</p>
             <div>
                 <b>Контакты</b>:

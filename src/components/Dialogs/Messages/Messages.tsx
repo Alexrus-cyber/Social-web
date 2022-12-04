@@ -1,25 +1,36 @@
+// @ts-ignore
 import styles from "../Dialogs.module.css";
-import React, {useCallback, useState} from "react";
+import React, {memo, useCallback, useState} from "react";
+// @ts-ignore
 import {Message} from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
+// @ts-ignore
 import {TextAreaForm} from "../../Common/FormCreators";
+// @ts-ignore
 import {Required} from "../../../Utils/Validators/Validators";
+// @ts-ignore
 import image from "../../FindUsers/img/icon.jpg"
+import {IdCounterType, MessagesType, ProfileType} from "../../../Types/Types";
 
-export const Messages = React.memo((props) => {
+type PropsMessageType = {
+    userId: number
+    profile: ProfileType
+    addMessage: (id: number, name: string, img: string | null | undefined, newMessageText: string, idUser: number) => void
+    messageData: Array<MessagesType>
+    idCounter: Array<IdCounterType>
+}
+
+export const Messages = memo<PropsMessageType>((props) => {
 
     const [count, setCount] = useState(3)
-    const AddNewMessageText = useCallback((values) => {
-            let counts = count + 1;
-            setCount(counts);
-            props.addMessage(counts,props.profile.fullName, props.profile.photos.large, values.newMessageText, props.userId);
-    },[count,props])
-
+    const AddNewMessageText = useCallback((values: any) => {
+        let counts = count + 1;
+        setCount(counts);
+        props.addMessage(counts, props.profile.fullName, props.profile.photos.large, values.newMessageText, props.userId);
+    }, [count, props]);
 
     let messageEl = props.messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
                                                          img={el.img}/>)
-
-
     return (
         <div className={styles.messages}>
             <div className={styles.header}>
@@ -27,7 +38,8 @@ export const Messages = React.memo((props) => {
                     <p>{props.profile.fullName}</p>
                 </div>
                 <div className={styles.headerLogo}>
-                    <img className={styles.photo} src={props.profile.photos.small ? props.profile.photos.small : image} alt={'photoHello'}/>
+                    <img className={styles.photo} src={props.profile.photos.small ? props.profile.photos.small : image}
+                         alt={'photoHello'}/>
                 </div>
             </div>
             <div className={styles.text}>
@@ -36,9 +48,9 @@ export const Messages = React.memo((props) => {
             <ReduxAddMessage onSubmit={AddNewMessageText}/>
         </div>
     )
-})
+});
 
-const addMessageForm = (props) => {
+const addMessageForm = (props: any) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={styles.inputContainer}>
