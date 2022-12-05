@@ -13,7 +13,8 @@ export type DialogsPageType = {
 export type AuthPageType = {
     id: number,
     isAuth: boolean
-    login: string
+    login: string | null
+    captchaUrl: string | null
 }
 export type FindUsersPageType = {
     users: Array<UsersType>,

@@ -51,6 +51,7 @@ export const Messages = memo<PropsMessageType>((props) => {
 });
 
 const addMessageForm = (props: any) => {
+
     return (
         <form onSubmit={props.handleSubmit}>
             <div className={styles.inputContainer}>
