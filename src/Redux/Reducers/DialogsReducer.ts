@@ -7,7 +7,7 @@ const Andrey = require('../../components/Dialogs/Users/img/Andrey.jpg')
 const UpdateCount = 'updateCount';
 const AddMessage = 'addMessage';
 //type
-export type InitialStateType = typeof initialState;
+export type InitialDialogsStateType = typeof initialState;
 
 
 type UpdateCountType = {
@@ -40,7 +40,7 @@ let initialState = {
     idCounter: [] as Array<IdCounterType>,
 }
 
-export const dialogsReducer = (state = initialState, action: any): InitialStateType => {
+export const dialogsReducer = (state = initialState, action: any): InitialDialogsStateType => {
     switch (action.type) {
         case AddMessage: {
             let newMessage = {

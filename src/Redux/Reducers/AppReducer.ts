@@ -1,7 +1,9 @@
 // @ts-ignore
 import {getMe} from "./AuthReducer.ts";
 // @ts-ignore
-import {AppDispatch} from "../ReduxStore.tsx";
+import {RootState} from "../ReduxStore.tsx";
+import {ThunkDispatch} from "redux-thunk";
+import {Action} from "redux";
 
 const SET_INITIALIZED = 'SetInitialized'
 
@@ -37,7 +39,7 @@ export const setInitialized = (): SetInitializedType => {
 
 ///Thunk
 
-export const initializeApp = () => (dispatch: AppDispatch) =>{
+export const initializeApp = () => (dispatch: ThunkDispatch<RootState, unknown, Action<string>>) =>{
     let promise =  dispatch(getMe());
     Promise.all([promise]).then(() => dispatch(setInitialized()));
 }

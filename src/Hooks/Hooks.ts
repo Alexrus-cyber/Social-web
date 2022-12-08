@@ -1,4 +1,4 @@
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import {useDispatch, useSelector } from 'react-redux'
 // @ts-ignore
 import type { RootState, AppDispatch } from '../Redux/ReduxStore.tsx'
 

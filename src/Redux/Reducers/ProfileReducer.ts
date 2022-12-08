@@ -16,7 +16,7 @@ const SetUserStatus = 'SetUserStatus'
 const DeletePost = 'DeletePost'
 const SetImage = 'SetImage'
 //types
-export type InitialStateType = typeof initialState;
+export type InitialProfileStateType = typeof initialState;
 type ActionsType = AddPostType | CounterType | AddLikeType | SetUserProfileType | GetLoadingType | SetUserStatusType |DeletePostType  | SavePhotoSuccessType;
 
 type AddPostType = {
@@ -68,7 +68,7 @@ let initialState = {
 }
 
 
-export const profileReducer = (state = initialState, action: ActionsType):InitialStateType => {
+export const profileReducer = (state = initialState, action: ActionsType):InitialProfileStateType => {
     switch (action.type) {
         case AddPost : {
             let newPost = {

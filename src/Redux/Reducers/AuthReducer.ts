@@ -8,7 +8,7 @@ const SetUserData = 'SetUserData'
 const GetCaptchaUrlData = 'GetCaptchaUrlData'
 
 //types
-export type InitialStateType = typeof  initialState;
+export type InitialAuthStateType = typeof  initialState;
 
 type ActionsType = SetUserDataType | GetCaptchaUrlDataType
 
@@ -37,7 +37,7 @@ let initialState = {
     captchaUrl: null as string | null,
 }
 
-export const authReducer = (state = initialState, action: ActionsType):InitialStateType => {
+export const authReducer = (state = initialState, action: ActionsType):InitialAuthStateType => {
     switch (action.type) {
         case SetUserData:
         case GetCaptchaUrlData: {

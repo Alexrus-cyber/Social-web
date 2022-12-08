@@ -1,22 +1,26 @@
 import './App.css';
 import React, {useEffect} from 'react';
+// @ts-ignore
 import Nav from "./components/Nav/Nav";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
+// @ts-ignore
 import News from "./components/News/News";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+// @ts-ignore
 import HeaderContainer from "./components/Header/HeadearContainer";
-import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc.tsx";
+import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
 import LoginContainer from "./components/Login/LoginContainer";
-import {useDispatch, useSelector} from "react-redux";
+// @ts-ignore
 import Preloader from "./components/Common/Preloader";
-import {initializeApp} from "./Redux/Reducers/AppReducer.ts";
-import UsersContainerFunc from "./components/FindUsers/UsersContainerFunc.tsx";
+import {initializeApp} from "./Redux/Reducers/AppReducer";
+import UsersContainerFunc from "./components/FindUsers/UsersContainerFunc";
+import {useAppDispatch, useAppSelector} from "./Hooks/Hooks";
+import DialogsContainerFunc from "./components/Dialogs/DialogsContainerFunc";
 
 
 const App = () => {
-    let {initialized} = useSelector(state => state.app);
-    let {isAuth} = useSelector(state => state.auth);
-    let dispatch = useDispatch();
+    let {initialized} = useAppSelector(state => state.app);
+    let {isAuth} = useAppSelector(state => state.auth);
+    let dispatch = useAppDispatch();
     useEffect(() => {
         dispatch(initializeApp())
     }, [dispatch])
@@ -36,9 +40,9 @@ const App = () => {
                         <Route path={'/findUsers'}
                                element={<UsersContainerFunc/>}></Route>
                         <Route path={'/news'} element={isAuth ? <News/> : <Navigate to={'/login'}/>}></Route>
-                        <Route path={'/dialogs'} element={isAuth ? <DialogsContainer/> : <Navigate to={'/login'}/>}>
+                        <Route path={'/dialogs'} element={isAuth ? <DialogsContainerFunc/> : <Navigate to={'/login'}/>}>
                             <Route path={":id"}
-                                   element={isAuth ? <DialogsContainer/> : <Navigate to={'/login'}/>}></Route>
+                                   element={isAuth ? <DialogsContainerFunc/> : <Navigate to={'/login'}/>}></Route>
                         </Route>
                         <Route path={'/login'}
                                element={isAuth ? <Navigate to={'/profile'}/> : <LoginContainer/>}></Route>

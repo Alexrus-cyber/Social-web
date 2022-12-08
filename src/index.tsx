@@ -2,18 +2,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-import store from "./Redux/ReduxStore.tsx";
+// @ts-ignore
+import reportWebVitals from './reportWebVitals.js';
+import store from "./Redux/ReduxStore";
 import {Provider} from "react-redux";
 
 
+// @ts-ignore
 const root = ReactDOM.createRoot(document.getElementById('root'));
     root.render(
-
             <Provider store={store}>
                 <App />
             </Provider>
-
     );
 
 

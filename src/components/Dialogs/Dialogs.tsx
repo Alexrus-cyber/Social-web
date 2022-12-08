@@ -1,12 +1,7 @@
 import React, {memo} from "react";
-// @ts-ignore
 import styles from './Dialogs.module.css';
-// @ts-ignore
 import {MessageUser} from "./Users/MessageUser";
-// @ts-ignore
 import {Messages} from "./Messages/Messages";
-// @ts-ignore
-import Preloader from "../Common/Preloader";
 import {IdCounterType, MessagesType, MessageUsersType, ProfileType} from "../../Types/Types";
 
 type PropsDialogType = {
@@ -22,9 +17,6 @@ export const Dialogs = memo<PropsDialogType>(({
                                                   userId, profile, addMessage, messageData, userData, idCounter,
                                               }) => {
 
-    if (profile.userId !== userId) {
-        return <Preloader/>
-    }
 
     let userElements = userData.map(el => <MessageUser img={el.img} key={el.id} name={el.name} id={el.id}/>)
 

@@ -1,5 +1,5 @@
 import {Dialogs} from "./Dialogs";
-import {addMessage, InitialStateType, updateCount} from "../../Redux/Reducers/DialogsReducer";
+import {addMessage, updateCount} from "../../Redux/Reducers/DialogsReducer";
 import {useCallback} from "react";
 import {useNavigate, useParams} from "react-router-dom";
 import {useProfile} from "../../Hooks/TakeProfile";
@@ -16,9 +16,9 @@ const DialogsContainer = () => {
     let dispatch = useAppDispatch();
     let params = useParams<QuizParams>();
     let navigate = useNavigate();
-    let {profile}: ProfilePageType = useAppSelector((state) => state.profilePage)
-    let {messages, messageUsers, idCounter}:DialogsPageType = useAppSelector((state) => state.dialogsPage)
-    let {id, isAuth}: AuthPageType = useAppSelector((state) => state.auth)
+    let {profile}:ProfilePageType = useAppSelector(state => state.profilePage)
+    let {messages, messageUsers, idCounter}: DialogsPageType = useAppSelector(state => state.dialogsPage)
+    let {id, isAuth}: AuthPageType = useAppSelector(state => state.auth)
 
 
     useProfile(params,id, isAuth, dispatch, navigate, false);

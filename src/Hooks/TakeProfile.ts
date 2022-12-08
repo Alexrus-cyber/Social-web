@@ -2,8 +2,6 @@ import {useEffect} from "react";
 // @ts-ignore
 import {getLoading, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer.ts";
 import {AppDispatch} from "../Redux/ReduxStore";
-import {QuizParams} from "../Types/Types";
-
 
 const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean): void => {
     if (haveStatus) {
