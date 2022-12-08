@@ -1,17 +1,12 @@
 import React, {memo, useCallback} from "react";
-// @ts-ignore
-import Profile from "./Profile.tsx";
-// @ts-ignore
-import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer.ts";
+import Profile from "./Profile";
+import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer";
 import {useNavigate, useParams} from "react-router-dom";
 // @ts-ignore
 import Preloader from "../Common/Preloader";
-// @ts-ignore
-import {useProfile} from "../../Hooks/TakeProfile.ts";
-// @ts-ignore
-import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks.ts";
+import {useProfile} from "../../Hooks/TakeProfile";
+import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import {PhotosType, ProfileType, QuizParams} from "../../Types/Types";
-// @ts-ignore
 import {RootState} from "../../Redux/ReduxStore";
 import {AuthPageType, ProfilePageType} from "../../Types/SelectorTypes";
 
@@ -19,8 +14,8 @@ import {AuthPageType, ProfilePageType} from "../../Types/SelectorTypes";
 const ProfileContainerFunc = memo(() => {
     let params = useParams<QuizParams>();
     let dispatch = useAppDispatch();
-    let {profile, status, isLoading}: ProfilePageType = useAppSelector((state:RootState) => state.profilePage)
-    let {id, isAuth}: AuthPageType = useAppSelector((state: RootState)  => state.auth)
+    const {profile, status, isLoading}= useAppSelector(state => state.profilePage)
+    let {id, isAuth} = useAppSelector(state  => state.auth[state.auth])
     let navigate = useNavigate();
 
     useProfile(params, id, isAuth, dispatch, navigate, true)

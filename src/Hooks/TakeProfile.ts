@@ -18,7 +18,7 @@ const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean
 }
 
 
-export const useProfile = (params: QuizParams, id: number, isAuth: boolean, dispatch: AppDispatch, navigate: any, haveStatus: boolean) => {
+export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: AppDispatch, navigate: any, haveStatus: boolean) => {
     useEffect(() => {
         console.log("Hello")
         let userId = Number(params.id);

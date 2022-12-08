@@ -15,7 +15,7 @@ import {IdCounterType, MessagesType, ProfileType} from "../../../Types/Types";
 type PropsMessageType = {
     userId: number
     profile: ProfileType
-    addMessage: (id: number, name: string, img: string | null | undefined, newMessageText: string, idUser: number) => void
+    addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>
     idCounter: Array<IdCounterType>
 }

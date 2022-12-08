@@ -1,11 +1,8 @@
-// @ts-ignore
 import {Dialogs} from "./Dialogs";
-// @ts-ignore
-import {addMessage, InitialStateType, updateCount} from "../../Redux/Reducers/DialogsReducer.ts";
+import {addMessage, InitialStateType, updateCount} from "../../Redux/Reducers/DialogsReducer";
 import {useCallback} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-// @ts-ignore
-import {useProfile} from "../../Hooks/TakeProfile.ts";
+import {useProfile} from "../../Hooks/TakeProfile";
 // @ts-ignore
 import Preloader from "../Common/Preloader";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
@@ -26,7 +23,7 @@ const DialogsContainer = () => {
 
     useProfile(params,id, isAuth, dispatch, navigate, false);
 
-    const AddMessage = useCallback((id: number, name: string, img: string | null | undefined, newMessageText: string, idUser: number) => {
+    const AddMessage = useCallback((id: number, name: string, img: string | null, newMessageText: string, idUser: number) => {
         dispatch(addMessage(id, name, img, newMessageText, idUser))
         dispatch(updateCount(id))
     }, [dispatch])

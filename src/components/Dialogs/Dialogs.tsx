@@ -12,7 +12,7 @@ import {IdCounterType, MessagesType, MessageUsersType, ProfileType} from "../../
 type PropsDialogType = {
     userId: number
     profile: ProfileType
-    addMessage: (id: number, name: string, img: string | null | undefined, newMessageText: string, idUser: number) => void
+    addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>
     userData: Array<MessageUsersType>
     idCounter: Array<IdCounterType>
