@@ -1,12 +1,15 @@
+// @ts-ignore
 import MyPosts from "./MyPosts";
-import {useDispatch} from "react-redux";
-import {addLike, addPostThunk} from "../../../Redux/Reducers/ProfileReducer";
+import {actionsCreators, addPostThunk} from "../../../Redux/Reducers/ProfileReducer";
 import {useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "../../../Hooks/Hooks";
 
+type PropsType = {
+    myId: number;
+    id: string | undefined
+}
 
-
-const MyPostsContainerFunc = (props) => {
+const MyPostsContainerFunc = (props: PropsType) => {
     let dispatch = useAppDispatch()
     let {countPosts, posts ,profile} = useAppSelector(state => state.profilePage)
 
@@ -15,7 +18,7 @@ const MyPostsContainerFunc = (props) => {
     }, [dispatch])
 
     const AddLike = useCallback((counts: number, newId: number) => { ///Изменение страцницы
-        dispatch(addLike(counts,newId)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
+        dispatch(actionsCreators.addLike(counts,newId)); ///Используем thunk, выполняеться асинхронно. Появляеться промежуточный уровень между store и reducer.
     }, [dispatch])
 
     return (

@@ -5,7 +5,7 @@ import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {PhotosType, PostType, ProfileType} from "../../Types/Types";
 import {ThunkAction} from "redux-thunk";
 // @ts-ignore
-import {RootState} from "../ReduxStore.tsx";
+import {InferActionsTypes, RootState} from "../ReduxStore.tsx";
 //action.types
 const AddPost = 'addPost';
 const PostCount = 'postCount';
@@ -17,45 +17,6 @@ const DeletePost = 'DeletePost'
 const SetImage = 'SetImage'
 //types
 export type InitialProfileStateType = typeof initialState;
-type ActionsType = AddPostType | CounterType | AddLikeType | SetUserProfileType | GetLoadingType | SetUserStatusType |DeletePostType  | SavePhotoSuccessType;
-
-type AddPostType = {
-    type: typeof AddPost;
-    idCount: number,
-    likes: number,
-    newPostText: string,
-}
-
-type CounterType = {
-    type: typeof PostCount;
-    countPost: number;
-}
-type AddLikeType = {
-    type: typeof AddLike,
-    like: number,
-    newId: number,
-}
-type SetUserProfileType = {
-    type: typeof SetUserProfile,
-    profile: ProfileType
-}
-type GetLoadingType = {
-    type: typeof GetLoading;
-    isLoading: boolean;
-}
-type SetUserStatusType = {
-    type: typeof SetUserStatus;
-    status: string,
-}
-
-type DeletePostType = {
-    type: typeof DeletePost;
-    postId: number;
-}
-type SavePhotoSuccessType = {
-    type: typeof SetImage;
-    file: PhotosType
-}
 
 
 //initialState
@@ -68,7 +29,7 @@ let initialState = {
 }
 
 
-export const profileReducer = (state = initialState, action: ActionsType):InitialProfileStateType => {
+export const profileReducer = (state = initialState, action: ActionsTypes):InitialProfileStateType => {
     switch (action.type) {
         case AddPost : {
             let newPost = {
@@ -131,109 +92,107 @@ export const profileReducer = (state = initialState, action: ActionsType):Initia
 
 }
 /// actionCreators
+export type ActionsTypes = InferActionsTypes<typeof actionsCreators>;
+export const actionsCreators = {
+    addPost : (counts: number, likes: number, newPostText: string) => {
+        return {
+            type: AddPost,
+            idCount: counts,
+            likes: likes,
+            newPostText
+        }
+    },
+    Counter : (counts: number) => {
+        return {
+            type: PostCount,
+            countPost: counts
+        }
+    },
 
 
-export const addPost = (counts: number, likes: number, newPostText: string): AddPostType => {
-    return {
-        type: AddPost,
-        idCount: counts,
-        likes: likes,
-        newPostText
+    addLike : (counts:number, newId: number)=> {
+        return {
+            type: AddLike,
+            like: counts,
+            newId: newId,
+        }
+    },
+
+    setUserProfile: (profile: ProfileType) => ({
+        type: SetUserProfile,
+        profile
+    }),
+    getLoading : (isLoading: boolean) => {
+        return {
+            type: GetLoading,
+            isLoading
+        }
+    },
+    setUserStatus : (status: string) => {
+        return {
+            type: SetUserStatus,
+            status
+        }
+    },
+
+    deletePost : (postId: number) => {
+        return {
+            type: DeletePost,
+            postId
+        }
+    },
+
+
+    savePhotoSuccess : (file: PhotosType) => {
+        return {
+            type: SetImage,
+            file,
+        }
     }
 }
-export const Counter = (counts: number): CounterType => {
-    return {
-        type: PostCount,
-        countPost: counts
-    }
-}
 
-
-export const addLike = (counts:number, newId: number): AddLikeType => {
-    return {
-        type: AddLike,
-        like: counts,
-        newId: newId,
-    }
-}
-
-export const setUserProfile = (profile: ProfileType): SetUserProfileType => ({
-    type: SetUserProfile,
-    profile
-})
-
-
-export const getLoading = (isLoading: boolean): GetLoadingType => {
-    return {
-        type: GetLoading,
-        isLoading
-    }
-}
-
-
-export const setUserStatus = (status: string): SetUserStatusType => {
-    return {
-        type: SetUserStatus,
-        status
-    }
-}
-
-export const deletePost = (postId: number): DeletePostType => {
-    return {
-        type: DeletePost,
-        postId
-    }
-}
-
-
-export const savePhotoSuccess = (file: PhotosType):SavePhotoSuccessType => {
-    return {
-        type: SetImage,
-        file,
-    }
-}
 
 ///thunks
-export let addPostThunk = (counts: number, likes: number, newPostText: string): ThunkAction<void, RootState, unknown, ActionsType> => {
+export let addPostThunk = (counts: number, likes: number, newPostText: string): ThunkAction<void, RootState, unknown, ActionsTypes> => {
     return (dispatch) => {
-        dispatch(addPost(counts, likes, newPostText))
-        dispatch(Counter(counts))
+        dispatch(actionsCreators.addPost(counts, likes, newPostText))
+        dispatch(actionsCreators.Counter(counts))
     }
 }
 
-export let getProfile = (id: number, isLoading: boolean): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export let getProfile = (id: number, isLoading: boolean): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
     return async (dispatch) => {
         let data = await profileAPI.getProfile(id)
-        dispatch(setUserProfile(data));
-        dispatch(getLoading(isLoading))
+        dispatch(actionsCreators.setUserProfile(data));
+        dispatch(actionsCreators.getLoading(isLoading))
     }
 }
 
-export let getStatus = (id: number): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export let getStatus = (id: number): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
     return async (dispatch) => {
         let data = await profileAPI.getStatus(id)
-        dispatch(setUserStatus(data));
+        dispatch(actionsCreators.setUserStatus(data));
     }
 }
 
-export let updateStatus = (status: string): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export let updateStatus = (status: string): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
     return async (dispatch) => {
         let data = await profileAPI.updateStatus(status)
         if (data.resultCode === 0) {
-            dispatch(setUserStatus(status));
+            dispatch(actionsCreators.setUserStatus(status));
         }
     }
 }
-export let savePhoto = (file: PhotosType): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export let savePhoto = (file: PhotosType): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
     return async (dispatch) => {
         let data = await profileAPI.savePhoto(file)
         if (data.resultCode === 0) {
-            dispatch(savePhotoSuccess(data.data.photos));
+            dispatch(actionsCreators.savePhotoSuccess(data.data.photos));
         }
     }
 }
 
-export let setProfile = (profile: ProfileType): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export let setProfile = (profile: ProfileType): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
     return async (dispatch, getState) => {
         const userId = getState().auth.id;
         let data = await profileAPI.updateProfile(profile)

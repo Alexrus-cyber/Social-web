@@ -1,9 +1,6 @@
 import React from "react";
-// @ts-ignore
 import styles from './Profile.module.css';
-// @ts-ignore
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-// @ts-ignore
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {PhotosType, ProfileType} from "../../Types/Types";
 
