@@ -1,4 +1,5 @@
 import React, {memo} from "react";
+// @ts-ignore
 import styles from './Dialogs.module.css';
 import {MessageUser} from "./Users/MessageUser";
 import {Messages} from "./Messages/Messages";

@@ -5,7 +5,6 @@ import Nav from "./components/Nav/Nav";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
 // @ts-ignore
 import News from "./components/News/News";
-// @ts-ignore
 import HeaderContainer from "./components/Header/HeadearContainer";
 import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
 import LoginContainer from "./components/Login/LoginContainer";
