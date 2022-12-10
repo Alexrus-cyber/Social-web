@@ -1,11 +1,7 @@
-// @ts-ignore
 import styles from "../Profile.module.css";
 import React from "react";
-// @ts-ignore
 import Preloader from "../../Common/Preloader";
-// @ts-ignore
 import image from "../../FindUsers/img/icon.jpg"
-// @ts-ignore
 import ProfileDataText from "./ProfileDataText/ProfileDataText";
 import {PropsType} from "../Profile";
 

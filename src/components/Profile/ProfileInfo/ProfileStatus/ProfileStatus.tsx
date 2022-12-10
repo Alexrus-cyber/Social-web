@@ -1,9 +1,6 @@
 import React, {memo, useCallback, useState} from "react";
-// @ts-ignore
 import styles from '../../Profile.module.css'
-// @ts-ignore
 import {Module} from "../../../Common/Module/Module";
-// @ts-ignore
 import InfoReduxForm from "../ProfileDataText/InfoReduxForm";
 import {PropsDataType} from "../ProfileDataText/ProfileDataText";
 

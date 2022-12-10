@@ -1,14 +1,9 @@
-// @ts-ignore
 import styles from "../Dialogs.module.css";
 import React, {memo, useCallback, useState} from "react";
-// @ts-ignore
 import {Message} from "./Message/Message";
 import {Field, reduxForm} from "redux-form";
-// @ts-ignore
 import {TextAreaForm} from "../../Common/FormCreators";
-// @ts-ignore
 import {Required} from "../../../Utils/Validators/Validators";
-// @ts-ignore
 import image from "../../FindUsers/img/icon.jpg"
 import {IdCounterType, MessagesType, ProfileType} from "../../../Types/Types";
 

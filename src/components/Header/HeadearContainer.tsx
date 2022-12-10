@@ -1,14 +1,11 @@
 import React, {useCallback} from "react";
-// @ts-ignore
 import Header from "./Header";
-// @ts-ignore
-import { logout} from "../../Redux/Reducers/AuthReducer.ts";
+import { logout} from "../../Redux/Reducers/AuthReducer";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {AuthPageType} from "../../Types/SelectorTypes";
 
 const HeaderContainer = () => {
     let dispatch = useAppDispatch();
-    let {login, isAuth}: AuthPageType = useAppSelector(state => state.auth)
+    let {login, isAuth} = useAppSelector(state => state.auth)
 
     const Logout = useCallback(() => {
         dispatch(logout());

@@ -1,6 +1,4 @@
-// @ts-ignore
 import styles from "../../Profile.module.css";
-// @ts-ignore
 import {ProfileStatus} from "../ProfileStatus/ProfileStatus";
 import React, {useCallback, useState} from "react";
 import {Contact} from "../ProfileInfo";

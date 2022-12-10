@@ -1,10 +1,7 @@
 import React from "react";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-// @ts-ignore
 import {FieldCreator, InputLogin} from "../Common/FormCreators";
-// @ts-ignore
 import {maxLength, Required} from "../../Utils/Validators/Validators";
-// @ts-ignore
 import styles from './Login.module.css'
 
 const maxLength16 = maxLength(50)

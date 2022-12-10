@@ -1,4 +1,4 @@
-// @ts-ignore
+
 import styles from "../../Dialogs.module.css";
 import React from "react";
 type PropsMessageType = {

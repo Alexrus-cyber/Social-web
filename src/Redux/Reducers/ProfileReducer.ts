@@ -20,7 +20,7 @@ export type InitialProfileStateType = typeof initialState;
 let initialState = {
     posts: [] as Array<PostType>,
     countPosts: 0,
-    profile: null as ProfileType | null,
+    profile: {} as ProfileType,
     isLoading: true,
     status: "",
 }

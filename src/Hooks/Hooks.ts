@@ -1,6 +1,5 @@
 import {useDispatch, useSelector } from 'react-redux'
-// @ts-ignore
-import type { RootState, AppDispatch } from '../Redux/ReduxStore.tsx'
+import type { RootState, AppDispatch } from '../Redux/ReduxStore'
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector = <Return>(callback: (state: RootState) => Return) => {

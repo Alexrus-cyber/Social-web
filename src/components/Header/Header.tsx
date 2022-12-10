@@ -1,7 +1,5 @@
 import React, {memo} from "react";
-// @ts-ignore
 import styles from './Header.module.css';
-// @ts-ignore
 import image from './ket_logo.png'
 import {NavLink} from "react-router-dom";
 

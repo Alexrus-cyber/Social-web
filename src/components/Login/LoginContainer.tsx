@@ -1,16 +1,13 @@
-// @ts-ignore
 import Login from "./Login";
 import {useCallback, useEffect} from "react";
-// @ts-ignore
-import {getMe, loginMe} from "../../Redux/Reducers/AuthReducer.ts";
+import {getMe, loginMe} from "../../Redux/Reducers/AuthReducer";
 import React from "react";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {AuthPageType} from "../../Types/SelectorTypes";
 
 
 const LoginContainer = () => {
     let dispatch = useAppDispatch();
-    let {isAuth, captchaUrl}: AuthPageType = useAppSelector(state => state.auth)
+    let {isAuth, captchaUrl} = useAppSelector(state => state.auth)
 
     useEffect(() => {
         dispatch(getMe())

@@ -8,7 +8,6 @@ import News from "./components/News/News";
 import HeaderContainer from "./components/Header/HeadearContainer";
 import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
 import LoginContainer from "./components/Login/LoginContainer";
-// @ts-ignore
 import Preloader from "./components/Common/Preloader";
 import {initializeApp} from "./Redux/Reducers/AppReducer";
 import UsersContainerFunc from "./components/FindUsers/UsersContainerFunc";

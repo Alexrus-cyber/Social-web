@@ -8,7 +8,7 @@ export type InitialAuthStateType = typeof  initialState;
 
 //state
 let initialState = {
-    id: null as number | null,
+    id: 0 as number,
     email: null as  string | null,
     login: null as string | null,
     isAuth: false,
@@ -16,7 +16,7 @@ let initialState = {
 }
 
 export const action = {
-    setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean, captchaUrl: string | null) => {
+    setUserData: (id: number, email: string | null, login: string | null, isAuth: boolean, captchaUrl: string | null) => {
         return {
             type: "SetUserData",
             payload: {id, email, login, isAuth, captchaUrl}
@@ -66,7 +66,7 @@ export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsT
         }
     }
 }
-export const loginMe = (email: string, password: string, rememberMe: boolean, captchaUrl: string): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const loginMe = (email: string, password: string, rememberMe: boolean, captchaUrl: string | null): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
     return async (dispatch) => {
         let data = await authAPI.loginMe(email, password, rememberMe, captchaUrl);
         if (data.resultCode === ResultCodesEnum.Success) {
@@ -93,7 +93,7 @@ export const logout = ():ThunkAction<Promise<void>, RootState, unknown, ActionsT
     return async (dispatch) => {
         let data = await authAPI.logout();
         if (data.resultCode === 0) {
-            dispatch(action.setUserData(null, null, null, false, null))
+            dispatch(action.setUserData(0, null, null, false, null))
         }
     }
 }

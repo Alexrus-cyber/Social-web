@@ -2,19 +2,17 @@ import React, {memo, useCallback} from "react";
 import Profile from "./Profile";
 import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer";
 import {useNavigate, useParams} from "react-router-dom";
-// @ts-ignore
 import Preloader from "../Common/Preloader";
 import {useProfile} from "../../Hooks/TakeProfile";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
 import {PhotosType, ProfileType, QuizParams} from "../../Types/Types";
-import {AuthPageType, ProfilePageType} from "../../Types/SelectorTypes";
 
 
 const ProfileContainerFunc = memo(() => {
     let params = useParams<QuizParams>();
     let dispatch = useAppDispatch();
-    const {profile, status, isLoading}: ProfilePageType= useAppSelector(state => state.profilePage)
-    let {id, isAuth}: AuthPageType = useAppSelector(state  => state.auth)
+    const {profile, status, isLoading}= useAppSelector(state => state.profilePage)
+    let {id, isAuth} = useAppSelector(state  => state.auth)
 
     let navigate = useNavigate();
 

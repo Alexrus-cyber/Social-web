@@ -1,4 +1,3 @@
-
 import MyPosts from "./MyPosts";
 import {actionsCreators, addPostThunk} from "../../../Redux/Reducers/ProfileReducer";
 import {useCallback} from "react";

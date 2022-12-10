@@ -1,15 +1,13 @@
 import React, {useCallback, useEffect} from "react";
 import {FindUsers} from "./Users/FindUsers";
 import {actions, getFollow, getUnFollow, getUsers} from "../../Redux/Reducers/FindUsersReducer";
-// @ts-ignore
 import Preloader from "../Common/Preloader";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {FindUsersPageType} from "../../Types/SelectorTypes";
 
 
 const UsersContainerFunc = () => {
     const dispatch = useAppDispatch();
-    const {users, currentPage, isFetching, isFollowingInProgress}:FindUsersPageType = useAppSelector(state => state.findUserPage)
+    const {users, currentPage, isFetching, isFollowingInProgress} = useAppSelector(state => state.findUserPage)
 
     useEffect(() => {
         dispatch(getUsers(currentPage, 12)); ///Берем данные из BLL, а BLL просит дать данные DAL уровня.

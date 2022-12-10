@@ -1,7 +1,5 @@
-// @ts-ignore
-import {getMe} from "./AuthReducer.ts";
-// @ts-ignore
-import {RootState} from "../ReduxStore.tsx";
+import {getMe} from "./AuthReducer";
+import {RootState} from "../ReduxStore";
 import {ThunkDispatch} from "redux-thunk";
 import {Action} from "redux";
 
