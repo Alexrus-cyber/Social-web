@@ -1,9 +1,7 @@
 import './App.css';
 import React, {useEffect} from 'react';
-// @ts-ignore
 import Nav from "./components/Nav/Nav";
 import {BrowserRouter, Navigate, Route, Routes} from "react-router-dom";
-// @ts-ignore
 import News from "./components/News/News";
 import HeaderContainer from "./components/Header/HeadearContainer";
 import ProfileContainerFunc from "./components/Profile/ProfileContainerFunc";
