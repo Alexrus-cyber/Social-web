@@ -1,11 +1,8 @@
-// @ts-ignore
 import {profileAPI} from "../../API/API";
-// @ts-ignore
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {PhotosType, PostType, ProfileType} from "../../Types/Types";
 import {ThunkAction} from "redux-thunk";
-// @ts-ignore
-import {InferActionsTypes, RootState} from "../ReduxStore.tsx";
+import {InferActionsTypes, RootState} from "../ReduxStore";
 //action.types
 const AddPost = 'addPost';
 const PostCount = 'postCount';
@@ -100,13 +97,13 @@ export const actionsCreators = {
             idCount: counts,
             likes: likes,
             newPostText
-        }
+        }as const
     },
     Counter : (counts: number) => {
         return {
             type: PostCount,
             countPost: counts
-        }
+        }as const
     },
 
 
@@ -115,31 +112,31 @@ export const actionsCreators = {
             type: AddLike,
             like: counts,
             newId: newId,
-        }
+        }as const
     },
 
     setUserProfile: (profile: ProfileType) => ({
         type: SetUserProfile,
         profile
-    }),
+    } as const),
     getLoading : (isLoading: boolean) => {
         return {
             type: GetLoading,
             isLoading
-        }
+        }as const
     },
     setUserStatus : (status: string) => {
         return {
             type: SetUserStatus,
             status
-        }
+        }as const
     },
 
     deletePost : (postId: number) => {
         return {
             type: DeletePost,
             postId
-        }
+        }as const
     },
 
 
@@ -147,7 +144,7 @@ export const actionsCreators = {
         return {
             type: SetImage,
             file,
-        }
+        }as const
     }
 }
 
@@ -198,6 +195,7 @@ export let setProfile = (profile: ProfileType): ThunkAction<Promise<void>, RootS
         let data = await profileAPI.updateProfile(profile)
 
         if (data.resultCode === 0) {
+            // @ts-ignore
             await dispatch(getProfile(userId, false));
         }
     }

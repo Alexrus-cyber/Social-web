@@ -28,9 +28,9 @@ const DialogsContainer = () => {
         dispatch(updateCount(id))
     }, [dispatch])
 
-    let userId =Number(params.id);
+    let userId  = params.id
     if (userId === undefined) {
-        userId = id;
+        userId = String(id);
     }
 
     return (

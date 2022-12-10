@@ -1,12 +1,20 @@
-import React from "react";
+import React, {FC} from "react";
 import styles from './Post.module.css';
 import Like from "./Like/Like";
 import image from "../../../FindUsers/img/icon.jpg"
+import {ProfileType} from "../../../../Types/Types";
 
-const Post = (props) => {
+type PropsType = {
+    id: number
+    likesCount: number
+    message: string
+    profile: ProfileType
+    addLike: (counts: number, newId: number) => void
+}
+const Post: FC<PropsType> = (props) => {
     let date = new Date();
 
-    let options = {
+    let options: object = {
         era: 'long',
         year: 'numeric',
         month: 'long',
@@ -29,7 +37,7 @@ const Post = (props) => {
                     </div>
                 </div>
                 <div className={styles.postText}> <p className={styles.p}>{props.message}</p></div>
-                <Like addLike = {props.addLike}  dispatch = {props.dispatch} message= {props.message} id={props.id} likes = {props.likesCount}/>
+                <Like addLike = {props.addLike}  message= {props.message} id={props.id} likes = {props.likesCount}/>
 
 
             </div>

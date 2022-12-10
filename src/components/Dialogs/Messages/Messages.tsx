@@ -13,7 +13,7 @@ import image from "../../FindUsers/img/icon.jpg"
 import {IdCounterType, MessagesType, ProfileType} from "../../../Types/Types";
 
 type PropsMessageType = {
-    userId: number
+    userId: string
     profile: ProfileType
     addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>
@@ -26,7 +26,7 @@ export const Messages = memo<PropsMessageType>((props) => {
     const AddNewMessageText = useCallback((values: any) => {
         let counts = count + 1;
         setCount(counts);
-        props.addMessage(counts, props.profile.fullName, props.profile.photos.large, values.newMessageText, props.userId);
+        props.addMessage(counts, props.profile.fullName, props.profile.photos.large, values.newMessageText, Number( props.userId));
     }, [count, props]);
 
     let messageEl = props.messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}

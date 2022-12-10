@@ -6,7 +6,7 @@ import {Messages} from "./Messages/Messages";
 import {IdCounterType, MessagesType, MessageUsersType, ProfileType} from "../../Types/Types";
 
 type PropsDialogType = {
-    userId: number
+    userId: string
     profile: ProfileType
     addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>

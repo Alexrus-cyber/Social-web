@@ -1,24 +1,12 @@
-// @ts-ignore
 import {followAPI, userAPI} from "../../API/API";
-// @ts-ignore
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {UsersType} from "../../Types/Types";
-// @ts-ignore
-import {AppThunk, InferActionsTypes, RootState} from "../ReduxStore.tsx";
+import {AppThunk, InferActionsTypes, RootState} from "../ReduxStore";
 import {ThunkDispatch} from "redux-thunk";
 import {Action} from "redux";
 
-/// action.type
-let FOLLOW_UN_FOLLOW = 'FollowUnFollow'
-let SET_USERS = 'SetUsers'
-let SET_CURRENT_PAGE = 'SetCurrentPage'
-let TOGGLE_IS_FETCHING = 'ToggleIsFetching'
-let TOGGLE_FOLLOWING_IN_PROGRESS = 'ToggleFollowingInProgress'
 ///Types
 export type InitialUsersStateType = typeof initialState;
-
-
-
 
 /// Начальное состояние
 let initialState = {
@@ -29,36 +17,36 @@ let initialState = {
     isFetching: true,
     isFollowingInProgress: [] as Array<number>, // array of users id
 }
-
+type ActionsTypes = InferActionsTypes<typeof actions>;
 
 ///Reducer
 const FindUsersReducer = (state = initialState, action: ActionsTypes): InitialUsersStateType => {
     switch (action.type) {
-        case FOLLOW_UN_FOLLOW: {
+        case "FOLLOW_UN_FOLLOW": {
             return {
                 ...state,
                 users: updateObjectInArray(state.users, action.userId, "id", {followed: action.followed})
             }
         }
-        case SET_USERS: {
+        case "SET_USERS": {
             return {
                 ...state,
                 users: [...action.users]
             }
         }
-        case SET_CURRENT_PAGE: {
+        case "SET_CURRENT_PAGE": {
             return {
                 ...state,
                 currentPage: action.currentPage
             }
         }
-        case TOGGLE_IS_FETCHING : {
+        case "TOGGLE_IS_FETCHING" : {
             return {
                 ...state,
                 isFetching: action.isFetching
             }
         }
-        case TOGGLE_FOLLOWING_IN_PROGRESS: {
+        case "TOGGLE_FOLLOWING_IN_PROGRESS": {
             return {
                 ...state,
                 isFollowingInProgress: action.isFetching
@@ -70,40 +58,40 @@ const FindUsersReducer = (state = initialState, action: ActionsTypes): InitialUs
             return state;
     }
 }
-type ActionsTypes = InferActionsTypes<typeof actions>;
+
 ///actionCreators
 export const actions = {
     setCurrentPage:(currentPage: number) => {
         return {
-            type: SET_CURRENT_PAGE,
+            type: "SET_CURRENT_PAGE",
             currentPage,
-        }
+        } as const
     },
     followUnFollow : (userId: number, followed: boolean) => {
         return {
-            type: FOLLOW_UN_FOLLOW,
-            userId: userId,
+            type: "FOLLOW_UN_FOLLOW",
+            userId,
             followed
-        }
+        }as const
     },
     setUsers : (users: Array<UsersType>) => {
         return {
-            type: SET_USERS,
+            type: "SET_USERS",
             users,
-        }
+        }as const
     },
     toggleIsFetching : (isFetching: boolean) => {
         return {
-            type: TOGGLE_IS_FETCHING,
+            type: "TOGGLE_IS_FETCHING",
             isFetching
-        }
+        }as const
     },
     toggleFollowingInProgress : (isFetching: boolean, userId: number) => {
         return {
-            type: TOGGLE_FOLLOWING_IN_PROGRESS,
+            type: "TOGGLE_FOLLOWING_IN_PROGRESS",
             isFetching,
             userId,
-        }
+        }as const
     },
 }
 

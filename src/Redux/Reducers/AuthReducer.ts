@@ -1,32 +1,10 @@
-// @ts-ignore
 import {authAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../../API/API";
 import {stopSubmit} from "redux-form";
 import {ThunkAction} from "redux-thunk";
 import {InferActionsTypes, RootState} from "../ReduxStore";
-import {ActionsTypes} from "./ProfileReducer";
-// action.type
-const SetUserData = 'SetUserData'
-const GetCaptchaUrlData = 'GetCaptchaUrlData'
 
 //types
 export type InitialAuthStateType = typeof  initialState;
-
-type ActionsType = InferActionsTypes<typeof action>
-export const action = {
-    setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean, captchaUrl: string | null) => {
-        return {
-            type: SetUserData,
-            payload: {id, email, login, isAuth, captchaUrl}
-        }
-    },
-    getCaptchaUrlData: (captchaUrl: string | null) => {
-        return {
-            type: GetCaptchaUrlData,
-            captcha: captchaUrl
-        }
-    }
-}
-
 
 //state
 let initialState = {
@@ -37,18 +15,34 @@ let initialState = {
     captchaUrl: null as string | null,
 }
 
-export const authReducer = (state = initialState, action: ActionsTypes):InitialAuthStateType => {
+export const action = {
+    setUserData: (id: number | null, email: string | null, login: string | null, isAuth: boolean, captchaUrl: string | null) => {
+        return {
+            type: "SetUserData",
+            payload: {id, email, login, isAuth, captchaUrl}
+        }as const
+    },
+    getCaptchaUrlData: (captchaUrl: string | null) => {
+        return {
+            type: "GetCaptchaUrlData",
+            captchaUrl
+        } as const
+    },
+}
+
+type ActionsType = InferActionsTypes<typeof action>
+export const authReducer = (state = initialState, action: ActionsType):InitialAuthStateType => {
     switch (action.type) {
-        case SetUserData: {
+        case "SetUserData": {
             return  {
                 ...state,
                 ...action.payload
             }
         }
-        case GetCaptchaUrlData: {
+        case "GetCaptchaUrlData": {
             return {
                 ...state,
-                ...action.captchaUrl
+                captchaUrl: action.captchaUrl
             }
         }
         default:
@@ -72,9 +66,9 @@ export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsT
         }
     }
 }
-export const loginMe = (email: string, password: string, rememberMe: boolean, captcha: string): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const loginMe = (email: string, password: string, rememberMe: boolean, captchaUrl: string): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
     return async (dispatch) => {
-        let data = await authAPI.loginMe(email, password, rememberMe, captcha);
+        let data = await authAPI.loginMe(email, password, rememberMe, captchaUrl);
         if (data.resultCode === ResultCodesEnum.Success) {
             // @ts-ignore
             dispatch(action.setUserData())

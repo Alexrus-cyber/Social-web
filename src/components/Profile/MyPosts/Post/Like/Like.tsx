@@ -1,9 +1,14 @@
-import React, {useCallback, useState} from "react";
+import React, {FC, useCallback, useState} from "react";
 import image from './like.png';
 import styles from "../Post.module.css";
 
-
-const Like = (props) => {
+type PropsType = {
+    id: number
+    likes: number
+    message: string
+    addLike: (counts: number, newId: number) => void
+}
+const Like: FC<PropsType> = (props) => {
 
     const [count, setCount] = useState(props.likes);
     const click = useCallback(() => {
