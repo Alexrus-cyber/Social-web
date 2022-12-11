@@ -1,5 +1,5 @@
 import styles from "../Profile.module.css";
-import React from "react";
+import React, { ChangeEvent } from "react";
 import Preloader from "../../Common/Preloader";
 import image from "../../FindUsers/img/icon.jpg"
 import ProfileDataText from "./ProfileDataText/ProfileDataText";
@@ -12,8 +12,8 @@ export const ProfileInfo = React.memo<PropsType>((props) => {
     }
     let link = "https://images.ctfassets.net/hrltx12pl8hq/7yQR5uJhwEkRfjwMFJ7bUK/dc52a0913e8ff8b5c276177890eb0129/offset_comp_772626-opt.jpg?fit=fill&w=800&h=300";
 
-    const PhotoSelected = (e: any) => {
-        if (e.target.files.length) {
+    const PhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files?.length) {
             props.savePhoto(e.target.files[0])
         }
     }
@@ -57,8 +57,11 @@ export const ProfileInfo = React.memo<PropsType>((props) => {
     )
 })
 
-
-export const Contact = ({contactValue, contactTitle}: any) => {
+type ContactPropsType ={
+    contactValue: string | null,
+    contactTitle: string
+}
+export const Contact: React.FC<ContactPropsType> = ({contactValue, contactTitle}) => {
     return (
         <div>
             {contactValue ? <b>{contactTitle}:{contactValue}</b> : <div/>}

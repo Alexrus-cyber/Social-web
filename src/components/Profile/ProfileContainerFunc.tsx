@@ -5,7 +5,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import Preloader from "../Common/Preloader";
 import {useProfile} from "../../Hooks/TakeProfile";
 import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {PhotosType, ProfileType, QuizParams} from "../../Types/Types";
+import {ProfileType, QuizParams} from "../../Types/Types";
 
 
 const ProfileContainerFunc = memo(() => {
@@ -26,7 +26,7 @@ const ProfileContainerFunc = memo(() => {
         dispatch(setProfile(profile))
     }, [dispatch])
 
-    const SavePhoto = useCallback((file: PhotosType) => {
+    const SavePhoto = useCallback((file: File) => {
         dispatch(savePhoto(file));
     }, [dispatch])
 

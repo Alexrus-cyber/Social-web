@@ -2,7 +2,7 @@ import styles from "../../Profile.module.css";
 import {ProfileStatus} from "../ProfileStatus/ProfileStatus";
 import React, {useCallback, useState} from "react";
 import {Contact} from "../ProfileInfo";
-import {ProfileType} from "../../../../Types/Types";
+import {ContactsType, ProfileType} from "../../../../Types/Types";
 
 export type PropsDataType = {
     id: string | undefined
@@ -13,7 +13,7 @@ export type PropsDataType = {
     status: string
 }
 
-const ProfileDataText = (props: PropsDataType) => {
+const ProfileDataText: React.FC<PropsDataType> = (props) => {
     const [status, setStatus] = useState(props.status);
     const [active, setActive] = useState(false);
     const statusUpdate = useCallback(() => {
@@ -48,8 +48,7 @@ const ProfileDataText = (props: PropsDataType) => {
                 <b>Контакты</b>:
                 <div className={styles.contacts}>
                     {Object.keys(props.profile.contacts).map((key) => {
-                        // @ts-ignore
-                        return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key]}/>
+                        return <Contact key={key} contactTitle={key} contactValue={props.profile.contacts[key as keyof ContactsType]}/>
                     })}
                 </div>
             </div>

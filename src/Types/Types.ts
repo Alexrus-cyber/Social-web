@@ -7,17 +7,17 @@ export type PostType = {
     message: string
 }
 export type ContactsType = {
-    github: string | null
-    vk: string | null
-    facebook: string | null
-    instagram: string | null
+    github: string| null
+    vk: string| null
+    facebook: string| null
+    instagram: string| null
     twitter: string | null
-    website: string | null
-    youtube: string | null
+    website: string| null
+    youtube: string| null
     mainLink: string | null
 }
 export type PhotosType = {
-    small: string | null
+    small: string| null
     large: string | null
 }
 export type ProfileType = {
@@ -25,7 +25,7 @@ export type ProfileType = {
     lookingForAJob: boolean
     lookingForAJobDescription: string
     fullName: string
-    contacts: Array<ContactsType>
+    contacts:ContactsType
     photos: PhotosType
     aboutMe: string
 }

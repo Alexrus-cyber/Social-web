@@ -72,7 +72,7 @@ export const profileReducer = (state = initialState, action: ActionsTypes):Initi
         case "SetImage": {
             return {
                 ...state,
-                // @ts-ignore
+
                 profile: {...state.profile, photos: action.file},
             }
         }
@@ -173,7 +173,7 @@ export let updateStatus = (status: string):AppThunk<ActionsTypes>  => {
         }
     }
 }
-export let savePhoto = (file: PhotosType): AppThunk<ActionsTypes>  => {
+export let savePhoto = (file: File): AppThunk<ActionsTypes>  => {
     return async (dispatch) => {
         let data = await profileAPI.savePhoto(file)
         if (data.resultCode === ResultCodesEnum.Success) {

@@ -2,19 +2,16 @@
 import styles from "../../Profile.module.css";
 // @ts-ignore
 import {FieldCreator, InputLogin} from "../../../Common/FormCreators";
-import {reduxForm} from "redux-form";
+import {InjectedFormProps, reduxForm} from "redux-form";
 import React from "react";
 // @ts-ignore
 import {getProfile} from "../../../../Redux/Reducers/ProfileReducer.ts";
 import {ProfileType} from "../../../../Types/Types";
 
 type FormType  = {
-    handleSubmit: any,
-    onSubmit: (formData: any) => void,
     profile:ProfileType
-    initialValues: ProfileType
 }
-let InitializeFromStateForm  = React.memo<FormType>(({handleSubmit, onSubmit, profile}) => {
+let InitializeFromStateForm  = React.memo<InjectedFormProps<ProfileType , FormType> & FormType>(({handleSubmit, profile}) => {
 
     let click = () => {
         getProfile(profile,false);
@@ -73,19 +70,16 @@ let InitializeFromStateForm  = React.memo<FormType>(({handleSubmit, onSubmit, pr
                 {FieldCreator('lookingForAJobDescription', 'О работе', [], InputLogin)}
             </div>
             <div className={styles.textArea}>
-                <button style={{height: 35, width: 250, marginRight: 10}} className={styles.button}
-                        onSubmit={onSubmit}>Сохранить
+                <button style={{height: 35, width: 250, marginRight: 10}} className={styles.button}>
+                    Сохранить
                 </button>
             </div>
         </form>
     )
 })
 
-// @ts-ignore
 
-InitializeFromStateForm = reduxForm({
-    form: 'info', // a unique identifier for this form
-    // @ts-ignore
-})(InitializeFromStateForm);
 
-export default InitializeFromStateForm;
+
+
+export const InitializeFromStateFormRedux = reduxForm<ProfileType , FormType>({ form: 'info', })(InitializeFromStateForm);
