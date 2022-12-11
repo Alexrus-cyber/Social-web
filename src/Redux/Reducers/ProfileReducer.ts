@@ -1,20 +1,13 @@
-import {profileAPI} from "../../API/API";
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {PhotosType, PostType, ProfileType} from "../../Types/Types";
 import {ThunkAction} from "redux-thunk";
-import {InferActionsTypes, RootState} from "../ReduxStore";
-//action.types
-const AddPost = 'addPost';
-const PostCount = 'postCount';
-const AddLike = 'addLike';
-const SetUserProfile = 'SetUserProfile'
-const GetLoading = 'GetLoading'
-const SetUserStatus = 'SetUserStatus'
-const DeletePost = 'DeletePost'
-const SetImage = 'SetImage'
+import {AppThunk, InferActionsTypes, RootState} from "../ReduxStore";
+import {profileAPI} from "../../API/ProfileAPI";
+import {ResultCodesEnum} from "../../API/API";
+
 //types
 export type InitialProfileStateType = typeof initialState;
-
+type ActionsTypes = InferActionsTypes<typeof actionsCreators>;
 
 //initialState
 let initialState = {
@@ -28,7 +21,7 @@ let initialState = {
 
 export const profileReducer = (state = initialState, action: ActionsTypes):InitialProfileStateType => {
     switch (action.type) {
-        case AddPost : {
+        case "AddPost" : {
             let newPost = {
                 id: action.idCount,
                 message: action.newPostText,
@@ -40,43 +33,43 @@ export const profileReducer = (state = initialState, action: ActionsTypes):Initi
                 posts: [newPost, ...state.posts],
             };
         }
-        case PostCount: {
+        case "PostCount": {
             return {
                 ...state,
                 countPosts: action.countPost,
             };
         }
-        case AddLike : {
+        case "AddLike" : {
             return {
                 ...state,
                 posts: updateObjectInArray(state.posts, action.newId, "id", {likesCount: action.like})
             };
         }
-        case SetUserProfile: {
+        case "SetUserProfile": {
             return {
                 ...state,
                 profile: action.profile
             }
         }
-        case GetLoading: {
+        case "GetLoading": {
             return {
                 ...state,
                 isLoading: action.isLoading
             }
         }
-        case SetUserStatus: {
+        case "SetUserStatus": {
             return {
                 ...state,
                 status: action.status
             }
         }
-        case DeletePost: {
+        case "DeletePost": {
             return {
                 ...state,
                 posts: state.posts.filter(p => p.id !== action.postId)
             }
         }
-        case SetImage: {
+        case "SetImage": {
             return {
                 ...state,
                 // @ts-ignore
@@ -89,11 +82,11 @@ export const profileReducer = (state = initialState, action: ActionsTypes):Initi
 
 }
 /// actionCreators
-export type ActionsTypes = InferActionsTypes<typeof actionsCreators>;
+
 export const actionsCreators = {
     addPost : (counts: number, likes: number, newPostText: string) => {
         return {
-            type: AddPost,
+            type: "AddPost",
             idCount: counts,
             likes: likes,
             newPostText
@@ -101,7 +94,7 @@ export const actionsCreators = {
     },
     Counter : (counts: number) => {
         return {
-            type: PostCount,
+            type: "PostCount",
             countPost: counts
         }as const
     },
@@ -109,32 +102,32 @@ export const actionsCreators = {
 
     addLike : (counts:number, newId: number)=> {
         return {
-            type: AddLike,
+            type: "AddLike",
             like: counts,
             newId: newId,
         }as const
     },
 
     setUserProfile: (profile: ProfileType) => ({
-        type: SetUserProfile,
+        type: "SetUserProfile",
         profile
     } as const),
     getLoading : (isLoading: boolean) => {
         return {
-            type: GetLoading,
+            type: "GetLoading",
             isLoading
         }as const
     },
     setUserStatus : (status: string) => {
         return {
-            type: SetUserStatus,
+            type: "SetUserStatus",
             status
         }as const
     },
 
     deletePost : (postId: number) => {
         return {
-            type: DeletePost,
+            type: "DeletePost",
             postId
         }as const
     },
@@ -142,7 +135,7 @@ export const actionsCreators = {
 
     savePhotoSuccess : (file: PhotosType) => {
         return {
-            type: SetImage,
+            type: "SetImage",
             file,
         }as const
     }
@@ -157,7 +150,7 @@ export let addPostThunk = (counts: number, likes: number, newPostText: string): 
     }
 }
 
-export let getProfile = (id: number, isLoading: boolean): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
+export let getProfile = (id: number, isLoading: boolean): AppThunk<ActionsTypes> => {
     return async (dispatch) => {
         let data = await profileAPI.getProfile(id)
         dispatch(actionsCreators.setUserProfile(data));
@@ -165,37 +158,36 @@ export let getProfile = (id: number, isLoading: boolean): ThunkAction<Promise<vo
     }
 }
 
-export let getStatus = (id: number): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
+export let getStatus = (id: number): AppThunk<ActionsTypes>  => {
     return async (dispatch) => {
         let data = await profileAPI.getStatus(id)
         dispatch(actionsCreators.setUserStatus(data));
     }
 }
 
-export let updateStatus = (status: string): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
+export let updateStatus = (status: string):AppThunk<ActionsTypes>  => {
     return async (dispatch) => {
         let data = await profileAPI.updateStatus(status)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(actionsCreators.setUserStatus(status));
         }
     }
 }
-export let savePhoto = (file: PhotosType): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
+export let savePhoto = (file: PhotosType): AppThunk<ActionsTypes>  => {
     return async (dispatch) => {
         let data = await profileAPI.savePhoto(file)
-        if (data.resultCode === 0) {
+        if (data.resultCode === ResultCodesEnum.Success) {
             dispatch(actionsCreators.savePhotoSuccess(data.data.photos));
         }
     }
 }
 
-export let setProfile = (profile: ProfileType): ThunkAction<Promise<void>, RootState, unknown, ActionsTypes> => {
+export let setProfile = (profile: ProfileType): AppThunk<ActionsTypes> => {
     return async (dispatch, getState) => {
         const userId = getState().auth.id;
         let data = await profileAPI.updateProfile(profile)
 
         if (data.resultCode === 0) {
-            // @ts-ignore
             await dispatch(getProfile(userId, false));
         }
     }

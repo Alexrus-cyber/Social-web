@@ -1,16 +1,25 @@
-// @ts-ignore
-import {addPost, profileReducer, deletePost} from "../Reducers/ProfileReducer.ts";
+
+import {actionsCreators, profileReducer} from "../Reducers/ProfileReducer";
+import {PostType, ProfileType} from "../../Types/Types";
 type stateType ={
-    posts: object
+    posts: Array<PostType>,
+    countPosts: number,
+    profile:ProfileType,
+    isLoading: boolean,
+    status: string,
 }
 let state: stateType = {
     posts: [
         {id: 1, message: "Hello world!", likesCount: 5}
-    ]
+    ],
+    countPosts: 0,
+    profile: {} as ProfileType,
+    isLoading: true,
+    status: "",
 }
 test('length of post should be incremented', () => {
     // 1. Исходные данные для теста
-    let action = addPost(5, 5, "Hello world!");
+    let action = actionsCreators.addPost(5, 5, "Hello world!");
     // 2. action
     let newState = profileReducer(state,action);
     // 3. expectation
@@ -19,7 +28,7 @@ test('length of post should be incremented', () => {
 
 test('after deleting of messages should be decrement', () => {
     // 1. Исходные данные для теста
-    let action = deletePost(1);
+    let action = actionsCreators.deletePost(1);
     // 2. action
     let newState = profileReducer(state,action);
     // 3. expectation
@@ -28,7 +37,7 @@ test('after deleting of messages should be decrement', () => {
 
 test('message correct', () => {
     // 1. Исходные данные для теста
-    let action = addPost(5, 5, "Hello world!");
+    let action = actionsCreators.addPost(5, 5, "Hello world!");
     // 2. action
     let newState = profileReducer(state,action);
     // 3. expectation
@@ -36,7 +45,7 @@ test('message correct', () => {
 })
 test('after deleting shouldn`t be decrement if id is incorrect', () => {
     // 1. Исходные данные для теста
-    let action = deletePost(1000);
+    let action = actionsCreators.deletePost(1000);
     // 2. action
     let newState = profileReducer(state,action);
     // 3. expectation

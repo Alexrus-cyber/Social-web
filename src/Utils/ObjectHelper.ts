@@ -1,4 +1,4 @@
-export let updateObjectInArray = (items: Array<object>, itemId: number, objPropName:string | number | symbol, newObjProps: any) => {
+export let updateObjectInArray = (items: Array<object>, itemId: number, objPropName:string | number | symbol, newObjProps: object) => {
     return items.map((u: any) => {
             if (u[objPropName] === itemId) {
                 return {...u, ...newObjProps}
@@ -6,3 +6,4 @@ export let updateObjectInArray = (items: Array<object>, itemId: number, objPropN
             return u;
     })
 }
+

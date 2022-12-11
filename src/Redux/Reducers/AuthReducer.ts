@@ -1,15 +1,16 @@
-import {authAPI, ResultCodeForCaptcha, ResultCodesEnum, securityAPI} from "../../API/API";
+import {ResultCodeForCaptcha, ResultCodesEnum} from "../../API/API";
 import {stopSubmit} from "redux-form";
-import {ThunkAction} from "redux-thunk";
-import {InferActionsTypes, RootState} from "../ReduxStore";
+import {AppThunk, InferActionsTypes} from "../ReduxStore";
+import {authAPI} from "../../API/AuthAPI";
+import {securityAPI} from "../../API/SecurityAPI";
 
 //types
-export type InitialAuthStateType = typeof  initialState;
+export type InitialAuthStateType = typeof initialState;
 
 //state
 let initialState = {
     id: 0 as number,
-    email: null as  string | null,
+    email: null as string | null,
     login: null as string | null,
     isAuth: false,
     captchaUrl: null as string | null,
@@ -20,7 +21,7 @@ export const action = {
         return {
             type: "SetUserData",
             payload: {id, email, login, isAuth, captchaUrl}
-        }as const
+        } as const
     },
     getCaptchaUrlData: (captchaUrl: string | null) => {
         return {
@@ -31,10 +32,10 @@ export const action = {
 }
 
 type ActionsType = InferActionsTypes<typeof action>
-export const authReducer = (state = initialState, action: ActionsType):InitialAuthStateType => {
+export const authReducer = (state = initialState, action: ActionsType): InitialAuthStateType => {
     switch (action.type) {
         case "SetUserData": {
-            return  {
+            return {
                 ...state,
                 ...action.payload
             }
@@ -49,13 +50,9 @@ export const authReducer = (state = initialState, action: ActionsType):InitialAu
             return state;
     }
 }
-///actionCreators
-
-
-
 
 ///thunk
-export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const getMe = (): AppThunk<ActionsType>  => {
     return async (dispatch) => {
         let data = await authAPI.getMe();
         if (data.resultCode === ResultCodesEnum.Success) {
@@ -66,7 +63,7 @@ export const getMe = (): ThunkAction<Promise<void>, RootState, unknown, ActionsT
         }
     }
 }
-export const loginMe = (email: string, password: string, rememberMe: boolean, captchaUrl: string | null): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const loginMe = (email: string, password: string, rememberMe: boolean, captchaUrl: string | null):  AppThunk<ActionsType | ReturnType<typeof stopSubmit>>  => {
     return async (dispatch) => {
         let data = await authAPI.loginMe(email, password, rememberMe, captchaUrl);
         if (data.resultCode === ResultCodesEnum.Success) {
@@ -77,19 +74,18 @@ export const loginMe = (email: string, password: string, rememberMe: boolean, ca
                 await dispatch(getCaptchaUrl());
             }
             let message = data.messages.length > 0 ? data.messages[0] : "Введите коректный Email или Пароль"
-            // @ts-ignore
             dispatch(stopSubmit("login", {_error: message}))
         }
     }
 }
-export const getCaptchaUrl = (): ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const getCaptchaUrl = ():  AppThunk<ActionsType>  => {
     return async (dispatch) => {
         let data = await securityAPI.getCaptchaUrl();
         const captchaUrl = data.url;
         dispatch(action.getCaptchaUrlData(captchaUrl))
     }
 }
-export const logout = ():ThunkAction<Promise<void>, RootState, unknown, ActionsType> => {
+export const logout = ():  AppThunk<ActionsType>  => {
     return async (dispatch) => {
         let data = await authAPI.logout();
         if (data.resultCode === 0) {

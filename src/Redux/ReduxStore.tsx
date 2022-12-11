@@ -23,7 +23,7 @@ const composeEnhancers = (typeof window !== 'undefined' && window.__REDUX_DEVTOO
 const store = createStore(rootReducer,composeEnhancers(applyMiddleware(thunkMiddleware)))
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof rootReducer>
-export type AppThunk<ReturnType = void> =  ThunkAction<ReturnType, RootState, unknown, Action<string>>;
+export type AppThunk<A extends Action , R = Promise<void>> =  ThunkAction<R, RootState, unknown, A>;
 type PropertiesTypes<T> = T extends {[key: string]: infer U} ? U : never
 export type InferActionsTypes<T extends {[key: string]: (...args: any) => any}> = ReturnType<PropertiesTypes<T>>
 

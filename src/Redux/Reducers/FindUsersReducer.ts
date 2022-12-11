@@ -1,9 +1,10 @@
-import {followAPI, userAPI} from "../../API/API";
 import {updateObjectInArray} from "../../Utils/ObjectHelper";
 import {UsersType} from "../../Types/Types";
 import {AppThunk, InferActionsTypes, RootState} from "../ReduxStore";
 import {ThunkDispatch} from "redux-thunk";
 import {Action} from "redux";
+import {userAPI} from "../../API/UserAPI";
+import {followAPI} from "../../API/FollowAPI";
 
 ///Types
 export type InitialUsersStateType = typeof initialState;
@@ -17,10 +18,10 @@ let initialState = {
     isFetching: true,
     isFollowingInProgress: [] as Array<number>, // array of users id
 }
-type ActionsTypes = InferActionsTypes<typeof actions>;
+type ActionsUsersTypes = InferActionsTypes<typeof actions>;
 
 ///Reducer
-const FindUsersReducer = (state = initialState, action: ActionsTypes): InitialUsersStateType => {
+const FindUsersReducer = (state = initialState, action: ActionsUsersTypes): InitialUsersStateType => {
     switch (action.type) {
         case "FOLLOW_UN_FOLLOW": {
             return {
@@ -99,10 +100,10 @@ export const actions = {
 
 ///thunks
 
-//ThunkAction<Promise<void>, RootState, unknown, ActionsTypes>
+//ThunkAction<Promise<void>, RootState, unknown, ActionsUsersTypes>
 
-export const getUsers = (currentPage: number, pageSize: number): AppThunk => {
-    return async (dispatch: ThunkDispatch<RootState, unknown, Action<string>>) => {
+export const getUsers = (currentPage: number, pageSize: number): AppThunk<ActionsUsersTypes> => {
+    return async (dispatch) => {
         dispatch(actions.toggleIsFetching(true));
         let data = await userAPI.getUsers(currentPage, pageSize)
         dispatch(actions.toggleIsFetching(false));
@@ -120,13 +121,13 @@ const followUnFollowFlow = async (dispatch: ThunkDispatch<RootState, unknown, Ac
 
 }
 
-export const getFollow = (id: number, followed: boolean): AppThunk => {
-    return async (dispatch: ThunkDispatch<RootState, unknown, Action<string>>) => {
+export const getFollow = (id: number, followed: boolean):AppThunk<ActionsUsersTypes> => {
+    return async (dispatch) => {
         await followUnFollowFlow(dispatch, id, followAPI.postFollow.bind(followAPI), followed)
     }
 }
-export const getUnFollow = (id: number, followed: boolean):AppThunk => {
-    return async (dispatch: ThunkDispatch<RootState, unknown, Action<string>>) => {
+export const getUnFollow = (id: number, followed: boolean):AppThunk<ActionsUsersTypes> => {
+    return async (dispatch) => {
         await followUnFollowFlow(dispatch, id, followAPI.deleteUnFollow.bind(followAPI), followed)
     }
 }

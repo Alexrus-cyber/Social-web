@@ -1,9 +1,8 @@
 import {useEffect} from "react";
-import {actionsCreators, ActionsTypes, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer";
-import {RootState} from "../Redux/ReduxStore";
-import {ThunkDispatch} from "redux-thunk";
+import {actionsCreators, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer";
+import {AppDispatch} from "../Redux/ReduxStore";
 
-const takeDispatch = (dispatch: ThunkDispatch<RootState, unknown, ActionsTypes>, userId: number, haveStatus: boolean): void => {
+const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean): void => {
     if (haveStatus) {
         dispatch(actionsCreators.getLoading(true))
         dispatch(getProfile(userId, false));
@@ -16,7 +15,7 @@ const takeDispatch = (dispatch: ThunkDispatch<RootState, unknown, ActionsTypes>,
 }
 
 
-export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: ThunkDispatch<RootState, unknown, ActionsTypes>, navigate: any, haveStatus: boolean) => {
+export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: AppDispatch, navigate: any, haveStatus: boolean) => {
     useEffect(() => {
         console.log("Hello")
         let userId = Number(params.id);
