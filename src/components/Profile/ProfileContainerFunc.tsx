@@ -9,6 +9,7 @@ const ProfileContainerFunc = () => {
 
     const {profile, status, isLoading}= useAppSelector(state => state.profilePage)
     const {id, isAuth} = useAppSelector(state  => state.auth)
+
     useProfile(id, isAuth, true)
     const UpdateStatus = useUpdateStatus();
     const updateProfile = useUpdateProfile();

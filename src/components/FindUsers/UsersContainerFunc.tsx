@@ -6,10 +6,12 @@ import {useAppSelector, useFollow, useGetUsers, usePageChange, useUnFollow} from
 
 const UsersContainerFunc = () => {
     const {users, currentPage, isFetching, isFollowingInProgress} = useAppSelector(state => state.findUserPage)
+
     useGetUsers(currentPage, 15);
     const onPageChanged = usePageChange();
     const Follow = useFollow();
     const UnFollow = useUnFollow();
+
     return (
         <>
             {isFetching ?

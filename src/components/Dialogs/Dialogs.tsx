@@ -2,20 +2,21 @@ import React, {memo} from "react";
 import styles from './Dialogs.module.css';
 import {MessageUser} from "./Users/MessageUser";
 import {Messages} from "./Messages/Messages";
-import {IdCounterType, MessagesType, MessageUsersType, ProfileType} from "../../Types/Types";
+import {MessagesType, MessageUsersType, PhotosType} from "../../Types/Types";
 
 type PropsDialogType = {
-    userId: string
-    profile: ProfileType
+    userId: number
+    photos: PhotosType
+    fullName: string
     addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>
     userData: Array<MessageUsersType>
-    idCounter: Array<IdCounterType>
+
 }
 
 export const Dialogs = memo<PropsDialogType>(({
-                                                  userId, profile, addMessage, messageData, userData, idCounter,
-                                              }) => {
+                                                  userId, photos,fullName, addMessage, messageData, userData}) => {
+
 
     let userElements = userData.map(el => <MessageUser img={el.img} key={el.id} name={el.name} id={el.id}/>)
 
@@ -35,11 +36,11 @@ export const Dialogs = memo<PropsDialogType>(({
                         </div>
                         {userElements}
                     </div>
-                    <Messages idCounter={idCounter}
-                              addMessage={addMessage}
+                    <Messages addMessage={addMessage}
                               messageData={messageData}
                               userId={userId}
-                              profile={profile}
+                              photos = {photos}
+                              fullName = {fullName}
                     />
                 </div>
             </div>

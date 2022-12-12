@@ -5,6 +5,7 @@ import {actions, getFollow, getUnFollow, getUsers } from '../Redux/Reducers/Find
 import {savePhoto, setProfile, updateStatus } from '../Redux/Reducers/ProfileReducer';
 import type { RootState, AppDispatch } from '../Redux/ReduxStore'
 import { ProfileType, QuizParams } from '../Types/Types';
+import {addMessage, updateCount} from "../Redux/Reducers/DialogsReducer";
 
 export const useAppDispatch = () => useDispatch<AppDispatch>()
 export const useAppSelector = <Return>(callback: (state: RootState) => Return) => {
@@ -75,4 +76,15 @@ export const useUserID = (id: number) => { /// Проверка на себя и
 
     if (userId === undefined) {userId = String(id)}
     return userId
+}
+
+///DialogsHooks
+
+export const useAddMessage = () => {
+    const dispatch = useAppDispatch();
+
+    return useCallback((id: number, name: string, img: string | null, newMessageText: string, idUser: number) => {
+        dispatch(addMessage(id, name, img, newMessageText, idUser))
+        dispatch(updateCount(id))
+    }, [dispatch])
 }

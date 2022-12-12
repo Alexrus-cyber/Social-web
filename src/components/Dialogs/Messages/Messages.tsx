@@ -5,35 +5,35 @@ import {Field, reduxForm} from "redux-form";
 import {TextAreaForm} from "../../Common/FormCreators";
 import {Required} from "../../../Utils/Validators/Validators";
 import image from "../../FindUsers/img/icon.jpg"
-import {IdCounterType, MessagesType, ProfileType} from "../../../Types/Types";
+import {MessagesType, PhotosType} from "../../../Types/Types";
 
 type PropsMessageType = {
-    userId: string
-    profile: ProfileType
+    userId: number
+    photos: PhotosType
+    fullName: string
     addMessage: (id: number, name: string, img: string | null, newMessageText: string, idUser: number) => void
     messageData: Array<MessagesType>
-    idCounter: Array<IdCounterType>
 }
 
-export const Messages = memo<PropsMessageType>((props) => {
+export const Messages = memo<PropsMessageType>(({userId, photos, fullName, addMessage, messageData}) => {
 
     const [count, setCount] = useState(3)
     const AddNewMessageText = useCallback((values: any) => {
         let counts = count + 1;
         setCount(counts);
-        props.addMessage(counts, props.profile.fullName, props.profile.photos.large, values.newMessageText, Number( props.userId));
-    }, [count, props]);
+        addMessage(counts, fullName, photos.large, values.newMessageText, Number(userId));
+    }, [count, fullName, photos]);
 
-    let messageEl = props.messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
+    let messageEl = messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
                                                          img={el.img}/>)
     return (
         <div className={styles.messages}>
             <div className={styles.header}>
                 <div className={styles.headerName}>
-                    <p>{props.profile.fullName}</p>
+                    <p>{fullName}</p>
                 </div>
                 <div className={styles.headerLogo}>
-                    <img className={styles.photo} src={props.profile.photos.small ? props.profile.photos.small : image}
+                    <img className={styles.photo} src={photos.small ? photos.small : image}
                          alt={'photoHello'}/>
                 </div>
             </div>
