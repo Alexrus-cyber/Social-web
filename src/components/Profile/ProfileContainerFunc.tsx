@@ -1,46 +1,26 @@
-import React, {memo, useCallback} from "react";
+import React from "react";
 import Profile from "./Profile";
-import {savePhoto, setProfile, updateStatus} from "../../Redux/Reducers/ProfileReducer";
-import {useNavigate, useParams} from "react-router-dom";
 import Preloader from "../Common/Preloader";
 import {useProfile} from "../../Hooks/TakeProfile";
-import {useAppDispatch, useAppSelector} from "../../Hooks/Hooks";
-import {ProfileType, QuizParams} from "../../Types/Types";
+import {useAppSelector, useSavePhoto, useUpdateProfile, useUpdateStatus, useUserID} from "../../Hooks/Hooks";
 
 
-const ProfileContainerFunc = memo(() => {
-    let params = useParams<QuizParams>();
-    let dispatch = useAppDispatch();
+const ProfileContainerFunc = () => {
+
     const {profile, status, isLoading}= useAppSelector(state => state.profilePage)
-    let {id, isAuth} = useAppSelector(state  => state.auth)
-
-    let navigate = useNavigate();
-
-    useProfile(params, id, isAuth, dispatch, navigate, true)
-
-    const UpdateStatus = useCallback((status: string) => {
-        dispatch(updateStatus(status));
-    }, [dispatch])
-
-    const updateProfile = useCallback((profile: ProfileType) => {
-        dispatch(setProfile(profile))
-    }, [dispatch])
-
-    const SavePhoto = useCallback((file: File) => {
-        dispatch(savePhoto(file));
-    }, [dispatch])
-
-    let userId  = params.id
-    if (userId === undefined) {
-        userId = String(id);
-    }
+    const {id, isAuth} = useAppSelector(state  => state.auth)
+    useProfile(id, isAuth, true)
+    const UpdateStatus = useUpdateStatus();
+    const updateProfile = useUpdateProfile();
+    const savePhoto = useSavePhoto();
+    const userId = useUserID(id);
 
     return (
         isLoading ? <Preloader/> :
-            <Profile updateProfile={updateProfile} savePhoto={SavePhoto} id={userId} myId={id} profile={profile}
+            <Profile updateProfile={updateProfile} savePhoto={savePhoto} id={userId} myId={id} profile={profile}
                      updateStatus={UpdateStatus} status={status}/>
     )
-})
+}
 
 
 export default ProfileContainerFunc;

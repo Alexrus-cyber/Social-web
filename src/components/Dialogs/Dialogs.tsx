@@ -17,7 +17,6 @@ export const Dialogs = memo<PropsDialogType>(({
                                                   userId, profile, addMessage, messageData, userData, idCounter,
                                               }) => {
 
-
     let userElements = userData.map(el => <MessageUser img={el.img} key={el.id} name={el.name} id={el.id}/>)
 
 

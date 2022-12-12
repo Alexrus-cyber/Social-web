@@ -1,14 +1,14 @@
 import MyPosts from "./MyPosts";
 import {actionsCreators, addPostThunk} from "../../../Redux/Reducers/ProfileReducer";
-import {useCallback} from "react";
+import {memo, useCallback} from "react";
 import {useAppDispatch, useAppSelector} from "../../../Hooks/Hooks";
 
 type PropsType = {
     myId: number;
-    id: string | undefined
+    id: string
 }
 
-const MyPostsContainerFunc = (props: PropsType) => {
+const MyPostsContainerFunc = memo((props: PropsType) => {
     let dispatch = useAppDispatch()
     let {countPosts, posts ,profile} = useAppSelector(state => state.profilePage)
 
@@ -21,9 +21,8 @@ const MyPostsContainerFunc = (props: PropsType) => {
     }, [dispatch])
 
     return (
-        <MyPosts myId = {props.myId} id = {props.id} counts={countPosts} profile = {profile} postData = {posts} addPost = {AddPost} addLike = {AddLike} />
-    )
-}
-
+            <MyPosts myId = {props.myId} id = {props.id} counts={countPosts} profile = {profile} postData = {posts} addPost = {AddPost} addLike = {AddLike} />
+            )
+})
 
 export default MyPostsContainerFunc;

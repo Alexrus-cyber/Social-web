@@ -5,7 +5,7 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfileType} from "../../Types/Types";
 
 export type PropsType = {
-    id: string | undefined
+    id: string
     myId : number
     updateProfile: (profile: ProfileType) => void
     savePhoto:(file: File) => void

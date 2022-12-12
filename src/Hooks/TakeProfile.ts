@@ -1,6 +1,9 @@
 import {useEffect} from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import {actionsCreators, getProfile, getStatus} from "../Redux/Reducers/ProfileReducer";
 import {AppDispatch} from "../Redux/ReduxStore";
+import { QuizParams } from "../Types/Types";
+import { useAppDispatch } from "./Hooks";
 
 const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean): void => {
     if (haveStatus) {
@@ -15,7 +18,11 @@ const takeDispatch = (dispatch: AppDispatch, userId: number, haveStatus: boolean
 }
 
 
-export const useProfile = (params: any, id: number, isAuth: boolean, dispatch: AppDispatch, navigate: any, haveStatus: boolean) => {
+export const useProfile = (id: number, isAuth: boolean, haveStatus: boolean) => {
+    let navigate = useNavigate();
+    let dispatch = useAppDispatch();
+    let params = useParams<QuizParams>();
+    
     useEffect(() => {
         console.log("Hello")
         let userId = Number(params.id);

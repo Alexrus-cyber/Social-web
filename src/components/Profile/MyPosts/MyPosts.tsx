@@ -8,7 +8,7 @@ import {PostType, ProfileType} from "../../../Types/Types";
 
 type PropsType = {
     myId: number
-    id: string | undefined
+    id: string
     counts: number
     profile: ProfileType
     postData: Array<PostType>
