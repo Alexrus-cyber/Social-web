@@ -22,7 +22,7 @@ export const Messages = memo<PropsMessageType>(({userId, photos, fullName, addMe
         let counts = count + 1;
         setCount(counts);
         addMessage(counts, fullName, photos.large, values.newMessageText, Number(userId));
-    }, [count, fullName, photos]);
+    }, [count, fullName, photos,userId, addMessage]);
 
     let messageEl = messageData.map(el => <Message key={el.id} message={el.message} id={el.id} name={el.name}
                                                          img={el.img}/>)
